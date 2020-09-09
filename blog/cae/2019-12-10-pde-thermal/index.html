@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.0.3 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<head>
+  
+
+
+
+
+
+
+  
+    
+
+<title>Решение нестационарной задачи теплопроводности в MATLAB | ClassMech</title>
+<meta name="description" content="Использование модуля pde-toolbox для решения плоской нестационарной задачи теплопроводности.
+">
+<link rel="canonical" href="http://localhost:4000/blog/cae/2019-12-10-pde-thermal/">
+
+  
+
+  
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ClassMech">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<meta name="application-name" content="ClassMech">
+
+
+  <meta name="theme-color" content="rgb(25,55,71)">
+
+
+<meta name="generator" content="Hydejack v9.0.3" />
+
+
+<link rel="alternate" href="http://localhost:4000/blog/2018-04-02-electrostatic-space-tug/" hreflang="en">
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="ClassMech" />
+
+
+<link rel="shortcut icon"    href="/assets/icons/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/icons/icon-192x192.png">
+
+<link rel="manifest" href="/assets/site.webmanifest">
+
+
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+
+
+
+<link rel="preload" href="/assets/img/swipe.svg" as="image" id="_hrefSwipeSVG">
+
+<link rel="dns-prefetch" href="/assets/js/search-worker-9.0.3.js" as="worker" id="_hrefSearch">
+
+
+
+
+
+<script>!function(e,t){"use strict";function n(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}e.loadJS=function(e,o){var r=t.createElement("script");r.src=e,o&&n(r,"load",o,{once:!0});var a=t.scripts[0];return a.parentNode.insertBefore(r,a),r},e._loaded=!1,e.loadJSDeferred=function(o,r){function a(){e._loaded=!0,r&&n(c,"load",r,{once:!0});var o=t.scripts[0];o.parentNode.insertBefore(c,o)}var c=t.createElement("script");return c.src=o,e._loaded?a():n(e,"load",a,{once:!0}),c},e.setRel=e.setRelStylesheet=function(e){function o(){this.rel="stylesheet"}n(t.getElementById(e),"load",o,{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+}(window);
+</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+
+
+<!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.0.3.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79,177,186,0.5);--accent-color-darkened: #409ba3;--theme-color: rgb(25,55,71);--dark-mode-body-bg: #282e31;--dark-mode-border-color: #343b3f}
+
+</style>
+
+
+<!--<![endif]-->
+
+
+
+
+
+</head>
+
+<body class="">
+  
+<script>
+  window._sunrise = 6;
+  window._sunset =  18;
+  !function(e,s){var a="light-mode",d="dark-mode",o=(new Date).getHours();if(!("matchMedia"in e&&e.matchMedia("(prefers-color-scheme)"))){var i=o<=e._sunrise||o>=e._sunset?d:a,t=i===d?a:d;s.body.classList.add(i),s.body.classList.remove(t)}}(window,document);
+
+</script>
+
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-list"
+  role="main"
+>
+  <article class="page" role="article">
+  <header>
+    <h1 class="page-title">Решение нестационарной задачи теплопроводности в MATLAB</h1>
+    
+
+
+
+  
+    <p class="note-sm" >
+      Использование модуля pde-toolbox для решения плоской нестационарной задачи теплопроводности.
+
+    </p>
+  
+
+
+  </header>
+
+  <p>Рассматривается нестационарная плоская задача теплопроводности. Пластина со сторонами \(a = 0.4\) м, \(b+d=0.051\) м нагревается в тонком слое толщиной \(d=1\) мм (на верхней грани) за счёт внутренних источников тепла. В слое в одну секунду генерируется 8 кДж тепла. Со всех граней пластины излучается тепло рассеивается по закону Стефана-Больцмана. Степень черноты материала пластины - 0.8.</p>
+
+<p><img src="/assets/img/2019-12-10-pde-thermal-f1.png" alt="2019-12-10-pde-thermal-f1.png" /></p>
+
+<p>Температура точек пластины \(T(x,y,t)\) есть функция времени и координат. Эта зависимость определяется дифференциальным уравнением в частных производных:</p>
+
+\[\frac{\partial T}{\partial t} = k \left( \frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial y^2} \right) + \frac{q}{\rho c_p}\]
+
+<p>где</p>
+<ul>
+  <li>\(k\) – теплопроводность [Вт/(м\(\cdot\)К)],</li>
+  <li>\(\rho\) – плотность [кг/м\(^3\)],</li>
+  <li>\(c_p\) – удельная теплоёмкость [Дж/(кг\(\cdot\)K)],</li>
+  <li>\(q(x,y)\) – функция внутренних источников тепла [Вт/(м\(^3\))].</li>
+</ul>
+
+<p>Создаем модель, указывая тип задачи: нестационарная (transient) задача теплопроводности (thermal)</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">% Нестационарная модель</span>
+<span class="n">thermalModelT</span> <span class="o">=</span> <span class="n">createpde</span><span class="p">(</span><span class="s1">'thermal'</span><span class="p">,</span><span class="s1">'transient'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">% Размеры пластины</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mf">0.4</span><span class="p">;</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">;</span>
+<span class="c1">% Толищина "горячего" слоя</span>
+<span class="n">d</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">;</span>
+
+<span class="c1">% Описание геометрии: Прямоугольник</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">decsg</span><span class="p">([</span><span class="mi">3</span> <span class="mi">4</span> <span class="o">-</span><span class="n">a</span><span class="p">/</span><span class="mi">2</span> <span class="n">a</span><span class="p">/</span><span class="mi">2</span> <span class="n">a</span><span class="p">/</span><span class="mi">2</span> <span class="o">-</span><span class="n">a</span><span class="p">/</span><span class="mi">2</span> <span class="mf">0.00</span> <span class="mf">0.00</span> <span class="n">b</span> <span class="n">b</span><span class="p">;</span>
+           <span class="mi">3</span> <span class="mi">4</span> <span class="o">-</span><span class="n">a</span><span class="p">/</span><span class="mi">2</span> <span class="n">a</span><span class="p">/</span><span class="mi">2</span> <span class="n">a</span><span class="p">/</span><span class="mi">2</span> <span class="o">-</span><span class="n">a</span><span class="p">/</span><span class="mi">2</span> <span class="n">b</span> <span class="n">b</span> <span class="n">b</span><span class="o">+</span><span class="n">d</span> <span class="n">b</span><span class="o">+</span><span class="n">d</span><span class="p">]</span><span class="o">'</span><span class="p">);</span>
+
+<span class="c1">% Модель</span>
+<span class="n">geometryFromEdges</span><span class="p">(</span><span class="n">thermalModelT</span><span class="p">,</span><span class="n">g</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Свойства материала пластины</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">k</span>   <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>   <span class="c1">% теплопроводность</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="mi">7800</span><span class="p">;</span> <span class="c1">% плотность</span>
+<span class="n">cp</span>  <span class="o">=</span> <span class="mi">468</span><span class="p">;</span>  <span class="c1">% удельная теплоёмкость</span>
+<span class="n">thermalProperties</span><span class="p">(</span><span class="n">thermalModelT</span><span class="p">,</span><span class="s1">'ThermalConductivity'</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="s1">'MassDensity'</span><span class="p">,</span><span class="n">rho</span><span class="p">,</span><span class="s1">'SpecificHeat'</span><span class="p">,</span><span class="n">cp</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="граничные-условия">Граничные условия</h2>
+
+<p>Для корректного определения граничных условий необходимо увидеть геометрию тела с идентификаторами ребер (edges) и областей (faces).</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pdegplot</span><span class="p">(</span><span class="n">thermalModelT</span><span class="p">,</span><span class="s1">'EdgeLabels'</span><span class="p">,</span><span class="s1">'on'</span><span class="p">,</span><span class="s1">'SubdomainLabels'</span><span class="p">,</span><span class="s1">'on'</span><span class="p">);</span>
+<span class="nb">axis</span> <span class="n">equal</span>
+</code></pre></div></div>
+
+<p><img src="/assets/img/2019-12-10-pde-thermal-f2.png" alt="2019-12-10-pde-thermal-f2.png" /></p>
+
+<p>Идентификаторы ребер (E1, 2, 3, … 7) и областей (F1, F2) используются при задании граничных условий. Пластина излучает со всех своих ребер, степень черноты тела принята равной 0.8. Температура среды 4 К.</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">% Постоянная Стефана-Больцмана</span>
+<span class="n">thermalModelT</span><span class="o">.</span><span class="n">StefanBoltzmannConstant</span> <span class="o">=</span> <span class="mf">5.670373E-8</span><span class="p">;</span> 
+<span class="c1">% Излучение со всех ребер</span>
+<span class="c1">% Степень черноты 0.8</span>
+<span class="c1">% Температура среды 4 К </span>
+<span class="n">thermalBC</span><span class="p">(</span><span class="n">thermalModelT</span><span class="p">,</span><span class="s1">'Edge'</span><span class="p">,[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span><span class="p">],</span><span class="s1">'Emissivity'</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="s1">'AmbientTemperature'</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Внутренний источник тепла в тонком слое на верхней границе тела (область F2). В этом слое генерируется \(2 \cdot 10^7 \cdot 0.4 \times 0.001 = 8\) кДж в секунду. В общем случае, это может быть не число (\(2 \cdot 10^7\)), а ссылка на функцию координат и времени.</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">internalHeatSource</span><span class="p">(</span><span class="n">thermalModelT</span><span class="p">,</span><span class="mf">2e7</span><span class="p">,</span><span class="s1">'Face'</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="создание-сетки">Создание сетки</h2>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">generateMesh</span><span class="p">(</span><span class="n">thermalModelT</span><span class="p">,</span><span class="s1">'Hmax'</span><span class="p">,</span><span class="mf">0.03</span><span class="p">);</span>
+<span class="n">pdeplot</span><span class="p">(</span><span class="n">thermalModelT</span><span class="p">);</span> 
+<span class="nb">axis</span> <span class="n">equal</span>
+<span class="nb">title</span> <span class="s1">'Сетка'</span>
+</code></pre></div></div>
+
+<p><img src="/assets/img/2019-12-10-pde-thermal-f3.png" alt="2019-12-10-pde-thermal-f3.png" /></p>
+
+<h2 id="расчёт">Расчёт</h2>
+
+<p>Запускаем расчёт на интервале от 0 до 3600 с с шагом 1 с.</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tfinal</span> <span class="o">=</span> <span class="mi">3600</span><span class="p">;</span>
+<span class="n">tlist</span> <span class="o">=</span> <span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="n">tfinal</span><span class="p">;</span>
+
+<span class="c1">% Начальная температура тела</span>
+<span class="n">thermalIC</span><span class="p">(</span><span class="n">thermalModelT</span><span class="p">,</span><span class="mi">273</span><span class="p">);</span>
+
+<span class="c1">% Вывести статистическую информацию решателя</span>
+<span class="n">thermalModelT</span><span class="o">.</span><span class="n">SolverOptions</span><span class="o">.</span><span class="n">ReportStatistics</span>  <span class="o">=</span> <span class="s1">'on'</span><span class="p">;</span>
+
+<span class="c1">% Решаем</span>
+<span class="nb">result</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">thermalModelT</span><span class="p">,</span><span class="n">tlist</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="результаты">Результаты</h2>
+
+<p>После выполнения функции solve в консоль MATLABа (Command Window) выводится следующая информация</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">34</span> <span class="n">successful</span> <span class="n">steps</span>
+<span class="mi">0</span> <span class="n">failed</span> <span class="n">attempts</span>
+<span class="mi">49</span> <span class="k">function</span> <span class="n">evaluations</span>
+<span class="mi">1</span> <span class="n">partial</span> <span class="n">derivatives</span>
+<span class="mi">12</span> <span class="n">LU</span> <span class="n">decompositions</span>
+<span class="mi">48</span> <span class="n">solutions</span> <span class="n">of</span> <span class="n">linear</span> <span class="n">systems</span>
+</code></pre></div></div>
+
+<p>Построим карту температуры пластины на момент времени t=3600 c. Решение получено в numel(tlist)) точках, поэтому распределение температуры в момент времени t=3600 c будет соответствовать самому последнему набору значений массива result.Temperature(:,sol_index), где sol_index будет равен numel(tlist) = 3601.</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sol_index</span> <span class="o">=</span> <span class="nb">numel</span><span class="p">(</span><span class="n">tlist</span><span class="p">));</span>
+<span class="n">pdeplot</span><span class="p">(</span><span class="n">thermalModelT</span><span class="p">,</span><span class="s1">'XYData'</span><span class="p">,</span><span class="nb">result</span><span class="o">.</span><span class="n">Temperature</span><span class="p">(:,</span><span class="n">sol_index</span><span class="p">),</span><span class="s1">'Contour'</span><span class="p">,</span><span class="s1">'on'</span><span class="p">,</span><span class="s1">'ColorMap'</span><span class="p">,</span><span class="s1">'hot'</span><span class="p">);</span> 
+<span class="c1">% Покажем метки точек, для которых далее будут построены графики изменения температуры</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="c1">% Рисуем метки точек</span>
+<span class="nb">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.000</span><span class="p">,</span><span class="s1">'bo'</span><span class="p">);</span> 
+<span class="nb">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.051</span><span class="p">,</span><span class="s1">'bo'</span><span class="p">);</span> 
+<span class="c1">% Рисуем подписи точек</span>
+<span class="nb">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">0.010</span><span class="p">,</span><span class="s1">'T2'</span><span class="p">,</span><span class="s1">'FontSize'</span><span class="p">,</span><span class="mi">18</span><span class="p">);</span>
+<span class="nb">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.060</span><span class="p">,</span><span class="s1">'T1'</span><span class="p">,</span><span class="s1">'FontSize'</span><span class="p">,</span><span class="mi">18</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">off</span><span class="p">;</span>
+<span class="nb">set</span><span class="p">(</span><span class="nb">gca</span><span class="p">,</span><span class="s1">'FontSize'</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="s1">'LineWidth'</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="nb">grid</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.25</span> <span class="mf">0.25</span><span class="p">]);</span>
+<span class="nb">ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.05</span> <span class="mf">0.15</span><span class="p">]);</span>
+</code></pre></div></div>
+
+<p><img src="/assets/img/2019-12-10-pde-thermal-f4.png" alt="2019-12-10-pde-thermal-f4.png" /></p>
+
+<p>График изменения температуры на верхней и нижней грани пластины.</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">% Генерируем матрицу размера numel(sol_index)x2 с температурами точек Т1 и Т2. </span>
+<span class="n">probeTemp</span> <span class="o">=</span> <span class="nb">cell2mat</span><span class="p">(</span><span class="nb">arrayfun</span><span class="p">(</span><span class="o">@</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="n">interpolateTemperature</span><span class="p">(</span><span class="nb">result</span><span class="p">,[</span><span class="mf">0.000</span> <span class="mf">0.000</span><span class="p">],[</span><span class="mf">0.051</span> <span class="mf">0.000</span><span class="p">],</span><span class="n">i</span><span class="p">)</span><span class="s1">',(1:length(tlist))'</span><span class="p">,</span><span class="s1">'UniformOutput'</span><span class="p">,</span><span class="nb">false</span><span class="p">));</span>
+<span class="c1">% Первый график на интервале от 0 до 100 с</span>
+<span class="nb">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">tlist</span><span class="p">,</span><span class="n">probeTemp</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span><span class="s1">'r-'</span><span class="p">,</span><span class="s1">'LineWidth'</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span> <span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">tlist</span><span class="p">,</span><span class="n">probeTemp</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span><span class="s1">'b-'</span><span class="p">,</span><span class="s1">'LineWidth'</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span> <span class="nb">hold</span> <span class="n">off</span><span class="p">;</span>
+<span class="nb">set</span><span class="p">(</span><span class="nb">gca</span><span class="p">,</span><span class="s1">'FontSize'</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="s1">'LineWidth'</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="nb">grid</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">legend</span><span class="p">(</span><span class="s1">'T1'</span><span class="p">,</span><span class="s1">'T2'</span><span class="p">);</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s1">'t, c'</span><span class="p">);</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s1">'Температура, K'</span><span class="p">);</span>
+<span class="nb">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">]);</span>
+<span class="c1">% Второй график на всем интервале от 0 до 3600 с</span>
+<span class="nb">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">tlist</span><span class="p">,</span><span class="n">probeTemp</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span><span class="s1">'r-'</span><span class="p">,</span><span class="s1">'LineWidth'</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span> <span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">tlist</span><span class="p">,</span><span class="n">probeTemp</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span><span class="s1">'b-'</span><span class="p">,</span><span class="s1">'LineWidth'</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span> <span class="nb">hold</span> <span class="n">off</span><span class="p">;</span>
+<span class="c1">%plot(tlist,probeTemp(:,2)-probeTemp(:,1),'b-','LineWidth',2);</span>
+<span class="nb">set</span><span class="p">(</span><span class="nb">gca</span><span class="p">,</span><span class="s1">'FontSize'</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="s1">'LineWidth'</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="nb">grid</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">legend</span><span class="p">(</span><span class="s1">'T1'</span><span class="p">,</span><span class="s1">'T2'</span><span class="p">);</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s1">'t, c'</span><span class="p">);</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s1">'Температура, K'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img src="/assets/img/2019-12-10-pde-thermal-f5.png" alt="2019-12-10-pde-thermal-f5.png" /></p>
+
+<p>Ниже на видео показана динамика изменения температуры. Стрелками показаны направления тепловых потоков. Показана температура на верхней грани, нижней грани и разница температур. Для построения видео использовался следующий код</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">v</span> <span class="o">=</span> <span class="nb">VideoWriter</span><span class="p">(</span><span class="s1">'temperature.avi'</span><span class="p">);</span>
+<span class="nb">open</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="c1">% Фигура</span>
+<span class="nb">figure</span><span class="p">(</span><span class="s1">'Position'</span><span class="p">,[</span><span class="mi">100</span> <span class="mi">100</span> <span class="mi">1920</span> <span class="mi">1080</span><span class="p">]);</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="c1">% Для каждого момента времени из таблицы результатов интегрирования</span>
+<span class="p">[</span><span class="n">qTx</span><span class="p">,</span><span class="n">qTy</span><span class="p">]</span> <span class="o">=</span> <span class="n">evaluateHeatFlux</span><span class="p">(</span><span class="nb">result</span><span class="p">);</span>
+<span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">tlist</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+    <span class="c1">% Очищаем рисунок</span>
+    <span class="nb">cla</span><span class="p">;</span>
+    <span class="c1">%[qTx,qTy] = evaluateHeatFlux(result,0.2,0.05,1:length(tlist));    </span>
+    <span class="n">pdeplot</span><span class="p">(</span><span class="n">thermalModelT</span><span class="p">,</span><span class="s1">'XYData'</span><span class="p">,</span><span class="nb">result</span><span class="o">.</span><span class="n">Temperature</span><span class="p">(:,</span><span class="n">i</span><span class="p">),</span><span class="s1">'Contour'</span><span class="p">,</span><span class="s1">'on'</span><span class="p">,</span> <span class="k">...</span>
+                     <span class="s1">'FlowData'</span><span class="p">,[</span><span class="n">qTx</span><span class="p">(:,</span><span class="n">i</span><span class="p">)</span> <span class="n">qTy</span><span class="p">(:,</span><span class="n">i</span><span class="p">)],</span> <span class="k">...</span>
+                     <span class="s1">'ColorMap'</span><span class="p">,</span><span class="s1">'hot'</span><span class="p">,</span><span class="s1">'Levels'</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>        
+    <span class="nb">axis</span><span class="p">([</span><span class="o">-</span><span class="mf">0.25</span> <span class="mf">0.25</span><span class="p">,</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">]);</span>    
+    <span class="c1">% Определим температуру в двух точках [0,0] и [b+d, 0]</span>
+    <span class="c1">% координаты точек задаются двумя массивами координат x и y</span>
+    <span class="c1">% [x1, x2, x3, ...], [y1, y2, y3, ...]</span>
+    <span class="n">Temp</span> <span class="o">=</span> <span class="n">interpolateTemperature</span><span class="p">(</span><span class="nb">result</span><span class="p">,[</span><span class="mi">0</span> <span class="mi">0</span><span class="p">],[</span><span class="n">b</span><span class="o">+</span><span class="n">d</span> <span class="mi">0</span><span class="p">],</span><span class="n">i</span><span class="p">);</span>
+    <span class="nb">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">0.010</span><span class="p">,</span><span class="nb">sprintf</span><span class="p">(</span><span class="s1">'%5.1f'</span><span class="p">,</span><span class="n">Temp</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span><span class="s1">'FontSize'</span><span class="p">,</span><span class="mi">20</span><span class="p">);</span>
+    <span class="nb">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">+</span><span class="mf">0.060</span><span class="p">,</span><span class="nb">sprintf</span><span class="p">(</span><span class="s1">'%5.1f'</span><span class="p">,</span><span class="n">Temp</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span><span class="s1">'FontSize'</span><span class="p">,</span><span class="mi">20</span><span class="p">);</span>    
+    <span class="c1">% Разница температур</span>
+    <span class="nb">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">0.03</span><span class="p">,</span><span class="nb">sprintf</span><span class="p">(</span><span class="s1">'dT = %5.1f'</span><span class="p">,</span><span class="n">Temp</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">Temp</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span><span class="s1">'FontSize'</span><span class="p">,</span><span class="mi">20</span><span class="p">);</span>    
+    <span class="c1">% Время</span>
+    <span class="nb">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.12</span><span class="p">,</span><span class="nb">sprintf</span><span class="p">(</span><span class="s1">'t = %5.1f'</span><span class="p">,</span> <span class="n">tlist</span><span class="p">(</span><span class="n">i</span><span class="p">)),</span><span class="s1">'FontSize'</span><span class="p">,</span><span class="mi">20</span><span class="p">);</span>
+    <span class="c1">% Шрифт для подписей осей</span>
+    <span class="nb">set</span><span class="p">(</span><span class="nb">gca</span><span class="p">,</span><span class="s1">'FontSize'</span><span class="p">,</span><span class="mi">20</span><span class="p">);</span>
+    <span class="c1">% Сетка</span>
+    <span class="nb">grid</span> <span class="n">on</span><span class="p">;</span>   
+    <span class="n">frame</span> <span class="o">=</span> <span class="nb">getframe</span><span class="p">(</span><span class="nb">gcf</span><span class="p">);</span>    
+    <span class="nb">writeVideo</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">frame</span><span class="p">);</span>
+<span class="k">end</span>
+<span class="nb">close</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</code></pre></div></div>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_BERXTfAqos" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    <h2 id="y-2020" class="hr-bottom">2020</h2>
+    <ul class="related-posts">
+    
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/programming/2020-05-20-select-sql/" class="flip-title"><span>Пример построения сложного запроса к базе данных</span></a>
+  <time class="faded fine" datetime="2020-05-20T00:00:00+04:00">20 May</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/programming/cae/2020-05-19-atm-density-matlab/" class="flip-title"><span>Простая функция определения плотности воздуха</span></a>
+  <time class="faded fine" datetime="2020-05-19T00:00:00+04:00">19 May</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/2020-05-09-Game-of-Life-SQL/" class="flip-title"><span>Игра Жизнь на SQL</span></a>
+  <time class="faded fine" datetime="2020-05-09T00:00:00+04:00">09 May</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/2020-04-10-Mathematica-mech/" class="flip-title"><span>Уравнения Лагранжа II рода в Wolfram Mathematica</span></a>
+  <time class="faded fine" datetime="2020-04-10T00:00:00+04:00">10 Apr</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/mechanics/2020-03-10-fairing/" class="flip-title"><span>Модель отделения створки головного обтекателя</span></a>
+  <time class="faded fine" datetime="2020-03-10T00:00:00+04:00">10 Mar</time>
+</li>
+
+  
+
+  
+  
+    </ul>
+    <h2 id="y-2019" class="hr-bottom">2019</h2>
+    <ul class="related-posts">
+    
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/cae/2019-12-10-pde-thermal/" class="flip-title"><span>Решение нестационарной задачи теплопроводности в MATLAB</span></a>
+  <time class="faded fine" datetime="2019-12-10T00:00:00+04:00">10 Dec</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/cae/2019-08-01-simulink-pendulum/" class="flip-title"><span>Модель физического маятника в Simulink</span></a>
+  <time class="faded fine" datetime="2019-08-01T00:00:00+04:00">01 Aug</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/mechanics/2019-07-29-mech-python/" class="flip-title"><span>Движение механической системы с двумя степенями свободы</span></a>
+  <time class="faded fine" datetime="2019-07-29T00:00:00+04:00">29 Jul</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/programming/mechanics/2019-07-03-cubesat-python/" class="flip-title"><span>Модель движения наноспутника</span></a>
+  <time class="faded fine" datetime="2019-07-03T00:00:00+04:00">03 Jul</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/mechanics/programming/2019-06-30-net2D/" class="flip-title"><span>Плоская модель сети</span></a>
+  <time class="faded fine" datetime="2019-06-30T00:00:00+04:00">30 Jun</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/programming/2019-06-09-sympy/" class="flip-title"><span>Пример использования библиотеки sympy для поиска экстремума функции</span></a>
+  <time class="faded fine" datetime="2019-06-09T00:00:00+04:00">09 Jun</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/mechanics/2019-02-22-patent/" class="flip-title"><span>Способ очистки орбит от объектов космического мусора</span></a>
+  <time class="faded fine" datetime="2019-02-22T00:00:00+04:00">22 Feb</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/mechanics/2019-01-05-reentry-1/" class="flip-title"><span>Движение спускаемого аппарата в атмосфере</span></a>
+  <time class="faded fine" datetime="2019-01-05T00:00:00+04:00">05 Jan</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/mechanics/2019-01-02-discharge-constant-volume-python/" class="flip-title"><span>Истечение газа из ёмкости постоянного объёма</span></a>
+  <time class="faded fine" datetime="2019-01-02T00:00:00+04:00">02 Jan</time>
+</li>
+
+  
+
+  
+  
+    </ul>
+    <h2 id="y-2018" class="hr-bottom">2018</h2>
+    <ul class="related-posts">
+    
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/2018-05-13-ffmpeg/" class="flip-title"><span>Использование утилиты ffmpeg</span></a>
+  <time class="faded fine" datetime="2018-05-13T00:00:00+04:00">13 May</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/mechancis/2018-04-14-net/" class="flip-title"><span>Net</span></a>
+  <time class="faded fine" datetime="2018-04-14T00:00:00+04:00">14 Apr</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/2018-04-02-electrostatic-space-tug/" class="flip-title"><span>Electrostatic Space Tug</span></a>
+  <time class="faded fine" datetime="2018-04-02T00:00:00+04:00">02 Apr</time>
+</li>
+
+  </ul>
+
+
+  
+
+</article>
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2020. All rights reserved.
+</small></p>
+  
+  
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.0.3</span></small></p>
+  
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(25,55,71);background-image:url(/assets/img/vadim-sadovski-2017-06-20-0-10-42.jpg)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <img src="/assets/img/satellite.png" class="avatar" alt="ClassMech" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">ClassMech</h2></a>
+    
+    
+      <p class="">
+        
+
+      </p>
+    
+  </div>
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+    
+    
+
+    
+      
+        <li>
+          <a
+            id="_navigation"
+            href="/about/"
+            class="sidebar-nav-item"
+            
+            >
+            Об авторе
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/papers/"
+            class="sidebar-nav-item"
+            
+            >
+            Статьи
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/presentations/"
+            class="sidebar-nav-item"
+            
+            >
+            Презентации
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/disciplines/"
+            class="sidebar-nav-item"
+            
+            >
+            Дисциплины
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/videos/"
+            class="sidebar-nav-item"
+            
+            >
+            Видео
+          </a>
+        </li>
+      
+    
+  
+</ul>
+
+  </nav>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social</span>
+<ul>
+  
+    
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://twitter.com/kidinnu" title="Twitter" class="no-mark-external">
+      <span class="icon-twitter"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  </li>
+
+
+    
+
+    
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/Kidinnu" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+
+    
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var e=document.createElement("script");if(!("noModule"in e)&&"onbeforeload"in e){var t=!1;document.addEventListener("beforeload",function(n){if(n.target===e)t=!0;else if(!n.target.hasAttribute("nomodule")||!t)return;n.preventDefault()},!0),e.type="module",e.src=".",document.head.appendChild(e),e.remove()}}();
+</script>
+  <script src="/assets/js/hydejack-9.0.3.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.0.3.js" nomodule defer></script>
+  
+
+  
+
+  <script type="module">
+    if ('serviceWorker' in navigator) {
+      /**/
+      navigator.serviceWorker.getRegistration()
+        .then(r => r.unregister())
+        .catch(() => {});
+      /**/
+    }
+  </script>
+<!--<![endif]-->
+  
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates:</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading: <a class="this-link" href=""></a>.
+    </p>
+  </div>
+</template>
+
+  <template id="_forward-template">
+  <button id="_forward" class="forward nav-btn no-hover">
+    <span class="sr-only">Forward</span>
+    <span class="icon-arrow-right2"></span>
+  </button>
+</template>
+
+  <template id="_back-template">
+  <button id="_back" class="back nav-btn no-hover">
+    <span class="sr-only">Back</span>
+    <span class="icon-arrow-left2"></span>
+  </button>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+  
+    <template id="_cookies-banner-template">
+  <div id="_cookies-banner" class="navbar fixed-bottom CookiesOK">
+    <div class="content">
+      <div class="nav-btn-bar">
+        <small class="faded">
+          <span>This site uses cookies.
+</span>
+          <button id="_cookies-ok" class="btn btn-primary btn-sm">Okay</button>
+        </small>
+      </div>
+    </div>
+  </div>
+</template>
+
+  
+  
+    <template id="_dark-mode-template">
+  <button id="_dark-mode" class="nav-btn no-hover" >
+    <span class="sr-only">Dark Mode</span>
+    <span class="icon-brightness-contrast"></span>
+  </button>
+</template>
+
+  
+  
+    <template id="_search-template">
+  <button id="_search" class="nav-btn no-hover">
+    <label class="sr-only" for="_search-input">Search</label>
+    <span class="icon-search"></span>
+  </button>
+  <div id="_search-box">
+    <div class="nav-btn">
+      <span class="icon-search"></span>
+    </div>
+    <input 
+      id="_search-input"
+      type="search"
+      class="form-control form-control-lg nav-btn"
+      placeholder="SEARCH NOT ENABLED DURING DEVELOPMENT"
+    />
+    <button type="reset" class="nav-btn no-hover">
+      <span class="sr-only">Close</span>
+      <span class="icon-cross"></span>
+    </button>
+  </div>
+  <div id="_hits"></div>
+</template>
+
+  
+</div>
+
+</body>
+</html>

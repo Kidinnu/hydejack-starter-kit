@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.0.3 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<head>
+  
+
+
+
+
+
+
+  
+    
+
+<title>Лабораторная работа 3 | ClassMech</title>
+<meta name="description" content="Задание для лабораторной работы 3.
+">
+<link rel="canonical" href="http://localhost:4000/pages/python/lab3/">
+
+  
+
+  
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ClassMech">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<meta name="application-name" content="ClassMech">
+
+
+  <meta name="theme-color" content="rgb(25,55,71)">
+
+
+<meta name="generator" content="Hydejack v9.0.3" />
+
+
+<link rel="alternate" href="http://localhost:4000/blog/2018-04-02-electrostatic-space-tug/" hreflang="en">
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="ClassMech" />
+
+
+<link rel="shortcut icon"    href="/assets/icons/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/icons/icon-192x192.png">
+
+<link rel="manifest" href="/assets/site.webmanifest">
+
+
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+
+
+
+<link rel="preload" href="/assets/img/swipe.svg" as="image" id="_hrefSwipeSVG">
+
+<link rel="dns-prefetch" href="/assets/js/search-worker-9.0.3.js" as="worker" id="_hrefSearch">
+
+
+
+
+
+<script>!function(e,t){"use strict";function n(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}e.loadJS=function(e,o){var r=t.createElement("script");r.src=e,o&&n(r,"load",o,{once:!0});var a=t.scripts[0];return a.parentNode.insertBefore(r,a),r},e._loaded=!1,e.loadJSDeferred=function(o,r){function a(){e._loaded=!0,r&&n(c,"load",r,{once:!0});var o=t.scripts[0];o.parentNode.insertBefore(c,o)}var c=t.createElement("script");return c.src=o,e._loaded?a():n(e,"load",a,{once:!0}),c},e.setRel=e.setRelStylesheet=function(e){function o(){this.rel="stylesheet"}n(t.getElementById(e),"load",o,{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+}(window);
+</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+
+
+<!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.0.3.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79,177,186,0.5);--accent-color-darkened: #409ba3;--theme-color: rgb(25,55,71);--dark-mode-body-bg: #282e31;--dark-mode-border-color: #343b3f}
+
+</style>
+
+
+<!--<![endif]-->
+
+
+
+
+
+</head>
+
+<body class="">
+  
+<script>
+  window._sunrise = 6;
+  window._sunset =  18;
+  !function(e,s){var a="light-mode",d="dark-mode",o=(new Date).getHours();if(!("matchMedia"in e&&e.matchMedia("(prefers-color-scheme)"))){var i=o<=e._sunrise||o>=e._sunset?d:a,t=i===d?a:d;s.body.classList.add(i),s.body.classList.remove(t)}}(window,document);
+
+</script>
+
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-page"
+  role="main"
+>
+  <article class="page" role="article">
+  <header>
+    <h1 class="page-title">Лабораторная работа 3</h1>
+    
+
+
+
+  
+    <p class="note-sm" >
+      Задание для лабораторной работы 3.
+
+    </p>
+  
+
+
+  </header>
+
+  <p>Источник <a href="http://oi.ssau.ru/docs/Sim_zadaniya_k_lab.docx">Е.А. Симановский Сборник заданий к лабораторным работам</a></p>
+
+<p>Индивидуальные задания (по номеру в ведомости)</p>
+
+<h2 id="задание-31">Задание 3.1</h2>
+
+<p>Количество элементов массива и сами элемены вводятся в диалоговом режиме пользователем.</p>
+
+<ol>
+  <li>Дан массив натуральных чисел. Найти сумму элементов, кратных данному К.</li>
+  <li>Дан массив целых чисел, в котором есть нулевые элементы. Создать массив из номеров этих элементов.</li>
+  <li>Дан массив из N целых чисел. Выяснить, какое число встречается в массиве раньше – положительное или отрицательное.</li>
+  <li>Дан массив из N натуральных чисел. Создать массив из чётных чисел этого массива. Если таких чисел нет, то вывести сообщение об этом факте.</li>
+  <li>Дан массив из N чисел. Указать наименьшую длину числовой оси, содержащую все эти числа.</li>
+  <li>Дан массив из N действительных чисел. Заменить все его члены, большие данного Z, этим числом. Подсчитать количество замен.</li>
+  <li>Дан массив действительных чисел, размерность которого N. Подсчитать, сколько в нем отрицательных, положительных и нулевых элементов.</li>
+  <li>Дан массив действительных чисел, размерность которого N. Поменять местами наибольший и наименьший элементы массива.</li>
+  <li>Дан массив А из N целых чисел. Вывести на печать только те числа, для которых выполняется условие Аi ≤ i, где i – номер элемента массива.</li>
+  <li>Дан массив из N натуральных чисел. Указать те числа, остаток от деления которых на М равен L (0 ≤ L ≤ M-1).</li>
+  <li>В заданном одномерном массиве поменять местами соседние элементы, стоящие на чётных местах, с элементами, стоящими на нечётных.</li>
+  <li>При поступлении в вуз абитуриенты, получившие «двойку» на первом экзамене, ко второму не допускаются. В массиве A[n] записаны оценки экзаменующихся, полученные на первом экзамене. Подсчитать, сколько человек не допущено ко второму экзамену.</li>
+  <li>Дана массив чисел, среди которых имеется один нуль. Вывести на печать все числа включительно до нуля.</li>
+  <li>В одномерном массиве размещены: в первых элементах значения аргумента, а в следующих – соответствующие им значения функции. Напечатать элементы этого массива в виде двух параллельных столбцов: аргументы и значения функции.</li>
+  <li>Дан целочисленный массив с количеством элементов N. Напечатать те его элементы, индексы которых являются степенями двойки (1, 2, 4, 8, 16, …).</li>
+  <li>Дан массив из N действительных чисел. Напечатать те его элементы, которые принадлежат отрезку [c, d].</li>
+  <li>Дан массив целых положительных чисел. Найти произведение только тех чисел, которые больше заданного числа М. Если таких нет, то выдать сообщение об этом.</li>
+  <li>Массив из N элементов состоит из нулей и единиц. Поставить в начало этого массива нули, а затем единицы.</li>
+  <li>Дан массив из N действительных чисел, в котором есть только положительные и отрицательные элементы. Вычислить произведение отрицательных элементов P1 и произведение положительных элементов P2. Сравнить модуль P2 с модулем P1 и указать, какое из произведений по модулю больше.</li>
+  <li>Задан массив с количеством элементов N. Сформируйте два массива: в первый включите элементы исходного массива с чётными номерами, а во второй – с нечётными.</li>
+  <li>Составить программу нахождения наибольшего среди тех элементов одномерного массива А, что лежат в интервале [С, D].</li>
+  <li>Составить программу отыскания наименьшего среди тех элементов одномерного массива А, что лежат вне интервала [С, D].</li>
+  <li>Составить программу подсчёта среди элементов одномерного массива В количества чисел, больших С.</li>
+  <li>Составить программу отыскания наименьшего среди элементов одномерного массива А и его индекса.</li>
+  <li>Задан массив Y с количеством элементов N. Сформируйте массив, в котором элементы с чётными индексами будут равны соответствующим элементам исходного массива, а элементы с нечётными индексами будут равны нулю.</li>
+  <li>Составить программу подсчёта в одномерном массиве А суммы элементов с чётными индексами и суммы элементов, значения которых больше нуля.</li>
+  <li>Составить программу подсчёта в одномерном массиве С количества отрицательных и произведения положительных элементов массива.</li>
+  <li>Составить программу подсчёта в одномерном массиве В произведения элементов с нечётными индексами и суммы отрицательных элементов.</li>
+  <li>Заданы два одномерных массива А и В с одинаковым количеством элементов. Составить программу подсчёта суммы элементов с чётными индексами в массиве А и суммы элементов, значения которых больше нуля, в массиве В.</li>
+  <li>Заданы два одномерных массива А и В с одинаковым количеством элементов. Составить программу подсчёта суммы элементов с нечётными индексами в массиве B и произведения отрицательных элементов в массиве А.</li>
+</ol>
+
+<h2 id="задание-32">Задание 3.2</h2>
+
+<ol>
+  <li>Задан двумерный массив С из 4-х строк и 4-х столбцов (квадратная матрица). Составить программу подсчёта суммы всех отрицательных элементов и суммы элементов по главной диагонали.</li>
+  <li>Задан двумерный массив Y из 7-и строк и 3-х столбцов. Составить программу подсчёта суммы произведений элементов строк.</li>
+  <li>Задан двумерный массив А из 5-и строк и 2-х столбцов. Составить программу, которая формирует одномерный массив В, каждый элемент которого есть произведение элементов массива А в строке.</li>
+  <li>Задан двумерный массив В из 4-х строк и 4-х столбцов. Составить программу, которая организует двумерный массив, элементы главной диагонали  которого равны соответствующим элементам исходного массива, а остальные элементы равны нулю.</li>
+  <li>Задан двумерный массив А из 2-х строк и 7-и столбцов. Составить программу, которая организует одномерный массив, каждый элемент которого есть сумма элементов исходного в столбце.</li>
+  <li>Задан двумерный массив Y из 5-и строк и 5-и столбцов. Составить программу подсчёта суммы всех положительных элементов и суммы элементов по главной диагонали.</li>
+  <li>Задан двумерный массив А из 4-х строк и 4-х столбцов. Составить программу, которая подсчитывает произведение элементов массива, лежащих вне главной диагонали.</li>
+  <li>Задан двумерный массив С из 6-и строк и 6-и столбцов. Составить программу, которая подсчитывает сумму всех элементов массива. Затем организовать формирование нового массива С, в котором элементы, лежащие на главной диагонали, равны 1, а остальные элементы равны соответствующим элементам исходного массива С.</li>
+  <li>Задан двумерный массив Y из 7-и строк и 3-х столбцов. Составить программу, которая вычисляет значение суммы произведений элементов строк</li>
+  <li>Задан двумерный массив В из 4-х строк и 5-и столбцов. Составить программу, которая организует одномерный массив, каждый элемент которого есть сумма элементов в столбце. Вычислить произведение элементов полученного массива.</li>
+  <li>Задан двумерный массив А из 5-и строк и 4-х столбцов. Составить программу, которая вычисляет значение произведения сумм строк.</li>
+  <li>Задан двумерный массив Y из 4-х строк и 4-х столбцов. Составить программу, которая вычисляет S – сумму элементов побочной диагонали и значение суммы всех элементов массива</li>
+  <li>Задан двумерный массив С из 6-и строк и 3-х столбцов. Составить программу, которая подсчитывает сумму всех элементов массива. Затем организовать формирование нового массива С, в котором элементы, лежащие не на главной диагонали, равны 1, а остальные элементы равны соответствующим элементам исходного массива С Вычислить произведение всех элементов нового массива.</li>
+  <li>Задан двумерный массив А из 6-и строк и 3-х столбцов. Составить программу, которая организует одномерный массив, каждый элемент которого есть произведение элементов массива А в каждой строке. Затем вычислить сумму элементов полученного одномерного массива.</li>
+  <li>Задан двумерный массив C из 3-х строк и 5-и столбцов. Составить программу, которая вычисляет произведение всех элементов массива. Затем организовать новый массив С, в котором значения элементов, лежащих на главной диагонали, равны 1, а остальные элементы равны квадрату соответствующих элементов исходного массива С.</li>
+  <li>Задан двумерный массив В из 4-х строк и 5-и столбцов. Составить программу, которая вычисляет сумму всех элементов массива.
+Затем организовать новый массив В, в котором заменить отрицательные элементы исходного массива на 1, а значения остальных элементов оставить без изменения. Подсчитать количество замен.</li>
+  <li>Задан двумерный массив А из 8-и строк и 3-х столбцов. Составить программу, которая подсчитывает общее число неотрицательных элементов в массиве. Затем организовать формирование нового массива В, в котором значения элементов исходного массива заменить на противоположные по знаку.</li>
+  <li>Задан двумерный массив В из 6-и строк и 3-х столбцов. Составить программу, которая организует одномерный массив С, элементы которого равны количеству положительных элементов в строке исходного массива В.</li>
+  <li>Задан двумерный массив D из 5-и строк и 5-и столбцов. Составить программу, которая организует одномерный массив, элементы которого равны элементам массива D , лежащим на побочной диагонали, а затем вычисляет сумму элементов полученного одномерного массива.</li>
+  <li>Задан двумерный массив В из 4-х строк и 5-и столбцов. Составить программу, которая подсчитывает количество положительных, отрицательных и нулевых элементов в массиве В и организует одномерный массив из полученных значений.</li>
+  <li>Задан двумерный массив А из 3-х строк и 5-и столбцов. Составить программу, которая организует одномерный массив, каждый элемент которого есть количество положительных элементов исходного массива в столбце. Вычислить произведение элементов полученного массива.</li>
+  <li>Задан двумерный массив С из 2-х строк и 4-х столбцов. Составить программу, которая организует одномерный массив, каждый элемент которого есть количество отрицательных элементов исходного массива в строке. Вычислить сумму элементов полученного массива.</li>
+  <li>Задан двумерный массив В из 4-х строк и 4-х столбцов. Составить программу, которая организует одномерный массив, каждый элемент которого есть количество отрицательных элементов исходного массива в столбце. Вычислить сумму элементов полученного массива.</li>
+  <li>Задан двумерный массив В из 4-х строк и 4-х столбцов. Составить программу, которая организует двумерный массив, одна строка которого содержит количество ненулевых элементов исходного массива в столбце, а вторая – количество нулевых. Организовать проверку правильности формирования массива путём вычисления суммы элементов полученного массива.</li>
+  <li>Задан двумерный массив D из 5-и строк и 5- столбцов. Составить программу, которая организует новый массив B путём деления всех элементов заданной матрицы на элемент, наибольший по абсолютной величине.</li>
+  <li>Задан двумерный массив А из 3-х строк и 5-и столбцов. Составить программу, которая организует одномерный массив, каждый элемент которого есть наибольший элемент среди элементов в строке исходного массива.</li>
+  <li>Задан двумерный массив X из 3-х строк и 7-и столбцов. Составить программу, которая организует одномерный массив, каждый элемент которого есть наименьший по абсолютной величине элемент среди элементов в столбце исходного массива.</li>
+  <li>Задан двумерный массив А из 3-х строк и 5-и столбцов. Составить программу, которая организует одномерный массив, каждый элемент которого есть наибольший элемент среди элементов в столбце исходного массива.</li>
+  <li>Задан двумерный массив X из 3-х строк и 7-и столбцов. Составить программу, которая организует одномерный массив, каждый элемент которого есть наименьший по абсолютной величине элемент среди элементов в строке исходного массива.</li>
+  <li>Задан двумерный массив A из 6-и строк и 6-и столбцов и одномерный массив Y из 6 строк. Составить программу, которая подсчитывает количество элементов, больших 1, а затем вычисляет произведение всех элементов массива.</li>
+</ol>
+
+  
+
+</article>
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2020. All rights reserved.
+</small></p>
+  
+  
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.0.3</span></small></p>
+  
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(25,55,71);background-image:url(/assets/img/vadim-sadovski-2017-06-20-0-10-42.jpg)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <img src="/assets/img/satellite.png" class="avatar" alt="ClassMech" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">ClassMech</h2></a>
+    
+    
+      <p class="">
+        
+
+      </p>
+    
+  </div>
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+    
+    
+
+    
+      
+        <li>
+          <a
+            id="_navigation"
+            href="/about/"
+            class="sidebar-nav-item"
+            
+            >
+            Об авторе
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/papers/"
+            class="sidebar-nav-item"
+            
+            >
+            Статьи
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/presentations/"
+            class="sidebar-nav-item"
+            
+            >
+            Презентации
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/disciplines/"
+            class="sidebar-nav-item"
+            
+            >
+            Дисциплины
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/videos/"
+            class="sidebar-nav-item"
+            
+            >
+            Видео
+          </a>
+        </li>
+      
+    
+  
+</ul>
+
+  </nav>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social</span>
+<ul>
+  
+    
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://twitter.com/kidinnu" title="Twitter" class="no-mark-external">
+      <span class="icon-twitter"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  </li>
+
+
+    
+
+    
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/Kidinnu" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+
+    
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var e=document.createElement("script");if(!("noModule"in e)&&"onbeforeload"in e){var t=!1;document.addEventListener("beforeload",function(n){if(n.target===e)t=!0;else if(!n.target.hasAttribute("nomodule")||!t)return;n.preventDefault()},!0),e.type="module",e.src=".",document.head.appendChild(e),e.remove()}}();
+</script>
+  <script src="/assets/js/hydejack-9.0.3.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.0.3.js" nomodule defer></script>
+  
+
+  
+
+  <script type="module">
+    if ('serviceWorker' in navigator) {
+      /**/
+      navigator.serviceWorker.getRegistration()
+        .then(r => r.unregister())
+        .catch(() => {});
+      /**/
+    }
+  </script>
+<!--<![endif]-->
+  
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates:</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading: <a class="this-link" href=""></a>.
+    </p>
+  </div>
+</template>
+
+  <template id="_forward-template">
+  <button id="_forward" class="forward nav-btn no-hover">
+    <span class="sr-only">Forward</span>
+    <span class="icon-arrow-right2"></span>
+  </button>
+</template>
+
+  <template id="_back-template">
+  <button id="_back" class="back nav-btn no-hover">
+    <span class="sr-only">Back</span>
+    <span class="icon-arrow-left2"></span>
+  </button>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+  
+    <template id="_cookies-banner-template">
+  <div id="_cookies-banner" class="navbar fixed-bottom CookiesOK">
+    <div class="content">
+      <div class="nav-btn-bar">
+        <small class="faded">
+          <span>This site uses cookies.
+</span>
+          <button id="_cookies-ok" class="btn btn-primary btn-sm">Okay</button>
+        </small>
+      </div>
+    </div>
+  </div>
+</template>
+
+  
+  
+    <template id="_dark-mode-template">
+  <button id="_dark-mode" class="nav-btn no-hover" >
+    <span class="sr-only">Dark Mode</span>
+    <span class="icon-brightness-contrast"></span>
+  </button>
+</template>
+
+  
+  
+    <template id="_search-template">
+  <button id="_search" class="nav-btn no-hover">
+    <label class="sr-only" for="_search-input">Search</label>
+    <span class="icon-search"></span>
+  </button>
+  <div id="_search-box">
+    <div class="nav-btn">
+      <span class="icon-search"></span>
+    </div>
+    <input 
+      id="_search-input"
+      type="search"
+      class="form-control form-control-lg nav-btn"
+      placeholder="SEARCH NOT ENABLED DURING DEVELOPMENT"
+    />
+    <button type="reset" class="nav-btn no-hover">
+      <span class="sr-only">Close</span>
+      <span class="icon-cross"></span>
+    </button>
+  </div>
+  <div id="_hits"></div>
+</template>
+
+  
+</div>
+
+</body>
+</html>

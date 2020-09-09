@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.0.3 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<head>
+  
+
+
+
+
+
+
+  
+    
+
+<title>Типы даты и времени в MATLAB | ClassMech</title>
+<meta name="description" content="
+">
+<link rel="canonical" href="http://localhost:4000/pages/matlab/datetime/">
+
+  
+
+  
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ClassMech">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<meta name="application-name" content="ClassMech">
+
+
+  <meta name="theme-color" content="rgb(25,55,71)">
+
+
+<meta name="generator" content="Hydejack v9.0.3" />
+
+
+<link rel="alternate" href="http://localhost:4000/blog/2018-04-02-electrostatic-space-tug/" hreflang="en">
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="ClassMech" />
+
+
+<link rel="shortcut icon"    href="/assets/icons/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/icons/icon-192x192.png">
+
+<link rel="manifest" href="/assets/site.webmanifest">
+
+
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+
+
+
+<link rel="preload" href="/assets/img/swipe.svg" as="image" id="_hrefSwipeSVG">
+
+<link rel="dns-prefetch" href="/assets/js/search-worker-9.0.3.js" as="worker" id="_hrefSearch">
+
+
+
+
+
+<script>!function(e,t){"use strict";function n(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}e.loadJS=function(e,o){var r=t.createElement("script");r.src=e,o&&n(r,"load",o,{once:!0});var a=t.scripts[0];return a.parentNode.insertBefore(r,a),r},e._loaded=!1,e.loadJSDeferred=function(o,r){function a(){e._loaded=!0,r&&n(c,"load",r,{once:!0});var o=t.scripts[0];o.parentNode.insertBefore(c,o)}var c=t.createElement("script");return c.src=o,e._loaded?a():n(e,"load",a,{once:!0}),c},e.setRel=e.setRelStylesheet=function(e){function o(){this.rel="stylesheet"}n(t.getElementById(e),"load",o,{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+}(window);
+</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+
+
+<!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.0.3.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79,177,186,0.5);--accent-color-darkened: #409ba3;--theme-color: rgb(25,55,71);--dark-mode-body-bg: #282e31;--dark-mode-border-color: #343b3f}
+
+</style>
+
+
+<!--<![endif]-->
+
+
+
+
+
+</head>
+
+<body class="">
+  
+<script>
+  window._sunrise = 6;
+  window._sunset =  18;
+  !function(e,s){var a="light-mode",d="dark-mode",o=(new Date).getHours();if(!("matchMedia"in e&&e.matchMedia("(prefers-color-scheme)"))){var i=o<=e._sunrise||o>=e._sunset?d:a,t=i===d?a:d;s.body.classList.add(i),s.body.classList.remove(t)}}(window,document);
+
+</script>
+
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-page"
+  role="main"
+>
+  <article class="page" role="article">
+  <header>
+    <h1 class="page-title">Типы даты и времени в MATLAB</h1>
+    
+
+
+
+  <div class="hr pb0"></div>
+
+
+  </header>
+
+  <h1 id="работа-с-датой-и-временем">Работа с датой и временем</h1>
+
+<h2 id="объект-дата-и-время">Объект дата и время</h2>
+
+<p>Для создания объекта типа дата используется функция <strong>datetime</strong></p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="nb">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">a</span> <span class="o">=</span> 
+  <span class="nb">datetime</span>
+   <span class="mi">28</span><span class="o">-</span><span class="n">Jun</span><span class="o">-</span><span class="mi">2014</span> <span class="mi">06</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
+</code></pre></div></div>
+
+<p>Функция позволяет создавать диапазон дат, если указан диапазон изменения одного из аргументов</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="nb">datetime</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">28</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">a</span> <span class="o">=</span> 
+  <span class="mi">1</span><span class="err">×</span><span class="mi">3</span> <span class="nb">datetime</span> <span class="n">array</span>
+   <span class="mi">28</span><span class="o">-</span><span class="n">Jun</span><span class="o">-</span><span class="mi">2014</span> <span class="mi">06</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>   <span class="mi">29</span><span class="o">-</span><span class="n">Jun</span><span class="o">-</span><span class="mi">2014</span> <span class="mi">06</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>   <span class="mi">30</span><span class="o">-</span><span class="n">Jun</span><span class="o">-</span><span class="mi">2014</span> <span class="mi">06</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
+</code></pre></div></div>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>   
+
+<span class="nb">ans</span> <span class="o">=</span> 
+  <span class="nb">datetime</span>
+   <span class="mi">28</span><span class="o">-</span><span class="n">Jun</span><span class="o">-</span><span class="mi">2014</span> <span class="mi">06</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
+</code></pre></div></div>
+
+<p>Для создания может быть использован оператор <strong>:</strong></p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">date_array</span> <span class="o">=</span> <span class="nb">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">):</span><span class="nb">minutes</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span><span class="nb">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">date_array</span> <span class="o">=</span> 
+  <span class="mi">1</span><span class="err">×</span><span class="mi">10</span> <span class="nb">datetime</span> <span class="n">array</span>
+<span class="n">Columns</span> <span class="mi">1</span> <span class="n">through</span> <span class="mi">5</span>
+   <span class="mi">01</span><span class="o">-</span><span class="n">Apr</span><span class="o">-</span><span class="mi">2020</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>   <span class="mi">01</span><span class="o">-</span><span class="n">Apr</span><span class="o">-</span><span class="mi">2020</span> <span class="mi">02</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">00</span>   <span class="mi">01</span><span class="o">-</span><span class="n">Apr</span><span class="o">-</span><span class="mi">2020</span> <span class="mi">05</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mi">00</span>   <span class="mi">01</span><span class="o">-</span><span class="n">Apr</span><span class="o">-</span><span class="mi">2020</span> <span class="mi">08</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>   <span class="mi">01</span><span class="o">-</span><span class="n">Apr</span><span class="o">-</span><span class="mi">2020</span> <span class="mi">10</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">00</span>
+<span class="n">Columns</span> <span class="mi">6</span> <span class="n">through</span> <span class="mi">10</span>
+   <span class="mi">01</span><span class="o">-</span><span class="n">Apr</span><span class="o">-</span><span class="mi">2020</span> <span class="mi">13</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mi">00</span>   <span class="mi">01</span><span class="o">-</span><span class="n">Apr</span><span class="o">-</span><span class="mi">2020</span> <span class="mi">16</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>   <span class="mi">01</span><span class="o">-</span><span class="n">Apr</span><span class="o">-</span><span class="mi">2020</span> <span class="mi">18</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">00</span>   <span class="mi">01</span><span class="o">-</span><span class="n">Apr</span><span class="o">-</span><span class="mi">2020</span> <span class="mi">21</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mi">00</span>   <span class="mi">02</span><span class="o">-</span><span class="n">Apr</span><span class="o">-</span><span class="mi">2020</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
+</code></pre></div></div>
+
+<p>или функция <strong>linspace</strong></p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">date_array</span> <span class="o">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="nb">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="nb">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span><span class="mi">10</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Формат отображения даты задается свойством datetime.<strong>Format</strong></p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">Format</span> <span class="o">=</span> <span class="s1">'dd.MM.yyyy'</span><span class="p">;</span>
+<span class="o">&gt;&gt;</span> <span class="n">a</span>
+
+<span class="n">a</span> <span class="o">=</span> 
+  <span class="mi">1</span><span class="err">×</span><span class="mi">3</span> <span class="nb">datetime</span> <span class="n">array</span>
+   <span class="mf">28.06</span><span class="o">.</span><span class="mi">2014</span>   <span class="mf">29.06</span><span class="o">.</span><span class="mi">2014</span>   <span class="mf">30.06</span><span class="o">.</span><span class="mi">2014</span>
+</code></pre></div></div>
+
+<h2 id="интервал-между-двумя-датами">Интервал между двумя датами</h2>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;</span> <span class="n">d</span> <span class="o">=</span> <span class="n">a</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">d</span> <span class="o">=</span> 
+  <span class="nb">duration</span>
+   <span class="mi">24</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
+</code></pre></div></div>
+
+<p>По умолчанию разница дат отображается в часах. Чтобы изменить формат отображения используется свойство <strong>Format</strong></p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;</span> <span class="n">d</span><span class="o">.</span><span class="n">Format</span> <span class="o">=</span> <span class="s1">'h'</span>
+
+<span class="n">d</span> <span class="o">=</span> 
+  <span class="nb">duration</span>
+   <span class="mi">24</span> <span class="n">hr</span>
+
+<span class="o">&gt;&gt;</span> <span class="n">d</span><span class="o">.</span><span class="n">Format</span> <span class="o">=</span> <span class="s1">'d'</span>
+
+<span class="n">d</span> <span class="o">=</span> 
+  <span class="nb">duration</span>
+   <span class="mi">1</span> <span class="nb">day</span>
+</code></pre></div></div>
+
+<p>Для создания интервалов дат могут использоваться функции <strong>calmonth</strong>, <strong>caldays</strong>, <strong>calweeks</strong>, <strong>calquarters</strong>, <strong>calyears</strong></p>
+
+<p>На 10 дней вперед от 20 февраля 2020 года</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;</span> <span class="n">d1</span> <span class="o">=</span> <span class="nb">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="n">d2</span> <span class="o">=</span> <span class="n">d1</span> <span class="o">+</span> <span class="nb">caldays</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">d2</span> <span class="o">=</span> 
+  <span class="nb">datetime</span>
+   <span class="mi">01</span><span class="o">-</span><span class="n">Mar</span><span class="o">-</span><span class="mi">2020</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
+</code></pre></div></div>
+
+<p>На 1 месяц вперед от 20 февраля 2020 года</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;</span> <span class="n">d2</span> <span class="o">=</span> <span class="n">d1</span> <span class="o">+</span> <span class="nb">calmonths</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">d2</span> <span class="o">=</span> 
+  <span class="nb">datetime</span>
+   <span class="mi">20</span><span class="o">-</span><span class="n">Mar</span><span class="o">-</span><span class="mi">2020</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
+</code></pre></div></div>
+
+<p>На 1 квартал вперед от 20 февраля 2020 года</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;</span> <span class="n">d2</span> <span class="o">=</span> <span class="n">d1</span> <span class="o">+</span> <span class="nb">calquarters</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">d2</span> <span class="o">=</span> 
+  <span class="nb">datetime</span>
+   <span class="mi">20</span><span class="o">-</span><span class="n">May</span><span class="o">-</span><span class="mi">2020</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
+</code></pre></div></div>
+
+
+  
+
+</article>
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2020. All rights reserved.
+</small></p>
+  
+  
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.0.3</span></small></p>
+  
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(25,55,71);background-image:url(/assets/img/vadim-sadovski-2017-06-20-0-10-42.jpg)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <img src="/assets/img/satellite.png" class="avatar" alt="ClassMech" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">ClassMech</h2></a>
+    
+    
+      <p class="">
+        
+
+      </p>
+    
+  </div>
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+    
+    
+
+    
+      
+        <li>
+          <a
+            id="_navigation"
+            href="/about/"
+            class="sidebar-nav-item"
+            
+            >
+            Об авторе
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/papers/"
+            class="sidebar-nav-item"
+            
+            >
+            Статьи
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/presentations/"
+            class="sidebar-nav-item"
+            
+            >
+            Презентации
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/disciplines/"
+            class="sidebar-nav-item"
+            
+            >
+            Дисциплины
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/videos/"
+            class="sidebar-nav-item"
+            
+            >
+            Видео
+          </a>
+        </li>
+      
+    
+  
+</ul>
+
+  </nav>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social</span>
+<ul>
+  
+    
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://twitter.com/kidinnu" title="Twitter" class="no-mark-external">
+      <span class="icon-twitter"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  </li>
+
+
+    
+
+    
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/Kidinnu" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+
+    
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var e=document.createElement("script");if(!("noModule"in e)&&"onbeforeload"in e){var t=!1;document.addEventListener("beforeload",function(n){if(n.target===e)t=!0;else if(!n.target.hasAttribute("nomodule")||!t)return;n.preventDefault()},!0),e.type="module",e.src=".",document.head.appendChild(e),e.remove()}}();
+</script>
+  <script src="/assets/js/hydejack-9.0.3.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.0.3.js" nomodule defer></script>
+  
+
+  
+
+  <script type="module">
+    if ('serviceWorker' in navigator) {
+      /**/
+      navigator.serviceWorker.getRegistration()
+        .then(r => r.unregister())
+        .catch(() => {});
+      /**/
+    }
+  </script>
+<!--<![endif]-->
+  
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates:</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading: <a class="this-link" href=""></a>.
+    </p>
+  </div>
+</template>
+
+  <template id="_forward-template">
+  <button id="_forward" class="forward nav-btn no-hover">
+    <span class="sr-only">Forward</span>
+    <span class="icon-arrow-right2"></span>
+  </button>
+</template>
+
+  <template id="_back-template">
+  <button id="_back" class="back nav-btn no-hover">
+    <span class="sr-only">Back</span>
+    <span class="icon-arrow-left2"></span>
+  </button>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+  
+    <template id="_cookies-banner-template">
+  <div id="_cookies-banner" class="navbar fixed-bottom CookiesOK">
+    <div class="content">
+      <div class="nav-btn-bar">
+        <small class="faded">
+          <span>This site uses cookies.
+</span>
+          <button id="_cookies-ok" class="btn btn-primary btn-sm">Okay</button>
+        </small>
+      </div>
+    </div>
+  </div>
+</template>
+
+  
+  
+    <template id="_dark-mode-template">
+  <button id="_dark-mode" class="nav-btn no-hover" >
+    <span class="sr-only">Dark Mode</span>
+    <span class="icon-brightness-contrast"></span>
+  </button>
+</template>
+
+  
+  
+    <template id="_search-template">
+  <button id="_search" class="nav-btn no-hover">
+    <label class="sr-only" for="_search-input">Search</label>
+    <span class="icon-search"></span>
+  </button>
+  <div id="_search-box">
+    <div class="nav-btn">
+      <span class="icon-search"></span>
+    </div>
+    <input 
+      id="_search-input"
+      type="search"
+      class="form-control form-control-lg nav-btn"
+      placeholder="SEARCH NOT ENABLED DURING DEVELOPMENT"
+    />
+    <button type="reset" class="nav-btn no-hover">
+      <span class="sr-only">Close</span>
+      <span class="icon-cross"></span>
+    </button>
+  </div>
+  <div id="_hits"></div>
+</template>
+
+  
+</div>
+
+</body>
+</html>

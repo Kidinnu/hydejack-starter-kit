@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.0.3 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<head>
+  
+
+
+
+
+
+
+  
+    
+
+<title>Численные методы | ClassMech</title>
+<meta name="description" content="
+">
+<link rel="canonical" href="http://localhost:4000/pages/matlab/numeric/">
+
+  
+
+  
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ClassMech">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<meta name="application-name" content="ClassMech">
+
+
+  <meta name="theme-color" content="rgb(25,55,71)">
+
+
+<meta name="generator" content="Hydejack v9.0.3" />
+
+
+<link rel="alternate" href="http://localhost:4000/blog/2018-04-02-electrostatic-space-tug/" hreflang="en">
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="ClassMech" />
+
+
+<link rel="shortcut icon"    href="/assets/icons/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/icons/icon-192x192.png">
+
+<link rel="manifest" href="/assets/site.webmanifest">
+
+
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+
+
+
+<link rel="preload" href="/assets/img/swipe.svg" as="image" id="_hrefSwipeSVG">
+
+<link rel="dns-prefetch" href="/assets/js/search-worker-9.0.3.js" as="worker" id="_hrefSearch">
+
+
+
+
+
+<script>!function(e,t){"use strict";function n(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}e.loadJS=function(e,o){var r=t.createElement("script");r.src=e,o&&n(r,"load",o,{once:!0});var a=t.scripts[0];return a.parentNode.insertBefore(r,a),r},e._loaded=!1,e.loadJSDeferred=function(o,r){function a(){e._loaded=!0,r&&n(c,"load",r,{once:!0});var o=t.scripts[0];o.parentNode.insertBefore(c,o)}var c=t.createElement("script");return c.src=o,e._loaded?a():n(e,"load",a,{once:!0}),c},e.setRel=e.setRelStylesheet=function(e){function o(){this.rel="stylesheet"}n(t.getElementById(e),"load",o,{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+}(window);
+</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+
+
+<!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.0.3.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79,177,186,0.5);--accent-color-darkened: #409ba3;--theme-color: rgb(25,55,71);--dark-mode-body-bg: #282e31;--dark-mode-border-color: #343b3f}
+
+</style>
+
+
+<!--<![endif]-->
+
+
+
+
+
+</head>
+
+<body class="">
+  
+<script>
+  window._sunrise = 6;
+  window._sunset =  18;
+  !function(e,s){var a="light-mode",d="dark-mode",o=(new Date).getHours();if(!("matchMedia"in e&&e.matchMedia("(prefers-color-scheme)"))){var i=o<=e._sunrise||o>=e._sunset?d:a,t=i===d?a:d;s.body.classList.add(i),s.body.classList.remove(t)}}(window,document);
+
+</script>
+
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-page"
+  role="main"
+>
+  <article class="page" role="article">
+  <header>
+    <h1 class="page-title">Численные методы</h1>
+    
+
+
+
+  <div class="hr pb0"></div>
+
+
+  </header>
+
+  <h3 id="интерполяция">Интерполяция</h3>
+
+<p>В практике часто возникает необходимость аппроксимации некоторой табличной функции, заданной массивом аргументов \(x_1, x_2, n_3 \ldots, x_n\) и массивом значений функции в этих точках \(y(x_1), y(x_2), y(x_3), \ldots, y(x_n)\). Под <strong>аппроксимацией</strong> понимается подбор некоторой просто вычисляемой функции, которая приближала бы значения заданной табличной функции.</p>
+
+<p>Известны значения некоторой функции \(y(x)\) в точках \(x_0, x_1, x_2, \ldots, x_n\):</p>
+
+\[y_0, y_1, y_2, \ldots, y_n.\]
+
+<p>Необходимо построить интерполирующий многочлен \(L_{n}(x)\), совпадающий со значениями табличной функции в точках \(x_0, x_1, x_2, \ldots, x_n\) и приближающий функцию \(y(x)\) на интервале \([x_0,x_n]\).</p>
+
+<p>Для определения коэффициентов интерполяционного полинома, проходящего через заданные точки с координатами \(x_1, f(x_1)\), \(x_2, f(x_2)\), … \(x_n, f(x_n)\) используется функция <strong>polyfit</strong>:</p>
+
+<p><img src="../polyfit1.png" alt="" /></p>
+
+<p>Первый аргумент функции массив значений \(x\), второй – массив значений функции.</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">1</span>  <span class="mi">2</span>  <span class="mi">3</span>  <span class="mi">4</span> <span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">y</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">0</span>  <span class="mf">0.6931</span>  <span class="mf">1.0986</span>  <span class="mf">1.3863</span> <span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="nb">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">p</span> <span class="o">=</span>
+    <span class="mf">0.0283</span>   <span class="o">-</span><span class="mf">0.3137</span>    <span class="mf">1.4362</span>   <span class="o">-</span><span class="mf">1.1507</span>
+</code></pre></div></div>
+
+<p>Результат работы функции <strong>polyfit</strong> – коэффициенты полинома, расположенные в порядке убывания степени аргумента, при которых эти множители стоят:</p>
+
+\[P_3(x) = 0.0283 x^3 - 0.3137 x^2 + 1.4362 x - 1.1507\]
+
+<p>Для вычисления значения полинома используется функция <strong>polyval</strong>. Первый аргумент функции <strong>polyval</strong> – массив коэффициентов полинома, полученный при помощи функции <strong>polyfit</strong>, второй – одно или несколько значений аргумента \(x\), для которых необходимо вычислить значение полиномиальной функции:</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;</span> <span class="n">x0</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">;</span>
+<span class="o">&gt;&gt;</span> <span class="nb">polyval</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">x0</span><span class="p">)</span>
+
+<span class="nb">ans</span> <span class="o">=</span>
+   <span class="o">-</span><span class="mf">1.0100</span>
+</code></pre></div></div>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">% График табличной функции (точки)</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">'ro'</span><span class="p">,</span> <span class="s1">'LineWidth'</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s1">'x'</span><span class="p">);</span>
+<span class="nb">ylabel</span><span class="p">(</span><span class="s1">'y'</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="c1">% График полинома</span>
+<span class="nb">fplot</span><span class="p">(</span><span class="o">@</span><span class="p">(</span><span class="n">xa</span><span class="p">)</span> <span class="nb">polyval</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">xa</span><span class="p">),[</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">x</span><span class="p">(</span><span class="k">end</span><span class="p">)],</span><span class="s1">'LineWidth'</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">off</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Если степень многочлена, которая передается в функцию <strong>polyfit</strong> меньше, чем уменьшенное на 1 количество точек табличной функции, то коэффициенты полинома вычисляются по методу наименьших квадратов.</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">% Столбец значений аргумента: 50 точек равномерно расположенных в интервале от 0 до 5  </span>
+<span class="n">x</span>  <span class="o">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span><span class="o">'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Квадрат аргумента с “шумом”: к каждому вычисленному значению добавляется случайное число от 0 до 5</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">y</span>  <span class="o">=</span> <span class="n">x</span><span class="o">.^</span><span class="mi">2</span> <span class="o">+</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">5</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Определяем коэффициенты <strong>аппроксимирующего многочлена</strong> первого и второго порядка, которые уже, очевидно, не будут проходить через все точки табличной функции</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">p1</span> <span class="o">=</span> <span class="nb">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="nb">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Точками строим график табличной функции</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">'bo'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Удерживая (не стирая) первый график (<strong>hold on</strong>) рисуем на этом же рисунке графики аппроксимирующих многочленов при помощи функции <strong>fplot</strong>, первым аргументом которой является анонимная функция от <strong>x</strong>, вызывающая функцию <strong>polyval</strong>:</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">fplot</span><span class="p">(</span><span class="o">@</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nb">polyval</span><span class="p">(</span><span class="n">p2</span><span class="p">,</span><span class="n">x</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">5</span><span class="p">],</span> <span class="s1">'r'</span><span class="p">,</span> <span class="s1">'LineWidth'</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">fplot</span><span class="p">(</span><span class="o">@</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nb">polyval</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">x</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">5</span><span class="p">],</span> <span class="s1">'g'</span><span class="p">,</span> <span class="s1">'LineWidth'</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">hold</span> <span class="n">off</span><span class="p">;</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s1">'x'</span><span class="p">);</span> <span class="nb">ylabel</span><span class="p">(</span><span class="s1">'y'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img src="../polyfit2.png" alt="" /></p>
+
+<h3 id="интерполяции">Интерполяции</h3>
+
+<p>Интерполяция кубическими сплайнами является частным случаем кусочно-полиномиальной интерполяцией. В этом специальном случае между любыми двумя соседними узлами функция интерполируется <strong>кубическим полиномом</strong>. его коэффициенты на каждом интервале определяются из условий сопряжения в узлах.</p>
+
+<p>Для сплайн интерполяции используется функция <strong>spline</strong>. Первый аргумент функции – строка или столбец значений аргумента, второй – строка или столбец со значениями функции, соответствующими значениям <strong>x</strong>. Третий аргумент – значения x, для которых необходимо вычислить значения функции, используя кубическую интерполяцию</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span>  <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">];</span>
+<span class="n">y</span>  <span class="o">=</span> <span class="nb">exp</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+
+<span class="n">xq</span> <span class="o">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">yq</span> <span class="o">=</span> <span class="nb">spline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">xq</span><span class="p">)</span>
+
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">'ro'</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">xq</span><span class="p">,</span><span class="n">yq</span><span class="p">,</span><span class="s1">'b-'</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">off</span><span class="p">;</span>
+<span class="nb">legend</span><span class="p">(</span><span class="s1">'Табличная функция'</span><span class="p">,</span><span class="s1">'Сплайн'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img src="../spline.png" alt="" /></p>
+
+<p>Для линейно интерполяции используется функция <strong>interp1</strong> с такой же структурой аргументов, что и функция <strong>spline</strong>. Отличие в том, что известные точки соединяются прямой линией, т.е. для определения промежуточных значений используется линейная интерполяция</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span>  <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">];</span>
+<span class="n">y</span>  <span class="o">=</span> <span class="nb">exp</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+
+<span class="n">xq</span> <span class="o">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">yq</span> <span class="o">=</span> <span class="nb">interp1</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">xq</span><span class="p">)</span>
+
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">'ro'</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">on</span><span class="p">;</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">xq</span><span class="p">,</span><span class="n">yq</span><span class="p">,</span><span class="s1">'b-'</span><span class="p">);</span>
+<span class="nb">hold</span> <span class="n">off</span><span class="p">;</span>
+<span class="nb">legend</span><span class="p">(</span><span class="s1">'Табличная функция'</span><span class="p">,</span><span class="s1">'Линейная интерполяция'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img src="../interp1.png" alt="" /></p>
+
+<h3 id="решение-систем-линейных-уравнений">Решение систем линейных уравнений</h3>
+
+<p>Для решения системы линейных уравнений, например</p>
+
+\[\left\{
+\begin{aligned}
+    2 x_1 + 3 x_2 + x_3 = 5\\
+    x_1 + 7 x_2 + 2 x_3 = 1\\
+    3 x_1 + 2 x_2 + x_3 = 2
+\end{aligned}
+\right.\]
+
+<p>необходимо представить её в матричном виде</p>
+
+\[\boldsymbol A \cdot \boldsymbol x = \boldsymbol B\]
+
+<p>где</p>
+
+\[\boldsymbol A = \begin{bmatrix} 2 &amp; 3 &amp; 1 \\ 1 &amp; 7 &amp; 2 \\ 3 &amp; 2 &amp; 1\end{bmatrix}, \quad
+    \boldsymbol B = \begin{bmatrix} 5 \\ 1 \\ 2 \end{bmatrix}, \quad
+    \boldsymbol x = \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}, \quad\]
+
+<p>Для определения столбца неизвестных \(\boldsymbol x\) используется оператор \</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span> <span class="mi">3</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1</span> <span class="mi">7</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">;</span><span class="mi">1</span><span class="p">;</span><span class="mi">2</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">A</span><span class="p">\</span><span class="n">B</span>
+
+<span class="n">x</span> <span class="o">=</span>
+    <span class="mf">6.0000</span>
+    <span class="mf">9.0000</span>
+  <span class="o">-</span><span class="mf">34.0000</span>
+</code></pre></div></div>
+
+<h3 id="линейное-программирование">Линейное программирование</h3>
+
+<p>Линейное программирование — это математический численный метод для оптимизации моделей, в которых целевые функции</p>
+
+\[f(x_1,x_2,\ldots,x_n) \rightarrow min\]
+
+<p>и ограничения, например</p>
+
+\[g(x_1,x_2,\ldots,x_n) &gt; 0\]
+
+<p>являются уравнениями линейной алгебры.</p>
+
+<p>Рассмотрим следующий пример. Предположим, что есть 4 типа продукта, для производства которых необходимо 3 типа сырья. В таблице приведены затраты сырья на производство каждого продукта, запасы сырья на складе и прибыль, получаемая от продажи единицы продукта.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Вид сырья</th>
+      <th style="text-align: center">Продукт 1</th>
+      <th style="text-align: center">Продукт 2</th>
+      <th style="text-align: center">Продукт 3</th>
+      <th style="text-align: center">Продукт 4</th>
+      <th style="text-align: center">Запасы сырья</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Сырьё 1</td>
+      <td style="text-align: center">4 кг</td>
+      <td style="text-align: center">2 кг</td>
+      <td style="text-align: center">1 кг</td>
+      <td style="text-align: center">8 кг</td>
+      <td style="text-align: center">\(\leq 1200\) кг</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Сырьё 2</td>
+      <td style="text-align: center">2 кг</td>
+      <td style="text-align: center">10 кг</td>
+      <td style="text-align: center">6 кг</td>
+      <td style="text-align: center">0 кг</td>
+      <td style="text-align: center">\(\leq 600\) кг</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Сырьё 3</td>
+      <td style="text-align: center">3 кг</td>
+      <td style="text-align: center">0 кг</td>
+      <td style="text-align: center">6 кг</td>
+      <td style="text-align: center">1 кг</td>
+      <td style="text-align: center">\(\leq 1500\) кг</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Прибыль</td>
+      <td style="text-align: center">15 р</td>
+      <td style="text-align: center">6 р</td>
+      <td style="text-align: center">12 p</td>
+      <td style="text-align: center">24 p</td>
+      <td style="text-align: center">максимум</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Необходимо составить план производства, который бы привёл к максимальной прибыли с учетом имеющихся запасов на складе.</p>
+
+<p>Прибыль (целевая функция)</p>
+
+\[S = x_1 s_1 + x_2 s_2 + x_3 s_3 + x_4 s_4 \rightarrow max\]
+
+<p>Ограничения</p>
+
+\[x_1 a_{11} + x_2 a_{12} + x_3 a_{13} + x_4 a_{14} \leq 1200\]
+
+\[x_1 a_{21} + x_2 a_{22} + x_3 a_{23} + x_4 a_{24} \leq 600\]
+
+\[x_1 a_{31} + x_2 a_{32} + x_3 a_{33} + x_4 a_{34} \leq 1500\]
+
+<p>В MATLAB для решения этой задачи используется функция <strong>linprog</strong></p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">linprog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">Ane</span><span class="p">,</span><span class="n">Bne</span><span class="p">,</span><span class="n">Ae</span><span class="p">,</span><span class="n">Be</span><span class="p">,</span><span class="n">lb</span><span class="p">,</span><span class="n">ub</span><span class="p">)</span>
+</code></pre></div></div>
+
+\[\min_{x} \boldsymbol{f}^T x\]
+
+<p>При условиях равенствах</p>
+
+\[\boldsymbol{A}_e \boldsymbol{x} = \boldsymbol{B_e}\]
+
+<p>При условиях неравенствах</p>
+
+\[\boldsymbol{A}_{ne} \boldsymbol{x} \leq \boldsymbol{B_{ne}}\]
+
+<p>При условии</p>
+
+\[\boldsymbol{L} \leq \boldsymbol{x} \leq \boldsymbol{U}\]
+
+<p>В рассматриваемой задаче есть целевая функция и ограничения – неравенства. Функция  <strong>linprog</strong> ищет минимум функции, поэтому для максимизации прибили у коэффициентов рассматриваемой целевой функции нужно поменять знак.</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="o">-</span><span class="p">[</span><span class="mi">15</span> <span class="mi">6</span> <span class="mi">12</span> <span class="mi">24</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>Условия-неравенства (запасы сырья на складе) описываются матрицей коэффициентов <strong>Ane</strong> и матрицей запасов <strong>Bne</strong></p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;</span> <span class="n">Ane</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">8</span><span class="p">;</span> <span class="mi">2</span> <span class="mi">10</span> <span class="mi">6</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">3</span> <span class="mi">0</span> <span class="mi">6</span> <span class="mi">1</span><span class="p">];</span>
+<span class="o">&gt;&gt;</span> <span class="n">Bne</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1200</span><span class="p">;</span> <span class="mi">600</span><span class="p">;</span> <span class="mi">1500</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>Вызываем функцию <strong>linprog</strong></p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">linprog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">Ane</span><span class="p">,</span><span class="n">Bne</span><span class="p">,[],[],[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">],[])</span>
+
+<span class="n">Optimal</span> <span class="n">solution</span> <span class="n">found</span><span class="o">.</span>
+
+<span class="n">x</span> <span class="o">=</span>
+
+         <span class="mi">0</span>
+         <span class="mi">0</span>
+  <span class="mf">100.0000</span>
+  <span class="mf">137.5000</span>
+</code></pre></div></div>
+
+<p>Таким образом, оптимальным планом будет производство 100 ед продукта 3 и 137 ед продукта 4.</p>
+
+<h3 id="решение-нелинейных-уравнений">Решение нелинейных уравнений</h3>
+
+<p>Для решения уравнений вида</p>
+
+\[f(x) = 0\]
+
+<p>используется функция <strong>fzero</strong>, первым аргументом которой является ссылка на функцию \(f(x)\), вторым – начальное приближение для искомого значения решения уравнения или интервал внутри которого находится решение:</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;</span> <span class="nb">fzero</span><span class="p">(</span> <span class="o">@</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nb">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">ans</span> <span class="o">=</span>
+    <span class="mf">0.7391</span>
+</code></pre></div></div>
+
+<h3 id="решение-систем-нелинейных-уравнений">Решение систем нелинейных уравнений</h3>
+
+<p>Для решения <strong>системы</strong> нелинейных уравнений используется функция <strong>fsolve</strong>. Например, для решения системы</p>
+
+\[\left\{
+	\begin{aligned}
+	x^2 + y^2 + z^2 - 1 &amp; = 0 \\ 
+	2x^2 + y^2 - 4z  &amp; = 0 \\ 
+	3x^2 - 4y + z^2  &amp; = 0 
+	\end{aligned}
+	\right.\]
+
+<p>необходимо написать m-файл с функцией</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">% Файл f.m</span>
+<span class="k">function</span> <span class="n">y</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="o">+</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="o">+</span><span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+         <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="o">+</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+         <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>Для поиска решения необходимо вызвать функцию <strong>fsolve</strong>, передав ей ссылку на функцию и вектор начального приближения \([x_0, y_0, z_0]\)</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;</span> <span class="n">fsolve</span><span class="p">(</span><span class="o">@</span><span class="n">y</span><span class="p">,[</span><span class="mi">1</span><span class="p">;</span><span class="mi">1</span><span class="p">;</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="nb">ans</span> <span class="o">=</span>
+    <span class="mf">0.7852</span>
+    <span class="mf">0.4966</span>
+    <span class="mf">0.3699</span>
+</code></pre></div></div>
+
+<h3 id="минимум-функции-одной-переменной">Минимум функции одной переменной</h3>
+
+<p>Поиск минимума функции \(f(x)\) на интервале \([x_1, x_2]\)</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;</span> <span class="n">fun</span> <span class="o">=</span> <span class="o">@</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="mf">0.3</span><span class="o">*</span><span class="n">x</span><span class="o">^</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">+</span> <span class="nb">cos</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="p">;</span>
+<span class="o">&gt;&gt;</span> <span class="nb">fplot</span><span class="p">(</span><span class="n">fun</span><span class="p">,[</span><span class="o">-</span><span class="mi">1</span> <span class="mi">3</span><span class="p">]);</span>
+<span class="o">&gt;&gt;</span> <span class="nb">fminbnd</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="nb">ans</span> <span class="o">=</span> 
+    <span class="mf">0.372</span>
+</code></pre></div></div>
+
+<p><img src="../fminbnd.png" alt="" /></p>
+
+<h3 id="минимум-функции-нескольких-переменных">Минимум функции нескольких переменных</h3>
+
+<p>Найти минимум функции нескольких переменных</p>
+
+\[\min_{\boldsymbol x} f(\boldsymbol x), \quad \boldsymbol{x} = [x_1,x_2,\ldots,x_n]\]
+
+<p>Пример:</p>
+
+\[f(x)=100(x_2 − x_1^2)^2+(1−x_1)^2\]
+
+<p>используется функция <strong>fminsearch</strong>. Первый аргумент функции – ссылка на вектор-функцию от векторного аргумента, второй – начальное приближение</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;</span> <span class="n">fun</span> <span class="o">=</span> <span class="o">@</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">)</span> <span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">x2</span><span class="o">-</span><span class="n">x1</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x1</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span>
+<span class="o">&gt;&gt;</span> <span class="n">x1</span> <span class="o">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">100</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="n">x2</span> <span class="o">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">100</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">X1</span><span class="p">,</span><span class="n">X2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">meshgrid</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="n">fun</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span><span class="n">X2</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="nb">contour</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span><span class="n">X2</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="mi">200</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="nb">fminsearch</span><span class="p">(</span><span class="o">@</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="n">fun</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)),[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+
+<span class="nb">ans</span> <span class="o">=</span>
+    <span class="mf">1.0000</span>    <span class="mf">1.0000</span>
+</code></pre></div></div>
+
+<p><img src="../fminsearch.png" alt="" /></p>
+
+<h3 id="интегрирование">Интегрирование</h3>
+
+<p>Для функции, заданной таблично, интеграл можно вычислить используя формулу трапеций, используя функцию <strong>trapz</strong>:</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">:</span><span class="mf">0.1</span><span class="p">:</span><span class="mf">2.0</span><span class="p">;</span>
+<span class="o">&gt;&gt;</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">log</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="o">&gt;&gt;</span> <span class="nb">trapz</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="nb">ans</span> <span class="o">=</span>
+    <span class="mf">0.3859</span>
+</code></pre></div></div>
+
+<p>Точное значение интеграла равно \(\log 4 - 1 \approx 0.386294361119891\).</p>
+
+<p>Для известной подинтегральной функции более точный результат дает использование функции <strong>quad</strong>, в которую нужно передать ссылку на подинтегральную функцию и пределы интегрирования</p>
+
+\[F = \int_1^2 \ln(x) dx\]
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;</span> <span class="nb">format</span> <span class="n">long</span>
+<span class="o">&gt;&gt;</span> <span class="nb">quad</span><span class="p">(</span><span class="o">@</span><span class="nb">log</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">ans</span> <span class="o">=</span>
+   <span class="mf">0.386294334336416</span>
+</code></pre></div></div>
+
+<p>Третьим аргументом функции <strong>quad</strong> является желаемая точность результата (по умолчанию – \(10^{-6}\) )</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="o">@</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.*</span><span class="nb">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span>
+<span class="o">&gt;&gt;</span> <span class="nb">quad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">1e-8</span><span class="p">)</span>
+
+<span class="nb">ans</span> <span class="o">=</span>
+   <span class="mf">0.1822</span>
+</code></pre></div></div>
+
+  
+
+</article>
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2020. All rights reserved.
+</small></p>
+  
+  
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.0.3</span></small></p>
+  
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(25,55,71);background-image:url(/assets/img/vadim-sadovski-2017-06-20-0-10-42.jpg)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <img src="/assets/img/satellite.png" class="avatar" alt="ClassMech" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">ClassMech</h2></a>
+    
+    
+      <p class="">
+        
+
+      </p>
+    
+  </div>
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+    
+    
+
+    
+      
+        <li>
+          <a
+            id="_navigation"
+            href="/about/"
+            class="sidebar-nav-item"
+            
+            >
+            Об авторе
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/papers/"
+            class="sidebar-nav-item"
+            
+            >
+            Статьи
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/presentations/"
+            class="sidebar-nav-item"
+            
+            >
+            Презентации
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/disciplines/"
+            class="sidebar-nav-item"
+            
+            >
+            Дисциплины
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/videos/"
+            class="sidebar-nav-item"
+            
+            >
+            Видео
+          </a>
+        </li>
+      
+    
+  
+</ul>
+
+  </nav>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social</span>
+<ul>
+  
+    
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://twitter.com/kidinnu" title="Twitter" class="no-mark-external">
+      <span class="icon-twitter"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  </li>
+
+
+    
+
+    
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/Kidinnu" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+
+    
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var e=document.createElement("script");if(!("noModule"in e)&&"onbeforeload"in e){var t=!1;document.addEventListener("beforeload",function(n){if(n.target===e)t=!0;else if(!n.target.hasAttribute("nomodule")||!t)return;n.preventDefault()},!0),e.type="module",e.src=".",document.head.appendChild(e),e.remove()}}();
+</script>
+  <script src="/assets/js/hydejack-9.0.3.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.0.3.js" nomodule defer></script>
+  
+
+  
+
+  <script type="module">
+    if ('serviceWorker' in navigator) {
+      /**/
+      navigator.serviceWorker.getRegistration()
+        .then(r => r.unregister())
+        .catch(() => {});
+      /**/
+    }
+  </script>
+<!--<![endif]-->
+  
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates:</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading: <a class="this-link" href=""></a>.
+    </p>
+  </div>
+</template>
+
+  <template id="_forward-template">
+  <button id="_forward" class="forward nav-btn no-hover">
+    <span class="sr-only">Forward</span>
+    <span class="icon-arrow-right2"></span>
+  </button>
+</template>
+
+  <template id="_back-template">
+  <button id="_back" class="back nav-btn no-hover">
+    <span class="sr-only">Back</span>
+    <span class="icon-arrow-left2"></span>
+  </button>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+  
+    <template id="_cookies-banner-template">
+  <div id="_cookies-banner" class="navbar fixed-bottom CookiesOK">
+    <div class="content">
+      <div class="nav-btn-bar">
+        <small class="faded">
+          <span>This site uses cookies.
+</span>
+          <button id="_cookies-ok" class="btn btn-primary btn-sm">Okay</button>
+        </small>
+      </div>
+    </div>
+  </div>
+</template>
+
+  
+  
+    <template id="_dark-mode-template">
+  <button id="_dark-mode" class="nav-btn no-hover" >
+    <span class="sr-only">Dark Mode</span>
+    <span class="icon-brightness-contrast"></span>
+  </button>
+</template>
+
+  
+  
+    <template id="_search-template">
+  <button id="_search" class="nav-btn no-hover">
+    <label class="sr-only" for="_search-input">Search</label>
+    <span class="icon-search"></span>
+  </button>
+  <div id="_search-box">
+    <div class="nav-btn">
+      <span class="icon-search"></span>
+    </div>
+    <input 
+      id="_search-input"
+      type="search"
+      class="form-control form-control-lg nav-btn"
+      placeholder="SEARCH NOT ENABLED DURING DEVELOPMENT"
+    />
+    <button type="reset" class="nav-btn no-hover">
+      <span class="sr-only">Close</span>
+      <span class="icon-cross"></span>
+    </button>
+  </div>
+  <div id="_hits"></div>
+</template>
+
+  
+</div>
+
+</body>
+</html>

@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.0.3 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<head>
+  
+
+
+
+
+
+
+  
+    
+
+<title>SQL-запросы | ClassMech</title>
+<meta name="description" content="
+">
+<link rel="canonical" href="http://localhost:4000/pages/databases/sql/">
+
+  
+
+  
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ClassMech">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<meta name="application-name" content="ClassMech">
+
+
+  <meta name="theme-color" content="rgb(25,55,71)">
+
+
+<meta name="generator" content="Hydejack v9.0.3" />
+
+
+<link rel="alternate" href="http://localhost:4000/blog/2018-04-02-electrostatic-space-tug/" hreflang="en">
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="ClassMech" />
+
+
+<link rel="shortcut icon"    href="/assets/icons/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/icons/icon-192x192.png">
+
+<link rel="manifest" href="/assets/site.webmanifest">
+
+
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+
+
+
+<link rel="preload" href="/assets/img/swipe.svg" as="image" id="_hrefSwipeSVG">
+
+<link rel="dns-prefetch" href="/assets/js/search-worker-9.0.3.js" as="worker" id="_hrefSearch">
+
+
+
+
+
+<script>!function(e,t){"use strict";function n(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}e.loadJS=function(e,o){var r=t.createElement("script");r.src=e,o&&n(r,"load",o,{once:!0});var a=t.scripts[0];return a.parentNode.insertBefore(r,a),r},e._loaded=!1,e.loadJSDeferred=function(o,r){function a(){e._loaded=!0,r&&n(c,"load",r,{once:!0});var o=t.scripts[0];o.parentNode.insertBefore(c,o)}var c=t.createElement("script");return c.src=o,e._loaded?a():n(e,"load",a,{once:!0}),c},e.setRel=e.setRelStylesheet=function(e){function o(){this.rel="stylesheet"}n(t.getElementById(e),"load",o,{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+}(window);
+</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+
+
+<!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.0.3.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79,177,186,0.5);--accent-color-darkened: #409ba3;--theme-color: rgb(25,55,71);--dark-mode-body-bg: #282e31;--dark-mode-border-color: #343b3f}
+
+</style>
+
+
+<!--<![endif]-->
+
+
+
+
+
+</head>
+
+<body class="">
+  
+<script>
+  window._sunrise = 6;
+  window._sunset =  18;
+  !function(e,s){var a="light-mode",d="dark-mode",o=(new Date).getHours();if(!("matchMedia"in e&&e.matchMedia("(prefers-color-scheme)"))){var i=o<=e._sunrise||o>=e._sunset?d:a,t=i===d?a:d;s.body.classList.add(i),s.body.classList.remove(t)}}(window,document);
+
+</script>
+
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-page"
+  role="main"
+>
+  <article class="page" role="article">
+  <header>
+    <h1 class="page-title">SQL-запросы</h1>
+    
+
+
+
+  <div class="hr pb0"></div>
+
+
+  </header>
+
+  <h2 id="описание-базы-данных">Описание базы данных</h2>
+
+<p><a href="goods">Описание БД</a></p>
+
+<p><a href="https://drive.google.com/file/d/1hK8fEqvoLe-iY-bNqprB7l72kqoV41MN/view?usp=sharing">Скачать базу данных SQLite</a></p>
+
+<h1 id="задание">Задание</h1>
+
+<p>Постройте SQL-запросы для получения следующей информации из базы данных.</p>
+
+<ol>
+  <li>Список первых 3 клиентов, купивших товаров на максимальную сумму в заданном диапазоне дат</li>
+  <li>Список первых 3 клиентов, купивших максимальное количество товара в заданном диапазоне дат</li>
+  <li>Товар, который покупали чаще всего в заданном диапазоне дат</li>
+  <li>Товар, который покупали чаще всего в заданном диапазоне дат по филиалам</li>
+  <li>Средний чек в диапазоне дат</li>
+  <li>Средний чек в диапазоне дат по филиалам</li>
+  <li>Суммарная стоимость проданных товаров каждого филиала в диапазоне дат</li>
+  <li>Суммарная стоимость проданных товаров в диапазоне дат</li>
+  <li>Список филиалов по убыванию объема продаж (суммарная стоимость) до заданной даты</li>
+  <li>Список филиалов по убыванию количества проданного товара до заданной даты</li>
+  <li>Список товаров с указанием проданного количества товара в каждом магазине до заданной даты</li>
+  <li>Список товаров, проданных в заданном филиале до заданной даты</li>
+  <li>Список клиентов, покупавших любой товар в заданном магазине до заданной даты</li>
+  <li>Список клиентов, покупавших любой товар в двух магазинах сети</li>
+  <li>Список клиентов, покупавших любой товар во всех магазинах сети</li>
+  <li>Количество товара каждой категории, проданных в филиале до заданной даты</li>
+  <li>Количество товара каждой категории, проданных во всех филиалах до заданной даты</li>
+  <li>Суммарная стоимость товаров по филиалам на заданную дату</li>
+  <li>Суммарная стоимость товаров во всех филиалах на заданную дату</li>
+  <li>Количество товаров в каждом филиале на заданную дату</li>
+  <li>Какого товара меньше всего осталось в каждом из филиалов на заданную дату?</li>
+  <li>Какого товара больше всего осталось в каждом из филиалов на заданную дату?</li>
+  <li>Количество товаров каждого наименования во всех филиалах на заданную дату</li>
+  <li>Остатки товаров каждого наименования в филиале на заданную дату</li>
+  <li>Список пяти самых дешевых товаров в филиале на заданную дату</li>
+  <li>Список пяти самых дорогих товаров в филиале на заданную дату</li>
+  <li>Дата, в которую поступило товара на максимальную сумму в заданный филиал</li>
+  <li>Суммарная стоимость поступивших товаров на каждую дату поступления в заданный филиал</li>
+  <li>Суммарная стоимость товаров каждого производителя в филиале на дату</li>
+  <li>Суммарное количество товаров каждого производителя в филиале на дату</li>
+  <li>Суммарное количество проданных товаров каждого производителя в филиале до заданной даты</li>
+  <li>Суммарная стоимость проданных товаров каждого производителя в филиале до заданной даты</li>
+  <li>Суммарная стоимость проданных товаров каждого производителя во всех филиалах до заданной даты</li>
+  <li>Суммарное количество проданных товаров каждого производителя во всех филиалах до заданной даты</li>
+  <li>Суммарное количество поступивших товаров каждого производителя во всех филиалах до заданной даты</li>
+  <li>Суммарное количество поступивших товаров каждого производителя в филиал до заданной даты</li>
+  <li>Суммарная стоимость поступивших товаров каждого производителя в филиал до заданной даты</li>
+  <li>Изменение суммарной стоимости товаров заданного производителя в филиале в диапазоне дат</li>
+</ol>
+
+<h2 id="методические-рекомендации">Методические рекомендации</h2>
+
+<p>При работе с базой данных <a href="https://www.sqlite.org/index.html">SQLite</a> необходимо учитывать, что даты в таблицах <a href="https://www.sqlite.org/index.html">SQLite</a> хранятся в виде целого числа, которое представляет собой количество секунд прошедших с начала (по Гринвичу) первого января 1970 года – <a href="https://ru.wikipedia.org/wiki/Unix-время">Unix-время</a> (этот момент называют Unix-эпохой). Эту особенность представления даты и времени в <a href="https://www.sqlite.org/index.html">SQLite</a> следует учитывать при выводе (форматировании) и сравнении дат.</p>
+
+<p>Например, следующий сценарий выводит таблицу имен покупателей с датами совершенных ими покупок до 20 января 2019 года.</p>
+
+<pre><code class="language-SQL">select 
+	customers.customer_name, strftime("%d.%m.%Y", purchase_date, 'unixepoch') as purchase_date_string
+from 
+	purchases
+left join 
+	customers on customers.customer_id  = purchases.customer_id 
+where 
+	purchase_date &lt; CAST(strftime('%s', '2019-01-20') AS INTEGER)
+order by 
+	purchase_date;
+</code></pre>
+
+<p>Результат</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>customer_name                |purchase_date_string|
+-----------------------------|--------------------|
+Гусев Пров Дмитриевич        |06.01.2019          |
+Борисова Евдокcия Григорьевна|06.01.2019          |
+Дорофеев Митофан Демидович   |10.01.2019          |
+</code></pre></div></div>
+
+<p>В этом сценарии для преобразования из внутреннего Unix-времени в “читаемый” текстовый формат даты ГГГГ.ММ.ДД  используется функция <strong>strftime</strong>, которая преобразует числовое значение даны в строку в соответствии с заданным форматом, который передается первым аргументом функции. Второй аргумент функции  <strong>strftime</strong> – столбец таблицы, который содержит дату, “закодированную” целым числом. Третий аргумент – формат хранения даты ‘unixepoch’.</p>
+
+<p>Для того, чтобы сравнить заданную текстовым представлением дату (в примере это ‘2019-01-20’) со значением в таблице, например, в условии <strong>WHERE</strong>, необходимо преобразовать строку в ГГГГ-ММ-ДД в строку, представляющую целое число секунд с Unix-эпохи, а затем преобразовать эту строку в целое число, которое и будет сравниваться со значениями в столбце <strong>purchase_date</strong> таблицы. Для преобразования из строки в целое число используется функция <strong>CAST(СТРОКА AS INTEGER)</strong>, например результатом работы функции <strong>CAST(‘123’ AS INTEGER)</strong> будет целое число 123.</p>
+
+<p>При работа с базой данных из среды <a href="https://www.python.org">Python</a>, преобразование даты в формат Unix-времени и обратно можно выполнять в коде, используя метод объекта <strong>datetime</strong> – <strong>datetime.timestamp()</strong>, например:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span> 
+
+<span class="n">path</span> <span class="o">=</span> <span class="s">"./drive/My Drive/databases/goods.db"</span>
+
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">cursor</span><span class="p">()</span>
+
+<span class="n">sql</span>  <span class="o">=</span> <span class="s">"""
+SELECT 
+  customers.customer_name, purchases.purchase_id, COUNT(purchase_items.product_id)
+FROM
+  purchase_items 
+LEFT JOIN 
+  purchases on purchase_items.purchase_id = purchases.purchase_id
+LEFT JOIN 
+  customers on customers.customer_id = purchases.customer_id
+WHERE 
+  purchases.purchase_date BETWEEN ? AND ? 
+GROUP BY 
+  purchases.purchase_id
+ORDER BY 
+  customer_name
+"""</span>
+
+<span class="n">cursor</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">,(</span><span class="n">datetime</span><span class="p">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">).</span><span class="n">timestamp</span><span class="p">(),</span>  
+                    <span class="n">datetime</span><span class="p">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">).</span><span class="n">timestamp</span><span class="p">()</span> <span class="p">))</span>
+
+<span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="p">.</span><span class="n">fetchall</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">rows</span><span class="p">))</span>
+
+<span class="n">cursor</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">conn</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+
+  
+
+</article>
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2020. All rights reserved.
+</small></p>
+  
+  
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.0.3</span></small></p>
+  
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(25,55,71);background-image:url(/assets/img/vadim-sadovski-2017-06-20-0-10-42.jpg)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <img src="/assets/img/satellite.png" class="avatar" alt="ClassMech" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">ClassMech</h2></a>
+    
+    
+      <p class="">
+        
+
+      </p>
+    
+  </div>
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+    
+    
+
+    
+      
+        <li>
+          <a
+            id="_navigation"
+            href="/about/"
+            class="sidebar-nav-item"
+            
+            >
+            Об авторе
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/papers/"
+            class="sidebar-nav-item"
+            
+            >
+            Статьи
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/presentations/"
+            class="sidebar-nav-item"
+            
+            >
+            Презентации
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/disciplines/"
+            class="sidebar-nav-item"
+            
+            >
+            Дисциплины
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/videos/"
+            class="sidebar-nav-item"
+            
+            >
+            Видео
+          </a>
+        </li>
+      
+    
+  
+</ul>
+
+  </nav>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social</span>
+<ul>
+  
+    
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://twitter.com/kidinnu" title="Twitter" class="no-mark-external">
+      <span class="icon-twitter"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  </li>
+
+
+    
+
+    
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/Kidinnu" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+
+    
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var e=document.createElement("script");if(!("noModule"in e)&&"onbeforeload"in e){var t=!1;document.addEventListener("beforeload",function(n){if(n.target===e)t=!0;else if(!n.target.hasAttribute("nomodule")||!t)return;n.preventDefault()},!0),e.type="module",e.src=".",document.head.appendChild(e),e.remove()}}();
+</script>
+  <script src="/assets/js/hydejack-9.0.3.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.0.3.js" nomodule defer></script>
+  
+
+  
+
+  <script type="module">
+    if ('serviceWorker' in navigator) {
+      /**/
+      navigator.serviceWorker.getRegistration()
+        .then(r => r.unregister())
+        .catch(() => {});
+      /**/
+    }
+  </script>
+<!--<![endif]-->
+  
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates:</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading: <a class="this-link" href=""></a>.
+    </p>
+  </div>
+</template>
+
+  <template id="_forward-template">
+  <button id="_forward" class="forward nav-btn no-hover">
+    <span class="sr-only">Forward</span>
+    <span class="icon-arrow-right2"></span>
+  </button>
+</template>
+
+  <template id="_back-template">
+  <button id="_back" class="back nav-btn no-hover">
+    <span class="sr-only">Back</span>
+    <span class="icon-arrow-left2"></span>
+  </button>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+  
+    <template id="_cookies-banner-template">
+  <div id="_cookies-banner" class="navbar fixed-bottom CookiesOK">
+    <div class="content">
+      <div class="nav-btn-bar">
+        <small class="faded">
+          <span>This site uses cookies.
+</span>
+          <button id="_cookies-ok" class="btn btn-primary btn-sm">Okay</button>
+        </small>
+      </div>
+    </div>
+  </div>
+</template>
+
+  
+  
+    <template id="_dark-mode-template">
+  <button id="_dark-mode" class="nav-btn no-hover" >
+    <span class="sr-only">Dark Mode</span>
+    <span class="icon-brightness-contrast"></span>
+  </button>
+</template>
+
+  
+  
+    <template id="_search-template">
+  <button id="_search" class="nav-btn no-hover">
+    <label class="sr-only" for="_search-input">Search</label>
+    <span class="icon-search"></span>
+  </button>
+  <div id="_search-box">
+    <div class="nav-btn">
+      <span class="icon-search"></span>
+    </div>
+    <input 
+      id="_search-input"
+      type="search"
+      class="form-control form-control-lg nav-btn"
+      placeholder="SEARCH NOT ENABLED DURING DEVELOPMENT"
+    />
+    <button type="reset" class="nav-btn no-hover">
+      <span class="sr-only">Close</span>
+      <span class="icon-cross"></span>
+    </button>
+  </div>
+  <div id="_hits"></div>
+</template>
+
+  
+</div>
+
+</body>
+</html>

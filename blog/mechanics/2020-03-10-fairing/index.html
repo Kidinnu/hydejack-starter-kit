@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.0.3 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<head>
+  
+
+
+
+
+
+
+  
+    
+
+<title>Модель отделения створки головного обтекателя | ClassMech</title>
+<meta name="description" content="Интегрирование уравнений движения совместно с уравнениями связей на примере модели движения створки головного обтекателя ракеты-носителя
+">
+<link rel="canonical" href="http://localhost:4000/blog/mechanics/2020-03-10-fairing/">
+
+  
+
+  
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ClassMech">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<meta name="application-name" content="ClassMech">
+
+
+  <meta name="theme-color" content="rgb(25,55,71)">
+
+
+<meta name="generator" content="Hydejack v9.0.3" />
+
+
+<link rel="alternate" href="http://localhost:4000/blog/2018-04-02-electrostatic-space-tug/" hreflang="en">
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="ClassMech" />
+
+
+<link rel="shortcut icon"    href="/assets/icons/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/icons/icon-192x192.png">
+
+<link rel="manifest" href="/assets/site.webmanifest">
+
+
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+
+
+
+<link rel="preload" href="/assets/img/swipe.svg" as="image" id="_hrefSwipeSVG">
+
+<link rel="dns-prefetch" href="/assets/js/search-worker-9.0.3.js" as="worker" id="_hrefSearch">
+
+
+
+
+
+<script>!function(e,t){"use strict";function n(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}e.loadJS=function(e,o){var r=t.createElement("script");r.src=e,o&&n(r,"load",o,{once:!0});var a=t.scripts[0];return a.parentNode.insertBefore(r,a),r},e._loaded=!1,e.loadJSDeferred=function(o,r){function a(){e._loaded=!0,r&&n(c,"load",r,{once:!0});var o=t.scripts[0];o.parentNode.insertBefore(c,o)}var c=t.createElement("script");return c.src=o,e._loaded?a():n(e,"load",a,{once:!0}),c},e.setRel=e.setRelStylesheet=function(e){function o(){this.rel="stylesheet"}n(t.getElementById(e),"load",o,{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+}(window);
+</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+
+
+<!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.0.3.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79,177,186,0.5);--accent-color-darkened: #409ba3;--theme-color: rgb(25,55,71);--dark-mode-body-bg: #282e31;--dark-mode-border-color: #343b3f}
+
+</style>
+
+
+<!--<![endif]-->
+
+
+
+
+
+</head>
+
+<body class="">
+  
+<script>
+  window._sunrise = 6;
+  window._sunset =  18;
+  !function(e,s){var a="light-mode",d="dark-mode",o=(new Date).getHours();if(!("matchMedia"in e&&e.matchMedia("(prefers-color-scheme)"))){var i=o<=e._sunrise||o>=e._sunset?d:a,t=i===d?a:d;s.body.classList.add(i),s.body.classList.remove(t)}}(window,document);
+
+</script>
+
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-list"
+  role="main"
+>
+  <article class="page" role="article">
+  <header>
+    <h1 class="page-title">Модель отделения створки головного обтекателя</h1>
+    
+
+
+
+  
+    <p class="note-sm" >
+      Интегрирование уравнений движения совместно с уравнениями связей на примере модели движения створки головного обтекателя ракеты-носителя
+
+    </p>
+  
+
+
+  </header>
+
+  <h1 id="движение-створки-головного-обтекателя-ракеты-носителя">Движение створки головного обтекателя ракеты-носителя</h1>
+
+<p>Головной обтекатель отделяется от ракеты-носителя после того, как ракета-носитель набрала высоту, на которой действие набегающего потока разреженного воздуха уже невелико, что позволяет сбросить “лишнюю” массу головного обтекателя, который до этого момента защищал выводимый на орбиту космический аппарат при движении ракеты-носителя в плотных слоях атмосферы. Существует несколько способов отделения головного обтекателя. Далее рассматривается способ отделения с разделением обтекателя  на две створки и последующим их разворотом [2,3].</p>
+
+<h2 id="схема-системы">Схема системы</h2>
+
+<p>Для отделения головного обтекателя производится его механическое разделение на две створки, при этом каждая створка остается шарнирно-закрепленной на ракете-носителе. После этого начинается разворот створок под действием толкателей (по два на створку), каждый из которых закреплен одним концом на створке, а другим – упирается в переходный отсек ракеты-носителя. Толкатели создают момент относительно оси вращения створки, разворачивая её относительно ракеты. При достижении некоторого угла (более 45 градусов) шарнирная связь между створкой и ракетой-носителем разрывается и створка продолжает свободное движение.</p>
+
+<p><img src="/assets/img/GO_1.jpg" alt="" /></p>
+
+<h2 id="системы-координат">Системы координат</h2>
+
+<p>Построим модель отделения обтекателя с момента его разделения на две створки до свободного движения створок. Будем считать, что створка – это абсолютно-твердое тело с массой значительно меньшей массы ракеты-носителя, что позволять не учитывать влияние движения створки на движение ракеты-носителя. Будет рассматриваться плоское движение створки, полагая, что все силы действуют на створку в одной плоскости, перпендикулярной оси её вращения, проходящей через центр масс створки.</p>
+
+<p>Поскольку необходимо исследовать движение створки относительно ракеты, для записи уравнений движения удобней использовать неинерциальную систему координат \(O x_0 y_0 z_0\), которая связана с ракетной-носителем, движущейся с постоянным ускорением вдоль оси \(O x_0\). Также при записи уравнений движения будет использоваться система координат \(C x_1 y_1 z_1\), связанная со створкой.</p>
+
+<p><img src="/assets/img/GO_2.jpg" alt="" /></p>
+
+<h2 id="уравнения-движения">Уравнения движения</h2>
+
+<p>Для записи уравнений систем многих тел для получения компактных уравнений движения целесообразно использовать матричную форму записи, которую потом легко перевести на языки компьютерной алгебры. Рассматриваемая механическая система простая и имеет небольшое число степеней свободы. Так при плоском движении на первом этапе движения (этапе разворота) створка имеет одну степень свободы относительно ракеты-носителя, на втором этапе – этапе свободного движения – три степени свободы. Для записи уравнений движения можно использовать уравнения Лагранжа, чтобы получить минимальное количество уравнений движения, но здесь для записи уравнений будут использованы уравнения движения центра масс и уравнения движения вокруг центра масс с учетом действия на створку силы реакции в шарнире. Уравнения движения створки будут решаться совместно с уравнениями связей. Такой подход позволит на всех этапах движения системы  использовать один набор обобщенных координат: положение центра масс и поворот створки, а также определить в процессе интегрирования уравнений движения силы реакции связей в шарнире створки.</p>
+
+<h3 id="уравнение-движения-центра-масс-створки">Уравнение движения центра масс створки</h3>
+
+<p>В системе координат \(O x_0 y_0 z_0\) движение центра масс створки описывается одним матричным уравнением, которому соответствует три скалярных уравнения</p>
+
+\[m \ddot{\boldsymbol r}^{(0)} = \boldsymbol{P}^{(0)} + \boldsymbol \Phi^{(0)} + \boldsymbol R^{(0)}\]
+
+<p>где \(\boldsymbol{P}^{(0)}\) – координатный столбец вектора силы толкателя, \(\boldsymbol \Phi^{(0)}\) – координатный столбец переносной силы инерции, \(\boldsymbol R^{(0)}\) – координатный столбец силы реакции в шарнире. Верхним индексом в круглых скобках обозначается то, что координатные столбцы векторов в уравнении записаны в системе координат \(O x_0 y_0 z_0\). В неинерциальной системе координат к активным силам и силам реакции необходимо добавить переносную силу инерции, направленную вдоль продольно оси ракеты-носителя. Координатный столбец переносной силы инерции определяется следующим образом:</p>
+
+\[\boldsymbol \Phi^{(0)} = - \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} m g n_x\]
+
+<p>где \(m\) – масса створки, \(g\) – ускорение свободного падения, \(n_x\) – перегрузка, с которой движется ракета-носитель, которая определяет “действующую” на створку переносную силу инерции в <strong>неинерциальной системе координат</strong> \(O x_0 y_0 z_0\)</p>
+
+<p>Сила толкателя, действующего на створку, пропорциональна расстоянию между точками \(P_0\) и \(P_1\) и направлена вдоль вектора \(P_0 P_1\). Обозначим это вектор буквой \(d\). В системе координат \(O x_0 y_0 z_0\) этот вектор определяется следующим образом</p>
+
+\[\boldsymbol d^{(0)} = - r_{p0}^{(0)} + r^{(0)} + \boldsymbol{A}_1 \boldsymbol{\rho}_{p1}^{(1)}\]
+
+<p>Рассматривается плоское движение створки, поэтому действие двух толкателей на створку можно заменить действием одного толкателя с силой равной суммарной силе двух толкателей. Обозначим как \(\boldsymbol{e}_P\) единичный вектор, вдоль которого действует сила толкателя P</p>
+
+\[\boldsymbol{e}_P^{(0)} = \frac{\boldsymbol d^{(0)}}{|\boldsymbol d^{(0)}|},\]
+
+<p>тогда координатный столбец силы, действующей на створку, в системе координат \(O x_0 y_0 z_0\) будет иметь вид</p>
+
+\[\boldsymbol{P}^{(0)} = \boldsymbol{e}_P^{(0)} P(d),\]
+
+<p>где \(P(d)\) зависимость силы толкателя от его длины (перемещения штока). Сила пружинного толкателя линейно зависит перемещения штока:</p>
+
+\[P(d) = P_0 + \frac{P_0-P_K}{h} (d-d_0)\]
+
+<p>где \(P_0\) - начальное усилие толкателя (двух толкателей в рассматриваемой плоской задачи), \(P_K\) - конечное усилие толкателя (это также суммарная сила от действия двух толкателей), \(d_0\) - начальная длина толкателя (расстояние от точки \(p_0\) до \(p_1\) ), \(h\) - ход толкателя.</p>
+
+<p><img src="/assets/img/GO_3.jpg" alt="" /></p>
+
+<h3 id="уравнение-движения-вокруг-центра-масс">Уравнение движения вокруг центра масс</h3>
+
+<p>Движение створки вокруг центра масс описывается динамическим уравнением Эйлера, которые в матричной форме в системе координат, связанной со своркой, имеют вид:</p>
+
+\[\boldsymbol{J}^{(1)} \dot{\boldsymbol{\omega}}^{(1)} + \boldsymbol{\omega}^{(1)} \times \boldsymbol{J}^{(1)} \boldsymbol{\omega}^{(1)} = \boldsymbol{M}^{(1)}(P) + \boldsymbol{M}^{(1)}(R)\]
+
+<p>В правой части уравнений движения вокруг центра масс момент от силы толкателя и момент от силы реакции \(\boldsymbol{R}\). Момент от силы толкателя в системе координат, связанной со створкой  записывается следующим образом:</p>
+
+\[\boldsymbol{M}^{(1)}(P) = \tilde{\boldsymbol{r}}_{p1}^{(1)} \boldsymbol{A}_1^T \boldsymbol{P}^{(0)}\]
+
+<p>Здесь и далее оператор тильда обозначает кососимметричную матрицу, записанную из компонент координатного столбца вектора</p>
+
+\[\tilde{\boldsymbol{a}} = \begin{bmatrix} 0 &amp; - a_z &amp; a_y \\ a_z &amp; 0 &amp; - a_x \\ - a_y &amp; a_x &amp; 0 \end{bmatrix}\]
+
+<p>Кососимметричная матрица используется для матричной записи векторного произведения двух координатных столбцов векторов</p>
+
+\[\boldsymbol{a} \times \boldsymbol{b} = \tilde{\boldsymbol{a}} \boldsymbol{b} = - \tilde{\boldsymbol{b}} \boldsymbol{a}\]
+
+<p>Момент от силы реакции относительно центра масс створки:</p>
+
+\[\boldsymbol{M}^{(1)}(R) = \tilde{\boldsymbol{c}}_{11}^{(1)} \boldsymbol{A}_1^T \boldsymbol{R}^{(0)}\]
+
+<p>С учётом полученных выражений для моментов, уравнение движения вокруг центра масс принимает вид</p>
+
+\[\boldsymbol{J}^{(1)} \dot{\boldsymbol{\omega}}^{(1)} = \tilde{\boldsymbol{r}}_{p1}^{(1)} \boldsymbol{A}_1^T \boldsymbol{P}^{(0)} + \tilde{\boldsymbol{c}}_{11}^{(1)} \boldsymbol{A}_1^T \boldsymbol{R}^{(0)} - \boldsymbol{\omega}^{(1)} \times \boldsymbol{J}^{(1)} \boldsymbol{\omega}^{(1)}\]
+
+<p>В уравнения движения центра масс и движения вокруг центра масс входят неизвестные силы реакции, которые можно определить, дополнив полученные уравнения движения уравнениями связей.</p>
+
+<h2 id="уравнения-связей">Уравнения связей</h2>
+
+<p>Положение шарнирной точки, связанной со створкой, в системе координат \(O x_0 y_0 z_0\) определяется суммой вектора положения центра масс створки и положения шарнирной точки створки относительно центра масс \(\mathbf{r}_1^{(0)} + \mathbf{A}_1 \mathbf{c}_{11}^{(1)}\). Матрица поворота или матрица преобразования координат используется в этом выражении для преобразования координат вектора \(\mathbf{c}_{11}^{(1)}\) из системы координат, связанной со створкой в систему координат \(O x_0 y_0 z_0\). Система координат, связанная со створкой \(C_1 x_1 y_1 z_1\), повёрнута относительно системы координат \(O x_0 y_0 z_0\) на угол \(\varphi\) вокруг оси \(z_0\), поэтому матрица поворота имеет простой вид</p>
+
+\[\mathbf{A}_1 = \begin{bmatrix} \cos \varphi &amp; -\sin \varphi &amp; 0 \\ \sin \varphi &amp; \cos \varphi &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{bmatrix}\]
+
+<p>Шарнирная точка створки должна совпадать с соответствующей шарнирной точкой на ракете-носителе, положение которой относительно  \(O x_0 y_0 z_0\) определяется неизменным координатным столбцом \(\mathbf{c}_{01}^{(0)}\), поэтому</p>
+
+\[\mathbf{c}_{01}^{(0)} = \mathbf{r}_1^{(0)} + \mathbf{A}_1 \mathbf{c}_{11}^{(1)}\]
+
+<p>Полученное уравнение представляет собой уравнение связи, которое говорит о том, что створка и ракета-носитель в процессе движения имеют одну общую точку – шарнирную точку. При развороте створки относительно шарнира ограничивается и угловое движение створки как твёрдого тела относительно двух других осей, перпендикулярных оси шарнира, однако если на створку действует плоская система сил, лежащая в плоскости \(O x_0 y_0 z_0\), в которой также находится и центр масс створки, то дополнительные уравнения связей можно не записывать.</p>
+
+<p>Для интегрирования дифференциальных уравнений движения совместно с алгебраическими уравнениями связей, обычно используют следующую технику решения, которая позволят использовать для интегрирования уравнений движения “стандартные” численные методы решения обыкновенных дифференциальных уравнений. Уравнения связей дважды дифференцируют для получения уравнений связей на  ускорения. Учитывая постоянство координатных столбцов \(\mathbf{c}_{11}^{(1)}\) и \(\mathbf{c}_{01}^{(0)}\), после первого дифференцирования уравнения связи получим:</p>
+
+\[\mathbf{0} = \mathbf{v}_1^{(0)} + \dot{\mathbf{A}}_1 \mathbf{c}_{11}^{(1)}\]
+
+<p>Производная матрицы поворота определяется выражением [1]:</p>
+
+\[\dot{\mathbf{A}}_1 = \mathbf{A}_1 \tilde{\mathbf{\omega}}_1^{(1)}\]
+
+<p>где \(\tilde{\mathbf{\omega}}_1^{(1)}\) – кососимметрическая матрица, составленная из компонент вектора угловой скорости створки в проекциях на оси системы координат, связанной со створкой</p>
+
+\[\tilde{\mathbf{\omega}}_1^{(1)} = \begin{bmatrix} 0 &amp; - \omega_z^{(1)} &amp; \omega_y^{(1)} \\ \omega_z^{(1)} &amp; 0 &amp; - \omega_x^{(1)} \\ - \omega_y^{(1)} &amp; \omega_x^{(1)} &amp; 0 \end{bmatrix}\]
+
+<p>С учётом последнего выражения, матричное уравнение связи примет вид</p>
+
+\[\mathbf{0} = \mathbf{v}_1^{(0)} + \mathbf{A}_1 \tilde{\mathbf{\omega}}_1^{(1)} \mathbf{c}_{11}^{(1)}\]
+
+<p>Это уравнение, в отличие исходного уравнения связи, уже говорит о том, что не положения, а скорости общих точек створки и ракеты-носителя должны совпадать. При условии того, что начальные условия будет удовлетворять исходному уравнению связи и при точном интегрировании уравнений движения исходное уравнение связи тоже будет выполняться, однако вследствие неизбежной погрешности численного интегрирования возможен так называемый “дрейф” связи – нарушение исходного уравнения связи и удаление шарнирных на створке и ракете-носителе друг от друга. В рассматриваемой задаче, учитывая небольшой интервал времени, на котором рассматривается движение системы, эта погрешность будет мала при разумном выборе точности интегрирования системы дифференциальных уравнений.</p>
+
+<p>После второго дифференцирования уравнение связи принимает вид</p>
+
+\[\mathbf{0} = \mathbf{a}_1^{(0)} + \mathbf{A}_1 \tilde{\boldsymbol{\omega}}_1^{(1)} \tilde{\boldsymbol{\omega}}_1^{(1)} \mathbf{c}_{11}^{(1)} + \mathbf{A}_1 \tilde{\boldsymbol{\varepsilon}}_1^{(1)} \mathbf{c}_{11}^{(1)}\]
+
+<p>Полученное уравнение связи требует, чтобы <strong>ускорения</strong> общих точек створки и ракеты-носителя были одинаковы в процессе интегрирования уравнений движения. Начальные условия должны удовлетворять исходному уравнению связи и уравнению связи, записанному для скоростей точек.</p>
+
+<p>Перепишем уравнение связи, выделив матрицу коэффициентов перед ускорениями, используя тождество \(\tilde{\mathbf a} \mathbf b = - \tilde{\mathbf b} \mathbf a\)</p>
+
+\[\mathbf{0} = \mathbf{a}_1^{(0)} + \mathbf{A}_1 \tilde{\boldsymbol{\omega}}_1^{(1)} \tilde{\boldsymbol{\omega}}_1^{(1)} \mathbf{c}_{11}^{(1)} - \mathbf{A}_1 \tilde{\mathbf{c}}_{11}^{(1)} \boldsymbol{\varepsilon}_1^{(1)}\]
+
+<p>Собрав из линейных и угловых ускорений створки столбец \(6 \times 1\), запишем это уравнение в блочном матричном виде</p>
+
+\[\begin{bmatrix}
+        \mathbf{E}_{3 \times 3} &amp; - \mathbf{A}_1 \tilde{\mathbf{c}}_{11}^{(1)} 
+    \end{bmatrix}
+    \begin{bmatrix}
+        \mathbf{a}_1^{(0)}  \\ \boldsymbol{\varepsilon}_1^{(1)} 
+    \end{bmatrix}
+    = - \mathbf{A}_1 \tilde{\mathbf{\omega}}_1^{(1)} \tilde{\boldsymbol{\omega}}_1^{(1)} \mathbf{c}_{11}^{(1)}\]
+
+<h3 id="система-дифференциально-алгебраических-уравнений-в-матричном-виде">Система дифференциально-алгебраических уравнений в матричном виде</h3>
+
+<h4 id="этап-1">Этап 1</h4>
+
+<p>Объединив уравнения движения и уравнения связи в одно блочное матричное уравнение, получим для первого этапа движения (вращение створки)</p>
+
+\[\begin{bmatrix}
+        \mathbf{E}_{3 \times 3} &amp; \mathbf{0}_{3 \times 3} &amp; - \mathbf{E}_{3 \times 3}  
+        \\
+        \mathbf{0}_{3 \times 3} &amp; \mathbf{J}_1 &amp; - \tilde{\mathbf{c}}_{11}^{(1)} \mathbf{A}_1^T  
+        \\
+        \mathbf{E}_{3 \times 3} &amp; - \mathbf{A}_1 \tilde{\mathbf{c}}_{11}^{(1)} &amp; \mathbf{0}_{3 \times 3}  
+    \end{bmatrix}
+    \begin{bmatrix}
+        \mathbf{a}_1^{(0)}  \\ \boldsymbol{\varepsilon}_1^{(1)} \\ \mathbf{R}^{(0)} 
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+    \boldsymbol{P}^{(0)} + \boldsymbol{F}^{(0)} \\
+    \tilde{\boldsymbol{r}}_{p1}^{(1)} \boldsymbol{A}_1^T \boldsymbol{P}^{(0)} \\
+    - \mathbf{A}_1 \tilde{\mathbf{\omega}}_1^{(1)} \tilde{\mathbf{\omega}}_1^{(1)} \mathbf{c}_{11}^{(1)}
+    \end{bmatrix}\]
+
+<p>Поскольку</p>
+
+\[(\mathbf{A}_1 \tilde{\mathbf{c}}_{11}^{(1)})^T  = - \tilde{\mathbf{c}}_{11}^{(1)} \mathbf{A}_1^T,\]
+
+<p>с точностью до знака полученная матрица коэффициентов является симметричной. Умножив уравнение связи на минус 1, получим симметричную матрицу коэффициентов</p>
+
+\[\begin{bmatrix}
+        \mathbf{E}_{3 \times 3} &amp; \mathbf{0}_{3 \times 3} &amp; - \mathbf{E}_{3 \times 3}  
+        \\
+        \mathbf{0}_{3 \times 3} &amp; \mathbf{J}_1 &amp; - \tilde{\mathbf{c}}_{11}^{(1)} \mathbf{A}_1^T  
+        \\
+        - \mathbf{E}_{3 \times 3} &amp; \mathbf{A}_1 \tilde{\mathbf{c}}_{11}^{(1)} &amp; \mathbf{0}_{3 \times 3}  
+    \end{bmatrix}
+    \begin{bmatrix}
+        \mathbf{a}_1^{(0)}  \\ \boldsymbol{\varepsilon}_1^{(1)} \\ \mathbf{R}^{(0)} 
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+    \boldsymbol{P}^{(0)} + \boldsymbol{F}^{(0)} \\
+    \tilde{\boldsymbol{r}}_{p1}^{(1)} \boldsymbol{A}_1^T \boldsymbol{P}^{(0)} \\
+    \mathbf{A}_1 \tilde{\mathbf{\omega}}_1^{(1)} \tilde{\mathbf{\omega}}_1^{(1)} \mathbf{c}_{11}^{(1)}
+    \end{bmatrix}\]
+
+<p>Структура этой системы дифференциально-алгебраических уравнений следующая</p>
+
+\[\begin{bmatrix} \boldsymbol{M} &amp; \boldsymbol{Q}^T \\
+    \boldsymbol{Q}^T &amp; \boldsymbol{0} 
+    \end{bmatrix} \begin{bmatrix} \ddot{\boldsymbol{X}} \\ \boldsymbol{R} \end{bmatrix}=
+    \begin{bmatrix}
+    \boldsymbol{L} \\ \boldsymbol{B}
+    \end{bmatrix}\]
+
+<p>Эту систему можно представить в виде двух матричных уравнений</p>
+
+\[\begin{aligned}
+    \boldsymbol{M} \ddot{\boldsymbol{X}} + \boldsymbol{Q}^T \boldsymbol{R} = \boldsymbol{L} \\
+    \boldsymbol{Q}^T \ddot{\boldsymbol{X}} = \boldsymbol{B} 
+    \end{aligned}\]
+
+<p>Выразив из первого уравнения \(\ddot{\boldsymbol{X}}\)</p>
+
+\[\ddot{\boldsymbol{X}} = \boldsymbol{M}^{-1} ( \boldsymbol{L} - \boldsymbol{Q}^T \boldsymbol{R} )\]
+
+<p>и подставив во второе уравнение, получим систему линейный уравнений для определения сил реакций</p>
+
+\[(\boldsymbol{Q}^T \boldsymbol{M}^{-1} \boldsymbol{Q}^T) \boldsymbol{R}  = \boldsymbol{Q}^T \boldsymbol{M}^{-1}  \boldsymbol{L} - \boldsymbol{B},\]
+
+<p>что позволяет найти столбец ускорений</p>
+
+\[\ddot{\boldsymbol{X}} = \boldsymbol{M}^{-1} (\boldsymbol{L} - \boldsymbol{Q}^T  (\boldsymbol{Q}^T \boldsymbol{M}^{-1} \boldsymbol{Q}^T)^{-1} (\boldsymbol{Q}^T \boldsymbol{M}^{-1}  \boldsymbol{L} - \boldsymbol{B}) )\]
+
+<h4 id="этап-2">Этап 2</h4>
+
+<p>На втором этапе движения механическая связь между створкой и ракетной-носителем отсутствует. Для учёта этого уравнение связи можно заменить на матричное уравнение (три скалярных уравнения)</p>
+
+\[\mathbf{R}^{(0)} = 0\]
+
+<p>тогда, система уравнений примет вид</p>
+
+\[\begin{bmatrix}
+        \mathbf{E}_{3 \times 3} &amp; \mathbf{0}_{3 \times 3} &amp; - \mathbf{E}_{3 \times 3}  
+        \\
+        \mathbf{0}_{3 \times 3} &amp; \mathbf{J}_1 &amp; - \tilde{\mathbf{c}}_{11}^{(1)} \mathbf{A}_1^T 
+        \\
+        \mathbf{0}_{3 \times 3} &amp; \mathbf{0}_{3 \times 3}  &amp; \mathbf{E}_{3 \times 3}  
+    \end{bmatrix}
+    \begin{bmatrix}
+        \mathbf{a}_1^{(0)}  \\ \boldsymbol{\varepsilon}_1^{(1)} \\ \mathbf{R}^{(0)} 
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+    \boldsymbol{P}^{(0)} + \boldsymbol{F}^{(0)} \\
+    \tilde{\boldsymbol{r}}_{p1}^{(1)} \boldsymbol{A}_1^T \boldsymbol{P}^{(0)} \\
+    - \mathbf{A}_1 \tilde{\mathbf{\omega}}_1^{(1)} \tilde{\mathbf{\omega}}_1^{(1)} \mathbf{c}_{11}^{(1)}
+    \end{bmatrix}\]
+
+<h2 id="код">Код</h2>
+
+<p>Примеры кода на языках MATLAB и Python, реализующие описанный алгоритм.</p>
+
+<h3 id="код-на-языке-matlab">Код на языке MATLAB</h3>
+
+<h4 id="файл-скрипт-mainm">Файл-скрипт main.m</h4>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nb">clc</span><span class="p">;</span> <span class="nb">clear</span> <span class="nb">all</span><span class="p">;</span>
+<span class="c1">% Положение шарнирной точки отчносительно центра масс створки с ССК</span>
+<span class="n">p</span><span class="o">.</span><span class="n">c11</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">4.0</span><span class="p">;</span>  <span class="mf">1.0</span><span class="p">;</span> <span class="mf">0.0</span><span class="p">];</span>
+<span class="c1">% Положение точки закрепления толкателя на створке относительно центра масс</span>
+<span class="c1">% створки в ССК</span>
+<span class="n">p</span><span class="o">.</span><span class="n">rp1</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">3.5</span><span class="p">;</span> <span class="o">-</span><span class="mf">0.8</span><span class="p">;</span> <span class="mf">0.0</span><span class="p">];</span>  
+<span class="c1">% Положение точки закрепления толкателя на РН относительно БСК</span>
+<span class="n">p</span><span class="o">.</span><span class="n">rp0</span> <span class="o">=</span> <span class="p">[</span> <span class="mf">0.0</span><span class="p">;</span>  <span class="mf">0.2</span><span class="p">;</span> <span class="mf">0.0</span><span class="p">];</span>  
+<span class="c1">% Ускорение свободного падения</span>
+<span class="n">p</span><span class="o">.</span><span class="n">g</span>   <span class="o">=</span> <span class="mf">9.807</span><span class="p">;</span>            
+<span class="c1">% Начальное усиле толкателей</span>
+<span class="n">p</span><span class="o">.</span><span class="n">P0</span>  <span class="o">=</span> <span class="mi">30000</span><span class="p">;</span>            
+<span class="c1">% Конечное усилие толкателей</span>
+<span class="n">p</span><span class="o">.</span><span class="n">Pk</span>  <span class="o">=</span> <span class="mi">10000</span><span class="p">;</span>            
+<span class="c1">% Ход толкателя</span>
+<span class="n">p</span><span class="o">.</span><span class="n">h</span>   <span class="o">=</span> <span class="mf">0.4</span><span class="p">;</span>   
+<span class="c1">% Начальная длина толкателя</span>
+<span class="n">p</span><span class="o">.</span><span class="n">d0</span>  <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+<span class="c1">% Масса створки</span>
+<span class="n">p</span><span class="o">.</span><span class="n">m</span>   <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>  
+<span class="c1">% Тензор инерции створки</span>
+<span class="n">p</span><span class="o">.</span><span class="n">J</span>   <span class="o">=</span> <span class="nb">diag</span><span class="p">([</span><span class="mi">10000</span><span class="p">,</span><span class="mi">10000</span><span class="p">,</span><span class="mi">10000</span><span class="p">]);</span>            
+<span class="c1">%</span>
+<span class="n">p</span><span class="o">.</span><span class="n">phimax</span>   <span class="o">=</span> <span class="mi">60</span><span class="p">;</span>            
+
+<span class="c1">% Начальные условия</span>
+<span class="n">q0</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">;</span> <span class="mf">1.0</span><span class="p">;</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span><span class="p">];</span> 
+<span class="c1">% Первый этап</span>
+<span class="n">p</span><span class="o">.</span><span class="n">Stage</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="nb">odeset</span><span class="p">(</span><span class="s1">'Events'</span><span class="p">,</span> <span class="o">@</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">q</span><span class="p">)</span> <span class="n">PhiEvent</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">p</span><span class="p">));</span>
+<span class="p">[</span><span class="n">t1</span><span class="p">,</span><span class="n">q1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">ode45</span><span class="p">(</span><span class="o">@</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span> <span class="n">dqdt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">p</span><span class="p">),</span> <span class="mi">0</span><span class="p">:</span><span class="mf">0.02</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="n">q0</span><span class="p">,</span> <span class="n">opt</span><span class="p">);</span>
+<span class="c1">% Второй этап</span>
+<span class="n">p</span><span class="o">.</span><span class="n">Stage</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">[</span><span class="n">t2</span><span class="p">,</span><span class="n">q2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">ode45</span><span class="p">(</span><span class="o">@</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span> <span class="n">dqdt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">p</span><span class="p">),</span> <span class="p">[</span><span class="n">t1</span><span class="p">(</span><span class="k">end</span><span class="p">):</span><span class="mf">0.02</span><span class="p">:</span><span class="mi">3</span><span class="p">],</span> <span class="n">q1</span><span class="p">(</span><span class="k">end</span><span class="p">,</span> <span class="p">:)</span><span class="o">'</span><span class="p">);</span>
+<span class="c1">% Склейка результатов двух этапов</span>
+<span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="n">t1</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span> <span class="n">t2</span><span class="p">];</span>
+<span class="n">q</span> <span class="o">=</span> <span class="p">[</span><span class="n">q1</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:);</span> <span class="n">q2</span><span class="p">];</span>  
+</code></pre></div></div>
+
+<h4 id="файл-функция-правых-частей-дифференциальных-уравнений-dqdtm">Файл-функция правых частей дифференциальных уравнений dqdt.m</h4>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function</span> <span class="p">[</span><span class="n">dq</span><span class="p">,</span> <span class="n">R</span><span class="p">]</span><span class="o">=</span> <span class="n">dqdt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="c1">% Извлекаем компоненты из вектора состояния</span>
+<span class="c1">% Координатный столбцец центра масс</span>
+<span class="n">r</span>   <span class="o">=</span> <span class="n">q</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">);</span>     
+<span class="c1">% Углы поворота створки</span>
+<span class="c1">% в плоской задаче испольуется только последний, а остальные принимаются</span>
+<span class="c1">% равными нулю</span>
+<span class="n">phi</span> <span class="o">=</span> <span class="n">q</span><span class="p">(</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">);</span> 
+<span class="c1">% Координатный столбец скорости центра масс створки в СК РН</span>
+<span class="n">v</span>   <span class="o">=</span> <span class="n">q</span><span class="p">(</span><span class="mi">7</span><span class="p">:</span><span class="mi">9</span><span class="p">);</span> 
+<span class="c1">% Координатный столбец угловой скорости</span>
+<span class="n">w</span>   <span class="o">=</span> <span class="n">q</span><span class="p">(</span><span class="mi">10</span><span class="p">:</span><span class="mi">12</span><span class="p">);</span>       
+<span class="c1">% в плоской задаче испольуется только последнее значение - wz, а остальные принимаются</span>
+<span class="c1">% равными нулю</span>
+<span class="n">wz</span>  <span class="o">=</span> <span class="n">w</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+
+<span class="c1">% Этап движения </span>
+<span class="n">Stage</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">Stage</span><span class="p">;</span>
+<span class="c1">% Матрица поворота вокруг оси z</span>
+<span class="n">A</span>     <span class="o">=</span> <span class="o">@</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">[</span><span class="nb">cos</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="o">-</span><span class="nb">sin</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="mi">0</span><span class="p">;</span> <span class="nb">sin</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="nb">cos</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="mi">0</span><span class="p">;</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">];</span>
+<span class="c1">% Оператор тильда</span>
+<span class="n">tilde</span> <span class="o">=</span> <span class="o">@</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">[</span><span class="mi">0</span> <span class="o">-</span><span class="n">a</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="n">a</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="n">a</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="mi">0</span> <span class="o">-</span><span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="o">-</span><span class="n">a</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="mi">0</span><span class="p">];</span>
+<span class="c1">% Матрица поворота на угол phi вокруг оси z</span>
+<span class="n">A1</span>    <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="n">phi</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>
+
+<span class="c1">% Матрица коэффиицентов при ускорениях в уравнениях связей, ограичивающих</span>
+<span class="c1">% перемещение шарнирной точки</span>
+<span class="n">Q</span>     <span class="o">=</span> <span class="o">-</span> <span class="n">A1</span><span class="o">*</span><span class="n">tilde</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">c11</span><span class="p">);</span>
+<span class="c1">% Матрица коэффициентов при реакциях в уравнении движения створки вокруг</span>
+<span class="c1">% центра масс</span>
+<span class="n">QT</span>    <span class="o">=</span> <span class="o">-</span> <span class="n">tilde</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">c11</span><span class="p">)</span><span class="o">*</span><span class="n">A1</span><span class="o">'</span><span class="p">;</span>
+
+<span class="c1">% Вектор от точки закрепления толкателя на РН до точки закрепления</span>
+<span class="c1">% толкателя на створке</span>
+<span class="n">d</span>     <span class="o">=</span> <span class="o">-</span> <span class="n">p</span><span class="o">.</span><span class="n">rp0</span> <span class="o">+</span> <span class="n">r</span> <span class="o">+</span> <span class="n">A1</span><span class="o">*</span><span class="n">p</span><span class="o">.</span><span class="n">rp1</span><span class="p">;</span>
+<span class="c1">% Модуль этого вектора</span>
+<span class="n">nd</span>    <span class="o">=</span> <span class="nb">norm</span><span class="p">(</span><span class="n">d</span><span class="p">);</span>
+<span class="c1">% Единичный вектор этого напарвления  </span>
+<span class="n">ed</span>    <span class="o">=</span> <span class="n">d</span><span class="p">/</span><span class="n">nd</span><span class="p">;</span>
+
+<span class="c1">% Если длина толкателя не больше его начальной длины и хода</span>
+<span class="c1">% вычисляем силу</span>
+<span class="k">if</span> <span class="n">nd</span> <span class="o">&lt;</span> <span class="n">p</span><span class="o">.</span><span class="n">d0</span> <span class="o">+</span> <span class="n">p</span><span class="o">.</span><span class="n">h</span>
+   <span class="n">Pin0</span> <span class="o">=</span> <span class="n">ed</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">P0</span> <span class="o">-</span> <span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">P0</span><span class="o">-</span><span class="n">p</span><span class="o">.</span><span class="n">Pk</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">nd</span><span class="o">-</span><span class="n">p</span><span class="o">.</span><span class="n">d0</span><span class="p">)/</span><span class="n">p</span><span class="o">.</span><span class="n">h</span> <span class="p">);</span>    
+<span class="c1">% иначе, толкатель уже не работает</span>
+<span class="k">else</span>
+   <span class="n">Pin0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">];</span> 
+<span class="k">end</span>
+<span class="c1">% Координатный столбец силы в ССК створки</span>
+<span class="n">Pin1</span>          <span class="o">=</span> <span class="n">A1</span><span class="o">'*</span><span class="n">Pin0</span><span class="p">;</span>
+<span class="c1">% Координатный столбец силы инерции в СК РН (вдоль продольной оси)</span>
+<span class="n">InertialForce</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">p</span><span class="o">.</span><span class="n">m</span><span class="o">*</span><span class="n">p</span><span class="o">.</span><span class="n">g</span><span class="p">;</span>
+
+<span class="n">E3</span> <span class="o">=</span> <span class="nb">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">Z3</span> <span class="o">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="n">Stage</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="c1">% Матрица коэффициентов для первого этапа </span>
+    <span class="n">M</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">m</span><span class="o">*</span><span class="n">E3</span>   <span class="n">Z3</span> <span class="o">-</span><span class="n">E3</span><span class="p">;</span> 
+             <span class="n">Z3</span>  <span class="n">p</span><span class="o">.</span><span class="n">J</span> <span class="o">-</span><span class="n">QT</span><span class="p">;</span> 
+             <span class="n">E3</span>  <span class="n">Q</span>    <span class="n">Z3</span><span class="p">];</span>
+<span class="k">end</span>
+<span class="k">if</span> <span class="n">Stage</span> <span class="o">==</span> <span class="mi">2</span>
+    <span class="c1">% Матрица коэффициентов для второго этапа </span>
+    <span class="c1">% Реакции равны нулю</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">m</span><span class="o">*</span><span class="n">E3</span>   <span class="n">Z3</span>  <span class="n">E3</span><span class="p">;</span> 
+             <span class="n">Z3</span>  <span class="n">p</span><span class="o">.</span><span class="n">J</span> <span class="o">-</span><span class="n">QT</span><span class="p">;</span> 
+             <span class="n">Z3</span>   <span class="n">Z3</span>  <span class="n">E3</span><span class="p">];</span>
+<span class="k">end</span>
+
+<span class="c1">% Матрица-столбец правой части ДАУ</span>
+<span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="n">Pin0</span> <span class="o">+</span> <span class="n">InertialForce</span><span class="p">;</span> 
+     <span class="n">tilde</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">rp1</span><span class="p">)</span><span class="o">*</span><span class="n">Pin1</span><span class="p">;</span>
+     <span class="o">-</span><span class="n">A1</span><span class="o">*</span><span class="n">tilde</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="o">*</span><span class="n">tilde</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="o">*</span><span class="n">p</span><span class="o">.</span><span class="n">c11</span><span class="p">];</span>
+
+<span class="c1">% Находим ускорения и реакции  </span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">M</span><span class="p">\</span><span class="n">B</span><span class="p">;</span>                            
+
+<span class="n">R</span> <span class="o">=</span> <span class="n">X</span><span class="p">(</span><span class="mi">7</span><span class="p">:</span><span class="mi">9</span><span class="p">);</span>
+
+<span class="c1">% Кинематические уравнения для плоского движения </span>
+<span class="c1">% Производня последнего угла равна угловой скорости, остальные компоненты</span>
+<span class="c1">% равны нулю</span>
+<span class="n">dphi</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">;</span><span class="n">wz</span><span class="p">];</span>
+
+<span class="c1">% Производня вектора состояния</span>
+<span class="n">dq</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="p">;</span> <span class="n">dphi</span><span class="p">;</span> <span class="n">X</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">6</span><span class="p">)];</span>                
+
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h4 id="файл-функция-событий-системы-дифференциальных-уравнений-dqdtm">Файл-функция событий системы дифференциальных уравнений dqdt.m</h4>
+
+<p>Файл-функция событий передается в качестве параметра в функцию интегрирования дифференциальных уравнений и предназначена для остановки процесса интегрировании при заданном условии, которое задается функцией, изменяющей знак. В рассматриваемой задаче такой функцией будет угол поворота створки.</p>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">function</span> <span class="p">[</span><span class="n">Value</span><span class="p">,</span> <span class="n">isterminal</span><span class="p">,</span> <span class="n">direction</span><span class="p">]</span> <span class="o">=</span> <span class="n">PhiEvent</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+    
+    <span class="c1">% Если угол поврота превышает phimax...</span>
+    <span class="n">Value</span> <span class="o">=</span> <span class="n">q</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">-</span><span class="nb">deg2rad</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">phimax</span><span class="p">);</span>     
+    <span class="c1">% при увеличении угла, </span>
+    <span class="n">direction</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                       
+    <span class="c1">% то остановить интегрирование</span>
+    <span class="n">isterminal</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>                     
+
+<span class="k">end</span>
+
+
+</code></pre></div></div>
+
+<h3 id="код-на-языке-python">Код на языке Python</h3>
+
+<p>Вес код программы можно разместить в одном файле. Удобно для решения подобных задач использовать <a href="http://">Jupyter notebook</a></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1"># Массивы, матрицы
+</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="c1"># Для численного интегрирования дифференциальных уранвений
+</span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+
+<span class="c1"># Для построения графиков
+</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="n">mpl</span>
+
+<span class="c1"># Настройки графиков по умолчанию
+</span><span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="n">pylab</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">'legend.fontsize'</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span> <span class="s">'figure.figsize'</span><span class="p">:</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="s">'axes.labelsize'</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
+         <span class="s">'axes.titlesize'</span><span class="p">:</span><span class="mi">14</span><span class="p">,</span> <span class="s">'xtick.labelsize'</span><span class="p">:</span><span class="mi">14</span><span class="p">,</span><span class="s">'ytick.labelsize'</span><span class="p">:</span><span class="mi">14</span><span class="p">}</span>
+<span class="n">pylab</span><span class="p">.</span><span class="n">rcParams</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+
+<span class="c1"># Для передачи параметров в функцию объеденим их в структуру namedtuple
+</span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1"># Параметры системы
+</span><span class="n">Parameters</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">'Parameters'</span> <span class="p">,</span> <span class="s">'m J c11 c01 rp0 rp1 d0 h P0 PK nx g phimax'</span><span class="p">)</span>
+
+<span class="n">param1</span> <span class="o">=</span> <span class="n">Parameters</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">,</span> 
+                    <span class="n">J</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">diag</span><span class="p">([</span><span class="mi">5000</span><span class="p">,</span><span class="mi">10000</span><span class="p">,</span><span class="mf">10000.</span><span class="p">]),</span> 
+                    <span class="n">c11</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]),</span>
+                    <span class="n">c01</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]),</span>                    
+                    <span class="n">rp0</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]),</span>
+                    <span class="n">rp1</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">3.5</span><span class="p">,</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]),</span>
+                    <span class="n">d0</span>  <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+                    <span class="n">h</span>   <span class="o">=</span> <span class="mf">0.4</span><span class="p">,</span>
+                    <span class="n">P0</span>  <span class="o">=</span>  <span class="mi">50000</span><span class="p">,</span>
+                    <span class="n">PK</span>  <span class="o">=</span>  <span class="mi">40000</span><span class="p">,</span>
+                    <span class="n">nx</span>  <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+                    <span class="n">g</span>   <span class="o">=</span> <span class="mf">9.807</span><span class="p">,</span>
+                    <span class="n">phimax</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Функции матрицы поворота и оператор тильда</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1"># Матрица 0 3x3
+</span><span class="n">Z3</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># Единичная матрица 3x3
+</span><span class="n">E3</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Матрица поворота  
+</span><span class="k">def</span> <span class="nf">Az</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>  
+  <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="mi">0</span><span class="p">],[</span><span class="n">np</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]]);</span>
+
+<span class="c1"># Тильда
+</span><span class="k">def</span> <span class="nf">tilde</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>  
+  <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span>     <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>  <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">],</span> 
+                   <span class="p">[</span>  <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>     <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">],</span>
+                   <span class="p">[</span> <span class="o">-</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>  <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>    <span class="mi">0</span>  <span class="p">]</span> <span class="p">])</span>
+</code></pre></div></div>
+
+<p>Функция правых частей системы дифференциальных уравнений.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">dqdt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">p</span><span class="p">):</span>  
+  <span class="c1"># координатный столбец центра масс  
+</span>  <span class="n">r</span>   <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+  <span class="c1"># углы поворота створки
+</span>  <span class="n">a</span>   <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+  <span class="c1"># в рассматриваемой плоской задаче 
+</span>  <span class="c1"># используется только один - последний из трёх
+</span>  <span class="n">phi</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>  
+  <span class="c1"># координатный столбец скорости центра масс  
+</span>  <span class="n">v</span>   <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">6</span><span class="p">:</span><span class="mi">9</span><span class="p">]</span>
+  <span class="c1"># координатный столбец угловой скорости створки  
+</span>  <span class="n">w</span>   <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="mi">9</span><span class="p">:</span><span class="mi">12</span><span class="p">]</span>
+
+  <span class="c1"># Вычисляем матрицу поворота для текущего значения угла
+</span>  <span class="n">A1</span> <span class="o">=</span> <span class="n">Az</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span>
+
+  <span class="c1"># Коэффициенты при ускорениях в уравнениях связей
+</span>  <span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A1</span><span class="p">,</span> <span class="n">tilde</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">c11</span><span class="p">))</span>
+  
+  <span class="c1"># Переносная сила инерции
+</span>  <span class="n">F</span>  <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">p</span><span class="p">.</span><span class="n">m</span><span class="o">*</span><span class="n">p</span><span class="p">.</span><span class="n">g</span><span class="o">*</span><span class="n">p</span><span class="p">.</span><span class="n">nx</span>
+  
+  <span class="c1"># Вектор p0p1
+</span>  <span class="n">d</span>  <span class="o">=</span> <span class="o">-</span><span class="n">p</span><span class="p">.</span><span class="n">rp0</span> <span class="o">+</span> <span class="n">r</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A1</span><span class="p">,</span><span class="n">p</span><span class="p">.</span><span class="n">rp1</span><span class="p">)</span>
+  <span class="c1"># Длина вектора
+</span>  <span class="n">dn</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">d</span><span class="p">))</span>
+  <span class="c1"># Едичиный вектор направления силы в базисе x0y0z0
+</span>  <span class="n">eP</span> <span class="o">=</span> <span class="n">d</span><span class="o">/</span><span class="n">dn</span>
+  
+  <span class="c1"># Сила толкателя  
+</span>  <span class="n">P</span>  <span class="o">=</span> <span class="mi">0</span><span class="o">*</span><span class="n">eP</span>
+
+  <span class="k">if</span> <span class="n">dn</span><span class="o">&lt;</span><span class="n">p</span><span class="p">.</span><span class="n">d0</span><span class="o">+</span><span class="n">p</span><span class="p">.</span><span class="n">h</span><span class="p">:</span>
+    <span class="n">P</span>  <span class="o">=</span> <span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">P0</span> <span class="o">+</span> <span class="p">(</span><span class="n">dn</span><span class="o">-</span><span class="n">p</span><span class="p">.</span><span class="n">d0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">P0</span><span class="o">-</span><span class="n">p</span><span class="p">.</span><span class="n">PK</span><span class="p">)</span><span class="o">/</span><span class="n">p</span><span class="p">.</span><span class="n">h</span><span class="p">)</span><span class="o">*</span><span class="n">eP</span> 
+    
+
+  <span class="c1"># Матрица коэффициентов
+</span>  <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">block</span><span class="p">([[</span><span class="n">E3</span><span class="o">*</span><span class="n">p</span><span class="p">.</span><span class="n">m</span><span class="p">,</span>  <span class="n">Z3</span><span class="p">,</span>             <span class="o">-</span><span class="n">E3</span><span class="p">],</span>
+                <span class="p">[</span><span class="n">Z3</span>    <span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">J</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">Q</span><span class="p">)],</span>
+                <span class="p">[</span><span class="o">-</span><span class="n">E3</span>   <span class="p">,</span>   <span class="n">Q</span><span class="p">,</span>              <span class="n">Z3</span><span class="p">]])</span>
+
+  <span class="k">if</span> <span class="n">STAGE</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="c1"># Матрица коэффициентов
+</span>    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">block</span><span class="p">([[</span><span class="n">E3</span><span class="o">*</span><span class="n">p</span><span class="p">.</span><span class="n">m</span><span class="p">,</span>  <span class="n">Z3</span><span class="p">,</span>             <span class="o">-</span><span class="n">E3</span><span class="p">],</span>
+                  <span class="p">[</span><span class="n">Z3</span>    <span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">J</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">Q</span><span class="p">)],</span>
+                  <span class="p">[</span><span class="n">Z3</span>    <span class="p">,</span>   <span class="n">Z3</span><span class="p">,</span>             <span class="n">E3</span><span class="p">]])</span>
+  
+    <span class="c1"># Матрица правой части
+</span>  <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">block</span><span class="p">([</span> <span class="n">F</span> <span class="o">+</span> <span class="n">P</span><span class="p">,</span> 
+                <span class="o">-</span><span class="n">np</span><span class="p">.</span><span class="n">cross</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">J</span><span class="p">,</span><span class="n">w</span><span class="p">))</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="n">cross</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">rp1</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">A1</span><span class="p">),</span><span class="n">P</span><span class="p">)),</span>
+                 <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A1</span><span class="p">,</span><span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">tilde</span><span class="p">(</span><span class="n">w</span><span class="p">),</span><span class="n">tilde</span><span class="p">(</span><span class="n">w</span><span class="p">))),</span><span class="n">p</span><span class="p">.</span><span class="n">c11</span><span class="p">)])</span>
+
+  <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+
+  <span class="n">dq</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">block</span><span class="p">([</span><span class="n">v</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">6</span><span class="p">]])</span>
+  
+  <span class="k">return</span> <span class="n">dq</span>
+
+</code></pre></div></div>
+
+<p>Функция-“детектор”, передаваемая в интегратор (параметр events), для определения времени перехода от этапа 1 к этапу 2 и остановки процесса интегрирования функция возвращает разницу между углом потери связи и текущим углом</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">event_phi_eq_phimax</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">param1</span><span class="p">.</span><span class="n">phimax</span><span class="o">-</span><span class="n">q</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+
+<span class="c1"># функция-детектор останавливает процесс интегрирование
+</span><span class="n">event_phi_eq_phimax</span><span class="p">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="c1"># при пересечении функции нуля при убывании
+</span><span class="n">event_phi_eq_phimax</span><span class="p">.</span><span class="n">direction</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+
+</code></pre></div></div>
+
+<p>Запускаем процесс интегрирования</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">q0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">];</span>
+
+<span class="n">STAGE</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">s1</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">dqdt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">param1</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">],</span> <span class="n">q0</span><span class="p">,</span>  
+               <span class="n">events</span> <span class="o">=</span> <span class="p">[</span><span class="n">event_phi_eq_phimax</span><span class="p">],</span>  <span class="n">rtol</span> <span class="o">=</span> <span class="mf">1e-7</span><span class="p">,</span> <span class="n">max_step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+
+<span class="n">STAGE</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">q1</span> <span class="o">=</span> <span class="n">s1</span><span class="p">.</span><span class="n">y</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">s2</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">dqdt</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">param1</span><span class="p">),</span> <span class="p">[</span><span class="n">s1</span><span class="p">.</span><span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">2</span><span class="p">],</span> <span class="n">q1</span><span class="p">,</span> <span class="n">rtol</span> <span class="o">=</span> <span class="mf">1e-6</span><span class="p">,</span> <span class="n">max_step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>График изменения угла и угловой скорости створки</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s1</span><span class="p">.</span><span class="n">t</span><span class="p">,</span><span class="n">s1</span><span class="p">.</span><span class="n">y</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">*</span><span class="mi">180</span><span class="o">/</span><span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="p">,</span><span class="s">'r-'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s2</span><span class="p">.</span><span class="n">t</span><span class="p">,</span><span class="n">s2</span><span class="p">.</span><span class="n">y</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">*</span><span class="mi">180</span><span class="o">/</span><span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="p">,</span><span class="s">'r--'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s1</span><span class="p">.</span><span class="n">t</span><span class="p">,</span><span class="n">s1</span><span class="p">.</span><span class="n">y</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span><span class="o">*</span><span class="mi">180</span><span class="o">/</span><span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="p">,</span><span class="s">'b-'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s2</span><span class="p">.</span><span class="n">t</span><span class="p">,</span><span class="n">s2</span><span class="p">.</span><span class="n">y</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span><span class="o">*</span><span class="mi">180</span><span class="o">/</span><span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="p">,</span><span class="s">'b--'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'t, c'</span><span class="p">),</span> <span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'$</span><span class="se">\\</span><span class="s">varphi$, $</span><span class="se">\\</span><span class="s">omega$'</span><span class="p">);</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">grid</span><span class="p">(</span><span class="n">ls</span><span class="o">=</span><span class="s">'--'</span><span class="p">),</span> <span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">([</span><span class="s">'$</span><span class="se">\\</span><span class="s">varphi$ Этап 1'</span><span class="p">,</span><span class="s">'$</span><span class="se">\\</span><span class="s">varphi$ Этап 2'</span><span class="p">]);</span>
+
+</code></pre></div></div>
+
+<h2 id="источники">Источники</h2>
+
+<ol>
+  <li>Маркеев А. П.  Теоретическая механика: Учебник для университетов. 3-е изд. — М.; Ижевск: РХД, 2007. — 592 с.</li>
+  <li>Колесников К.С., Кокушкин В.В., Борзых С.В., Панкова Н.В. Расчет и проектирование систем разделения ступеней ракет: учебное пособие. М.: МГТУ им. Н.Э. Баумана. 2006. 376 с.</li>
+  <li>Круглов Г. Е. Аналитическое проектирование механических систем [Электронный ресурс] : учеб. пособие. Самарский государственный аэрокосмический университет им. С. П. Королева. 2000.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    <h2 id="y-2020" class="hr-bottom">2020</h2>
+    <ul class="related-posts">
+    
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/programming/2020-05-20-select-sql/" class="flip-title"><span>Пример построения сложного запроса к базе данных</span></a>
+  <time class="faded fine" datetime="2020-05-20T00:00:00+04:00">20 May</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/programming/cae/2020-05-19-atm-density-matlab/" class="flip-title"><span>Простая функция определения плотности воздуха</span></a>
+  <time class="faded fine" datetime="2020-05-19T00:00:00+04:00">19 May</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/2020-05-09-Game-of-Life-SQL/" class="flip-title"><span>Игра Жизнь на SQL</span></a>
+  <time class="faded fine" datetime="2020-05-09T00:00:00+04:00">09 May</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/2020-04-10-Mathematica-mech/" class="flip-title"><span>Уравнения Лагранжа II рода в Wolfram Mathematica</span></a>
+  <time class="faded fine" datetime="2020-04-10T00:00:00+04:00">10 Apr</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/mechanics/2020-03-10-fairing/" class="flip-title"><span>Модель отделения створки головного обтекателя</span></a>
+  <time class="faded fine" datetime="2020-03-10T00:00:00+04:00">10 Mar</time>
+</li>
+
+  
+
+  
+  
+    </ul>
+    <h2 id="y-2019" class="hr-bottom">2019</h2>
+    <ul class="related-posts">
+    
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/cae/2019-12-10-pde-thermal/" class="flip-title"><span>Решение нестационарной задачи теплопроводности в MATLAB</span></a>
+  <time class="faded fine" datetime="2019-12-10T00:00:00+04:00">10 Dec</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/cae/2019-08-01-simulink-pendulum/" class="flip-title"><span>Модель физического маятника в Simulink</span></a>
+  <time class="faded fine" datetime="2019-08-01T00:00:00+04:00">01 Aug</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/mechanics/2019-07-29-mech-python/" class="flip-title"><span>Движение механической системы с двумя степенями свободы</span></a>
+  <time class="faded fine" datetime="2019-07-29T00:00:00+04:00">29 Jul</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/programming/mechanics/2019-07-03-cubesat-python/" class="flip-title"><span>Модель движения наноспутника</span></a>
+  <time class="faded fine" datetime="2019-07-03T00:00:00+04:00">03 Jul</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/mechanics/programming/2019-06-30-net2D/" class="flip-title"><span>Плоская модель сети</span></a>
+  <time class="faded fine" datetime="2019-06-30T00:00:00+04:00">30 Jun</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/programming/2019-06-09-sympy/" class="flip-title"><span>Пример использования библиотеки sympy для поиска экстремума функции</span></a>
+  <time class="faded fine" datetime="2019-06-09T00:00:00+04:00">09 Jun</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/mechanics/2019-02-22-patent/" class="flip-title"><span>Способ очистки орбит от объектов космического мусора</span></a>
+  <time class="faded fine" datetime="2019-02-22T00:00:00+04:00">22 Feb</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/mechanics/2019-01-05-reentry-1/" class="flip-title"><span>Движение спускаемого аппарата в атмосфере</span></a>
+  <time class="faded fine" datetime="2019-01-05T00:00:00+04:00">05 Jan</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/mechanics/2019-01-02-discharge-constant-volume-python/" class="flip-title"><span>Истечение газа из ёмкости постоянного объёма</span></a>
+  <time class="faded fine" datetime="2019-01-02T00:00:00+04:00">02 Jan</time>
+</li>
+
+  
+
+  
+  
+    </ul>
+    <h2 id="y-2018" class="hr-bottom">2018</h2>
+    <ul class="related-posts">
+    
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/2018-05-13-ffmpeg/" class="flip-title"><span>Использование утилиты ffmpeg</span></a>
+  <time class="faded fine" datetime="2018-05-13T00:00:00+04:00">13 May</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/mechancis/2018-04-14-net/" class="flip-title"><span>Net</span></a>
+  <time class="faded fine" datetime="2018-04-14T00:00:00+04:00">14 Apr</time>
+</li>
+
+  
+
+  
+  
+  
+
+
+<li class="h4">
+  <a href="/blog/2018-04-02-electrostatic-space-tug/" class="flip-title"><span>Electrostatic Space Tug</span></a>
+  <time class="faded fine" datetime="2018-04-02T00:00:00+04:00">02 Apr</time>
+</li>
+
+  </ul>
+
+
+  
+
+</article>
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2020. All rights reserved.
+</small></p>
+  
+  
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.0.3</span></small></p>
+  
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(25,55,71);background-image:url(/assets/img/vadim-sadovski-2017-06-20-0-10-42.jpg)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <img src="/assets/img/satellite.png" class="avatar" alt="ClassMech" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">ClassMech</h2></a>
+    
+    
+      <p class="">
+        
+
+      </p>
+    
+  </div>
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+    
+    
+
+    
+      
+        <li>
+          <a
+            id="_navigation"
+            href="/about/"
+            class="sidebar-nav-item"
+            
+            >
+            Об авторе
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/papers/"
+            class="sidebar-nav-item"
+            
+            >
+            Статьи
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/presentations/"
+            class="sidebar-nav-item"
+            
+            >
+            Презентации
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/disciplines/"
+            class="sidebar-nav-item"
+            
+            >
+            Дисциплины
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/videos/"
+            class="sidebar-nav-item"
+            
+            >
+            Видео
+          </a>
+        </li>
+      
+    
+  
+</ul>
+
+  </nav>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social</span>
+<ul>
+  
+    
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://twitter.com/kidinnu" title="Twitter" class="no-mark-external">
+      <span class="icon-twitter"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  </li>
+
+
+    
+
+    
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/Kidinnu" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+
+    
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var e=document.createElement("script");if(!("noModule"in e)&&"onbeforeload"in e){var t=!1;document.addEventListener("beforeload",function(n){if(n.target===e)t=!0;else if(!n.target.hasAttribute("nomodule")||!t)return;n.preventDefault()},!0),e.type="module",e.src=".",document.head.appendChild(e),e.remove()}}();
+</script>
+  <script src="/assets/js/hydejack-9.0.3.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.0.3.js" nomodule defer></script>
+  
+
+  
+
+  <script type="module">
+    if ('serviceWorker' in navigator) {
+      /**/
+      navigator.serviceWorker.getRegistration()
+        .then(r => r.unregister())
+        .catch(() => {});
+      /**/
+    }
+  </script>
+<!--<![endif]-->
+  
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates:</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading: <a class="this-link" href=""></a>.
+    </p>
+  </div>
+</template>
+
+  <template id="_forward-template">
+  <button id="_forward" class="forward nav-btn no-hover">
+    <span class="sr-only">Forward</span>
+    <span class="icon-arrow-right2"></span>
+  </button>
+</template>
+
+  <template id="_back-template">
+  <button id="_back" class="back nav-btn no-hover">
+    <span class="sr-only">Back</span>
+    <span class="icon-arrow-left2"></span>
+  </button>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+  
+    <template id="_cookies-banner-template">
+  <div id="_cookies-banner" class="navbar fixed-bottom CookiesOK">
+    <div class="content">
+      <div class="nav-btn-bar">
+        <small class="faded">
+          <span>This site uses cookies.
+</span>
+          <button id="_cookies-ok" class="btn btn-primary btn-sm">Okay</button>
+        </small>
+      </div>
+    </div>
+  </div>
+</template>
+
+  
+  
+    <template id="_dark-mode-template">
+  <button id="_dark-mode" class="nav-btn no-hover" >
+    <span class="sr-only">Dark Mode</span>
+    <span class="icon-brightness-contrast"></span>
+  </button>
+</template>
+
+  
+  
+    <template id="_search-template">
+  <button id="_search" class="nav-btn no-hover">
+    <label class="sr-only" for="_search-input">Search</label>
+    <span class="icon-search"></span>
+  </button>
+  <div id="_search-box">
+    <div class="nav-btn">
+      <span class="icon-search"></span>
+    </div>
+    <input 
+      id="_search-input"
+      type="search"
+      class="form-control form-control-lg nav-btn"
+      placeholder="SEARCH NOT ENABLED DURING DEVELOPMENT"
+    />
+    <button type="reset" class="nav-btn no-hover">
+      <span class="sr-only">Close</span>
+      <span class="icon-cross"></span>
+    </button>
+  </div>
+  <div id="_hits"></div>
+</template>
+
+  
+</div>
+
+</body>
+</html>

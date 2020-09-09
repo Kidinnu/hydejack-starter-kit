@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v9.0.3 <https://hydejack.com/>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<head>
+  
+
+
+
+
+
+
+  
+    
+
+<title>Статьи | ClassMech</title>
+<meta name="description" content="
+">
+<link rel="canonical" href="http://localhost:4000/pages/papers/">
+
+  
+
+  
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ClassMech">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<meta name="application-name" content="ClassMech">
+
+
+  <meta name="theme-color" content="rgb(25,55,71)">
+
+
+<meta name="generator" content="Hydejack v9.0.3" />
+
+
+<link rel="alternate" href="http://localhost:4000/blog/2018-04-02-electrostatic-space-tug/" hreflang="en">
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="ClassMech" />
+
+
+<link rel="shortcut icon"    href="/assets/icons/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/icons/icon-192x192.png">
+
+<link rel="manifest" href="/assets/site.webmanifest">
+
+
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+
+
+
+<link rel="preload" href="/assets/img/swipe.svg" as="image" id="_hrefSwipeSVG">
+
+<link rel="dns-prefetch" href="/assets/js/search-worker-9.0.3.js" as="worker" id="_hrefSearch">
+
+
+
+
+
+<script>!function(e,t){"use strict";function n(e,t,n,o){e.addEventListener?e.addEventListener(t,n,o):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n}e.loadJS=function(e,o){var r=t.createElement("script");r.src=e,o&&n(r,"load",o,{once:!0});var a=t.scripts[0];return a.parentNode.insertBefore(r,a),r},e._loaded=!1,e.loadJSDeferred=function(o,r){function a(){e._loaded=!0,r&&n(c,"load",r,{once:!0});var o=t.scripts[0];o.parentNode.insertBefore(c,o)}var c=t.createElement("script");return c.src=o,e._loaded?a():n(e,"load",a,{once:!0}),c},e.setRel=e.setRelStylesheet=function(e){function o(){this.rel="stylesheet"}n(t.getElementById(e),"load",o,{once:!0})}}(window,document);
+!function(a){"use strict";var b=function(b,c,d){function e(a){return h.body?a():void setTimeout(function(){e(a)})}function f(){i.addEventListener&&i.removeEventListener("load",f),i.media=d||"all"}var g,h=a.document,i=h.createElement("link");if(c)g=c;else{var j=(h.body||h.getElementsByTagName("head")[0]).childNodes;g=j[j.length-1]}var k=h.styleSheets;i.rel="stylesheet",i.href=b,i.media="only x",e(function(){g.parentNode.insertBefore(i,c?g:g.nextSibling)});var l=function(a){for(var b=i.href,c=k.length;c--;)if(k[c].href===b)return a();setTimeout(function(){l(a)})};return i.addEventListener&&i.addEventListener("load",f),i.onloadcssdefined=l,l(f),i};"undefined"!=typeof exports?exports.loadCSS=b:a.loadCSS=b}("undefined"!=typeof global?global:this);
+!function(a){if(a.loadCSS){var b=loadCSS.relpreload={};if(b.support=function(){try{return a.document.createElement("link").relList.supports("preload")}catch(b){return!1}},b.poly=function(){for(var b=a.document.getElementsByTagName("link"),c=0;c<b.length;c++){var d=b[c];"preload"===d.rel&&"style"===d.getAttribute("as")&&(a.loadCSS(d.href,d,d.getAttribute("media")),d.rel=null)}},!b.support()){b.poly();var c=a.setInterval(b.poly,300);a.addEventListener&&a.addEventListener("load",function(){b.poly(),a.clearInterval(c)}),a.attachEvent&&a.attachEvent("onload",function(){a.clearInterval(c)})}}}(this);
+!function(w) {
+  w._baseURL = '/';
+  w._publicPath = '/assets/js/';
+  w._noPushState = false;
+  w._noDrawer = false;
+  w._noNavbar = false;
+  w._noToc = false;
+  w._noSearch = false;
+}(window);
+</script>
+
+
+<script async src="/assets/bower_components/MathJax/es5/tex-mml-chtml.js" id="_MathJax"></script>
+
+
+<!--[if gt IE 8]><!---->
+
+  
+
+
+
+
+<link rel="stylesheet" href="/assets/css/hydejack-9.0.3.css" id="_stylePreload">
+<link rel="stylesheet" href="/assets/icomoon/style.css" id="_iconsPreload">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:700%7CNoto+Sans:400,400i,700,700i&display=swap" id="_fontsPreload">
+
+
+
+  <style id="_pageStyle">
+
+html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79,177,186,0.5);--accent-color-darkened: #409ba3;--theme-color: rgb(25,55,71);--dark-mode-body-bg: #282e31;--dark-mode-border-color: #343b3f}
+
+</style>
+
+
+<!--<![endif]-->
+
+
+
+
+
+</head>
+
+<body class="">
+  
+<script>
+  window._sunrise = 6;
+  window._sunset =  18;
+  !function(e,s){var a="light-mode",d="dark-mode",o=(new Date).getHours();if(!("matchMedia"in e&&e.matchMedia("(prefers-color-scheme)"))){var i=o<=e._sunrise||o>=e._sunset?d:a,t=i===d?a:d;s.body.classList.add(i),s.body.classList.remove(t)}}(window,document);
+
+</script>
+
+
+
+<hy-push-state
+  id="_pushState"
+  replace-selector="#_main"
+  link-selector="a[href]:not([href^='/assets/']):not(.external):not(.no-push-state)"
+  script-selector="script"
+  duration="500"
+  hashchange
+>
+  
+  <div id="_navbar" class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <div class="nav-btn-bar">
+      <a id="_menu" class="nav-btn no-hover" href="#_drawer--opened">
+        <span class="sr-only">Navigation</span>
+        <span class="icon-menu"></span>
+      </a>
+      <div class="nav-span"></div>
+    </div>
+  </div>
+</div>
+<hr class="sr-only" hidden />
+
+  <main
+  id="_main"
+  class="content layout-page"
+  role="main"
+>
+  <article class="page" role="article">
+  <header>
+    <h1 class="page-title">Статьи</h1>
+    
+
+
+
+  <div class="hr pb0"></div>
+
+
+  </header>
+
+  <h2 id="2020">2020</h2>
+
+<ol>
+  <li>V. I. Trushlyakov, V. V. Yudintsev. “<a href="https://doi.org/10.2514/1.G004615">Rotary Space Tether System for Active Debris Removal</a>,” Journal of Guidance, Control, and Dynamics. Vol. 43, No. 2, February 2020. doi: <a href="https://doi.org/10.2514/1.G004615">https://doi.org/10.2514/1.G004615</a></li>
+</ol>
+
+<h2 id="2019">2019</h2>
+
+<ol>
+  <li>
+    <p>V. I. Trushlyakov, V. V. Yudintsev. “<a href="https://www.hou.usra.edu/meetings/orbitaldebris2019/orbital2019paper/pdf/6167.pdf">Method of Active Debris Removal Using Rotating Space Tether System</a>,” First Int’l. Orbital Debris Conf. (2019).</p>
+  </li>
+  <li>
+    <p>V. I. Trushlyakov, V. V. Yudintsev. (2019). <a href="https://doi.org/10.1088/1742-6596/1210/1/012148">Dynamic similitude for small-scale re-entry experiment</a>. Phys.: Conf. Ser. 1210, 12148.</p>
+  </li>
+  <li>
+    <p>Апарин М. П., Юдинцев В. В. <a href="https://elibrary.ru/item.asp?id=41377950">Мягкая посадка возвращаемой первой ступени ракеты-носителя</a>. Международная молодёжная научная конференция «XV Королёвские чтения», посвящённая 100-летию со дня рождения Д.И. Козлова: тезисы докладов 8-10 октября 2019 года.</p>
+  </li>
+  <li>
+    <p>V. I. Trushlyakov, V. V. Yudintsev. (2019). <a href="https://doi.org/10.1088/1742-6596/1260/11/112032">Rotating tethered system for active space debris removal</a>. J. Phys.: Conf. Ser. 1260 112032.</p>
+  </li>
+  <li>
+    <p>V. S. Aslanov, V. V. Yudintsev, <a href="https://arc.aiaa.org/doi/10.2514/1.G004162">Chaos in tethered tug-debris system induced by attitude oscillations of debris</a>. Journal of Guidance, Control, and Dynamics. Vol. 42, No. 7, July 2019.</p>
+  </li>
+</ol>
+
+<h2 id="2018">2018</h2>
+
+<ol>
+  <li>
+    <p><a href="https://drive.google.com/file/d/1xIZltod0D8Ms63jZAjOGn4Y9xdBCPFYX/view?usp=sharing">Способ очистки орбит от объектов космического мусора</a> [Текст] : пат. 267368 Рос. Федерация : МПК7 B 64 G 1/56, B 64 G 1/64 / Трушляков В. И., Юдинцев В. В., Макаров Ю. Н., Шатров Я. Т.; заявитель и патентообладатель Госкорпорация “Роскосмос”. заявл. 09.02.18 ; опубл. 28.12.18, Бюл. № 1.</p>
+  </li>
+  <li>
+    <p>Юдинцев В. В. <a href="http://vestnikmai.ru/publications.php?ID=100051">Динамика захвата сетью вращающегося объекта – космического мусора // Вестник Московского авиационного института. 2018. Т. 25. № 4. С. 28-39</a>.</p>
+  </li>
+  <li>
+    <p>V.S. Aslanov, V.V. Yudintsev  <a href="https://arc.aiaa.org/doi/abs/10.2514/1.G003251">Motion Control of Space Tug During Debris Removal by a Coulomb Force</a>. Journal of Guidance, Control, and Dynamics, 2018, March 22, 2018. <a href="https://arc.aiaa.org/doi/abs/10.2514/1.G003251">doi:10.2514/1.G003251</a></p>
+  </li>
+  <li>
+    <p>Асланов В.С., Юдинцев В.В. <a href="http://vestnikmai.ru/publications.php?ID=89045">Выбор параметров системы увода космического мусора с упругими элементами посредством тросовой буксировки</a>. Вестник Московского авиационного института. 2018. Т. 25. № 1. С. 7-17.</p>
+  </li>
+  <li>
+    <p>V.I. Trushlyakov, V.V. Yudintsev, R.S. Pikalov <a href="http://iopscience.iop.org/article/10.1088/1742-6596/1050/1/012092">Dynamic control of tug-debris tethered system after the capturing of the debris</a>. Journal of Physics: Conference Series 1050 (2018) 012092. doi:10.1088/1742-6596/1050/1/012092</p>
+  </li>
+  <li>
+    <p><a href="https://drive.google.com/file/d/1bssrgaur2_z19DiF8r9qMdIkbjg-5mbx/view?usp=sharing">Патент РФ № 2658401, 16.03.2017. Универсальный транспортно-пусковой контейнер</a> // Патент России № 2658401. 2018. Бюл. № 18. / Сивов М.Е., Юдинцев В.В.</p>
+  </li>
+  <li>
+    <p>Асланов В. С., Юдинцев В. В. Классическая механика в технологиях увода космического мусора с орбиты. Сборник научно-методических статей. Теоретическая механика Вып. 30. / Под редакцией профессора В. А. Самсонова – М.: Издательство Московского университета, 2018. – 253 с.</p>
+  </li>
+</ol>
+
+<h2 id="2017">2017</h2>
+
+<ol>
+  <li>
+    <p><a href="https://ssau.ru/news/14031-kak-ubrat-kosmicheskiy-musor-s-rabochikh-orbit">Как убрать космический мусор с рабочих орбит? О работе 7-й Европейской конференции по космическому мусору.</a></p>
+  </li>
+  <li>
+    <p>V.I. Trushlyakov V.V. Yudintsev Systems engineering design and optimization of an active debris removal mission of a spent rocket body using piggyback autonomous module. 3rd IAA Conf. Dyn. Control Sp. Syst. (DYCOSS 2017) 30 May - 1st June 2017 (Moscow) pp 667–681.</p>
+  </li>
+  <li>
+    <p>V.S. Aslanov, A.K. Misra, V. V. Yudintsev, Chaotic attitude motion of a low-thrust tug-debris tethered system in a Keplerian orbit, Acta Astronaut. 139 (2017) 419–427. <a href="https://www.sciencedirect.com/science/article/pii/S0094576516302235">doi:10.1016/j.actaastro.2017.07.008</a>.</p>
+  </li>
+  <li>
+    <p>V.V. Yudintsev, V.S. Aslanov, Detumbling Space Debris Using Modified Yo-Yo Mechanism, J. Guid. Control. Dyn. 40 (2017) 714–721. <a href="https://doi.org/10.2514/1.G000686">doi:10.2514/1.G000686</a>.</p>
+  </li>
+  <li>
+    <p>V.S. Aslanov, V. V. Yudintsev, <a href="https://iafastro.directory/iac/browse/IAC-17/C1/4/#paper.37887">Docking of a space tug with upper stage debris object using deployable flexible beam // Proceedings of the International Astronautical Congress, IAC. — 2017. — Vol. 11. — P. 7084-7090</a></p>
+  </li>
+  <li>
+    <p>O.G. Lagno, T.I. Lipatnikova, Y.N. Makarov, T.V. Mironova, V.I. Trushlyakov, Y.Y. Shatrov and V.V. Yudintsev <a href="https://conference.sdo.esoc.esa.int/proceedings/sdc7/paper/262/SDC7-paper262.pdf">Parameters design of autonomous docking module and the choice of suitable target and primary payload for ADR</a>. Proc. 7th Eur. Conf. Sp. Debris ESOC 18 - 21 April 2017 (Darmstadt, Germany)</p>
+  </li>
+  <li>
+    <p>Асланов В. С., Юдинцев В. В.  <a href="http://trudymai.ru/published.php?ID=87150">Тросовая буксировка объекта космического мусора с полостью, заполненной жидкостью.</a> Труды МАИ. 2017. № 97.</p>
+  </li>
+</ol>
+
+<h2 id="2016">2016</h2>
+
+<ol>
+  <li>V.S. Aslanov, A.K. Misra, V.V. Yudintsev, <a href="https://www.researchgate.net/publication/310491122_Chaotic_Motions_of_Tethered_Satellites_with_Low_Thrust">Chaotic motions of tethered satellites with low thrust</a>, in: 67th Int. Astronaut. Congr. IAC 2016; Guadalajara; Mex. 26 Sept. 2016 through 30 Sept. 2016, International Astronautical Federation, IAF, 2016.
+d</li>
+  <li><a href="https://patents.google.com/patent/RU2643020C1/ru">Способ проведения лётно-конструкторских испытаний автономного стыковочного модуля для очистки орбит от космического мусора</a> Трушляков В.И., Юдинцев В.В., Макаров Ю.Н., Шатров Я.Т. Патент на изобретение RUS 2643020 06.09.2016. <a href="https://www.omgtu.ru/l/n/?eid=46438">Патент отмечен дипломом ФИПС и Роспатента - «100 лучших изобретений России-2018»</a>.</li>
+</ol>
+
+<h2 id="2015">2015</h2>
+
+<ol>
+  <li>
+    <p>Юдинцев В.В. Динамика отделения наноспутника формата кубсат от транспортно-пускового контейнера // Всероссийский научно-технический журнал «Полёт», 8-9 2015, с. 10-15</p>
+  </li>
+  <li>
+    <p>В. Д. Еленев, Б. А. Титов, Е. И. Давыдов, И. Е. Давыдов, А. Г. Кочян, В. В. Юдинцев Исследование динамики малого космического аппарата с учётом воздействия упругих колебаний конструкции присоединённых панелей солнечных батарей и аэродинамического момента // Вестник СГАУ. Том 14, № 1 (2015) С. 25-35.</p>
+  </li>
+  <li>
+    <p>V.S. Aslanov, V.V. Yudintsev, The motion of tethered tug-debris system with fuel residuals, Adv. Sp. Res. 56 (2015) 1493–1501. <a href="https://doi.org/10.1016/j.asr.2015.06.032">doi:10.1016/j.asr.2015.06.032</a>.</p>
+  </li>
+  <li>
+    <p>V.S. Aslanov, V.V. Yudintsev, Dynamics, analytical solutions and choice of parameters for towed space debris with flexible appendages, Adv. Sp. Res. 55 (2015) 660–667. <a href="https://doi.org/10.1016/j.asr.2014.10.034">doi:10.1016/j.asr.2014.10.034</a>.</p>
+  </li>
+</ol>
+
+<h2 id="2014">2014</h2>
+
+<ol>
+  <li>
+    <p>V.S. Aslanov, V.V. Yudintsev, Behavior of tethered debris with flexible appendages, Acta Astronaut. 104 (2014) 91–98. <a href="https://doi.org/10.1016/j.actaastro.2014.07.028">doi:10.1016/j.actaastro.2014.07.028</a>.</p>
+  </li>
+  <li>
+    <p>V.S. Aslanov, V.V. Yudintsev, Dynamics, Analytical Solutions and Choice of Parameters for Towed Space Debris with Flexible Appendages, Adv. Sp. Res. 55 (2014) 660–667. <a href="https://doi.org/10.1016/j.asr.2014.10.034">doi:10.1016/j.asr.2014.10.034</a>.</p>
+  </li>
+  <li>
+    <p>V.S. Aslanov, V.V. Yudintsev, Behaviour of tethered debris with flexible appendages, Acta Astronaut. 104 (2014) 91–98. <a href="https://doi.org/10.1016/j.actaastro.2014.07.028">doi:10.1016/j.actaastro.2014.07.028</a>.</p>
+  </li>
+  <li>
+    <p>V.S. Aslanov, V.V. Yudintsev, Dynamics and chaos control of asymmetric gyrostat satellites, Cosm. Res. 52 (2014) 216–228. <a href="https://doi.org/10.1134/S0010952514030010">doi:10.1134/S0010952514030010</a>.</p>
+  </li>
+  <li>
+    <p>D. S. Zaretskiy , E. Kosmodemyanskii, A. Romanov, M. Sivov , M. Trusov, V. Yudintsev 1U-3U+ Cubesat Deployer by JSC SRC “Progress”. 1st Latin American IAA CubeSat WorkShop. Brasília, Brasil. December 8th - 11th, 2014.</p>
+  </li>
+  <li>
+    <p>Круглов Г. Е., Юдинцев В. В.  Синтез процессов группового отделения малых космических аппаратов от блока выведения для разных конструктивно-компоновочных схем. Международная конференция «Научные и технологические эксперименты на автоматических космических аппаратах и малых спутниках» (SPEXP 2014), 9-11 сентября 2014 г, Самара , Россия. 2014 (с. 224-227)</p>
+  </li>
+</ol>
+
+<h2 id="2013">2013</h2>
+
+<ol>
+  <li>
+    <p>V.S. Aslanov, V.V. Yudintsev, Dynamics and control of dual-spin gyrostat spacecraft with changing structure, Celest. Mech. Dyn. Astron. 115 (2013) 91–105. <a href="https://doi.org/10.1007/s10569-012-9453-8">doi:10.1007/s10569-012-9453-8</a>.</p>
+  </li>
+  <li>
+    <p>Асланов В. С., Юдинцев В. В. Динамика буксировки твердого тела на упругом тросе в безгравитационном пространстве. Вестник СамГУ - Естественнонаучная серия, №3 (104). 2013, с. 58-66.</p>
+  </li>
+  <li>
+    <p>В.В. Андреев, С.Р. Бурназян, Г.Е. Круглов, В.В. Юдинцев, О влиянии упругих свойств конструкции разделяемых тел на их кинематические параметры после отделения, in: Сборник Трудов III Всероссийской Научно-Технической Конференции «Актуальные Проблемы Ракетно-Космической Техники» (Козловские Чтения), 2013: pp. 114–122.</p>
+  </li>
+  <li>
+    <p>B.C. Асланов, B.B. Юдинцев, Динамика буксировки твердого тела на упругом тросе в безгравитационном пространстве, Вестник СамГУ. 3 (2013) 58–66.</p>
+  </li>
+  <li>
+    <p>V.S. Aslanov, V. V. Yudintsev, Dynamics of large space debris removal using tethered space tug, Acta Astronaut. 91 (2013) 149–156. <a href="https://doi.org/10.1016/j.actaastro.2013.05.020">doi:10.1016/j.actaastro.2013.05.020</a>.</p>
+  </li>
+  <li>
+    <p>Асланов В. С., Юдинцев В. В. Динамика и управление хаосом асимметричных спутников-гиростатов. Космические исследования, том 52, № 3, с. 229-241.</p>
+  </li>
+  <li>
+    <p>V.S. Aslanov, V. V. Yudintsev, Dynamics of Large Debris Connected to Space Tug by a Tether, J. Guid. Control. Dyn. 36 (2013) 1654–1660. <a href="https://doi.org/10.2514/1.60976">doi:10.2514/1.60976</a>.</p>
+  </li>
+  <li>
+    <p>V.S. Aslanov, V. V. Yudintsev, Dynamics and control of dual-spin gyrostat spacecraft with changing structure, Celest. Mech. Dyn. Astron. 115 (2013) 91–105. <a href="https://doi.org/10.2514/1.60976">doi:10.1007/s10569-012-9453-8</a>.</p>
+  </li>
+</ol>
+
+<h2 id="2012">2012</h2>
+
+<ol>
+  <li>
+    <p>V. Aslanov, V. Yudintsev, Dynamics and chaos control of gyrostat satellite, Chaos, Solitons and Fractals. 45 (2012) 1100–1107. <a href="https://doi.org/10.1016/j.chaos.2012.06.008">doi:10.1016/j.chaos.2012.06.008</a>.</p>
+  </li>
+  <li>
+    <p>Асланов В. С., Юдинцев В. В. Динамика буксировки космического аппарата на тросе в центральном поле Вестник Самарского государственного аэрокосмического университета имени академика С. П. Королёва (национальный исследовательский университет). №2 (33). 2012. С. 9-16.</p>
+  </li>
+  <li>
+    <p>Юдинцев В. В. Моделирование процессов раскрытия многоэлементных конструкций космических аппаратов. Всероссийский научно-технический журнал “Полет”, №5. 2012 с. 28 - 33</p>
+  </li>
+</ol>
+
+<h2 id="2011">2011</h2>
+
+<ol>
+  <li>Седельников А. В., Юдинцев В. В. Оценка влияния температурных деформаций упругих элементов космической лаборатории на поле микроускорений ее внутренней среды // Известия СНЦ РАН. 2011. Т. 13 № 1(2). С. 344-346. ISSN 0579-2975.</li>
+</ol>
+
+<h2 id="2010">2010</h2>
+
+<ol>
+  <li>
+    <p>V. Aslanov, G. Kruglov, V. Yudintsev, NewtonEuler equations of multibody systems with changing structures for space applications, Acta Astronaut. 68 (2011) 2080–2087. <a href="https://doi.org/10.1016/j.actaastro.2010.11.013">doi:10.1016/j.actaastro.2010.11.013</a>.</p>
+  </li>
+  <li>
+    <p>И.В. Белоконов, Г.E. Круглов, В.И. Трушляков, B.B. Юдинцев, Оценка возможности управляемого схода с орбиты верхней ступени РН “Союз” за счёт использования остатков топлива в баках, Вестник СГАУ. 2 (2010) 105–111.</p>
+  </li>
+  <li>
+    <p>Андреев В. В., Круглов Г. Е., Юдинцев В. В. Моделирование подвижных элементов конструкции космического аппарата. Решетневские чтения: Материалы XIV международной научной конференции, посвященной памяти конструктора ракетно-космических систем академика М .Ф. Решетнёва  (10-12 ноября, 2010 г., г. Красноярск): в 2х частях, под. ред. Ю. Ю. Логинова; Сибирский государственный аэрокосмический университет, 2010 г., ч. II, стр. 370-371.</p>
+  </li>
+</ol>
+
+<h2 id="2009">2009</h2>
+
+<ol>
+  <li>
+    <p>Воронин В. В., Юдинцев В. В. Моделирование системы раскрытия створок солнечных батарей с механизмом синхронизации. Тезисы докладов XXXV Самарской областной студ. науч. конференции, Самара. 2009, с. 214.</p>
+  </li>
+  <li>
+    <p>Юдинцев В. В. Моделирование процесса отделения боковых блоков РН “Союз” в системе MSC/ADAMS. Стр. 631-638: C56 Современные информационные технологии и ИТ-образование. Сборник докладов научно-практической конференции. Под ред. Проф. В. А. Сухомлина. - М.: ИНТУИТ.РУ, 2009.-848с.</p>
+  </li>
+</ol>
+
+<h2 id="2008">2008</h2>
+
+<ol>
+  <li>
+    <p>Юдинцев В. В. Использование пакета MSC/ADAMS для моделирования механических систем ракетно-космической техники, Сборник трудов IX международной научно-технической конференции «Компьютерное моделирование 2008», г. Санкт-Петербург, С. 269-272.</p>
+  </li>
+  <li>
+    <p>Юдинцев В. В. Параметризация матрицы масс уравнений движения систем твердых тел РКТ, Общероссийский научно-технический журнал «Полет», №9, 20-24, 2008</p>
+  </li>
+</ol>
+
+<h2 id="2006">2006</h2>
+
+<ol>
+  <li>
+    <p>Асланов В. С., Круглов Г. Е., Юдинцев В. В. Матричная форма уравнений движения систем РКТ Общероссийский научно-технический журнал «Полет», №4, 2006.</p>
+  </li>
+  <li>
+    <p>Аншаков Г. П., Асланов В. С., Балакин В. Л., Дорошин А. В., Квашин А. С., Круглов Г. Е. Юдинцев В. В. Динамические процессы в ракетно-космических системах. Вестник Самарского государственного аэрокосмического университета им. академика С. П. Королева, №1(3), 2003 (3/1)</p>
+  </li>
+</ol>
+
+<h2 id="2002">2002</h2>
+
+<ol>
+  <li>
+    <p>Кобзев Ю. Н., Круглов Г. Е., Петров Н. К., Щиблев Ю. Н. Юдинцев В. В. Разработка, научно-техническое обоснование и внедрение мероприятий по повышению скоростного напора при отделении боковых блоков ракеты носителя “Союз” с целью повышения её грузоподъемности. Материалы конференции. “Первые Уткинские чтения”, Балтийский государственный технический университет “Военмех”, СпБ, 2002. (4/1)</p>
+  </li>
+  <li>
+    <p>Юдинцев В. В. Уравнения движения системы связанных твердых тел с переменной структурой, Сборник трудов XII Всероссийского научно-технического семинара по управлению движением и навигации летательных аппаратов. Самарский гос. аэрокосм. университет. Самара, 2002.</p>
+  </li>
+</ol>
+
+<h2 id="2001">2001</h2>
+
+<ol>
+  <li>Асланов В. С., Балакин В. Л., Дмитриев В. В., Дорошин А. В., Круглов Г. Е. Юдинцев В. В. Научные исследования высшей школы по приоритетным направлениям науки и техники. Тезисы докладов отчетной конференции-выставки подпрограммы 205 “Транспорт” научно-технической программы Министерства образования РФ. М.: Изд-во МАИ, 2001 г.Транспортные ракетно-космические системы для глобального мониторинга, навигации и связи.</li>
+</ol>
+
+<h2 id="2000">2000</h2>
+
+<ol>
+  <li>Асланов В. С., Круглов Г. Е., Юдинцев В. В. Синтез процесса раскрытия солнечных батарей КА, Сборник трудов X Всероссийского научно-технического семинара по управлению движением и навигации летательных аппаратов. Самарский гос. аэрокосм. университет. Самара, 2000 г.</li>
+</ol>
+
+<h2 id="1999">1999</h2>
+
+<ol>
+  <li>Асланов В. С., Круглов Г. Е., Юдинцев В. В. “Параметрический синтез процесса отделения боковых блоков ракеты-носителя “Союз””, Вестник Академии космонавтики, стр. 31, Самара, 1999 г.</li>
+</ol>
+
+  
+
+</article>
+
+  
+<footer class="content" role="contentinfo">
+  <hr/>
+  
+    <p><small class="copyright">© 2020. All rights reserved.
+</small></p>
+  
+  
+  
+    <p><small>Powered by <a class="external" href="https://hydejack.com/">Hydejack</a> v<span id="_version">9.0.3</span></small></p>
+  
+  <hr class="sr-only"/>
+</footer>
+
+
+</main>
+
+  <hy-drawer
+  id="_drawer"
+  class=""
+  side="left"
+  threshold="10"
+  noscroll
+  
+>
+  <header id="_sidebar" class="sidebar" role="banner">
+    
+
+
+
+
+<div class="sidebar-bg sidebar-overlay" style="background-color:rgb(25,55,71);background-image:url(/assets/img/vadim-sadovski-2017-06-20-0-10-42.jpg)"></div>
+
+    <div class="sidebar-sticky">
+  <div class="sidebar-about">
+    
+      <a class="no-hover" href="/" tabindex="-1">
+        <img src="/assets/img/satellite.png" class="avatar" alt="ClassMech" width="120" height="120" loading="lazy" />
+      </a>
+    
+    <a class="sidebar-title" href="/"><h2 class="h1">ClassMech</h2></a>
+    
+    
+      <p class="">
+        
+
+      </p>
+    
+  </div>
+
+  <nav class="sidebar-nav heading" role="navigation">
+    <span class="sr-only">Navigation:</span>
+<ul>
+  
+    
+    
+    
+
+    
+      
+        <li>
+          <a
+            id="_navigation"
+            href="/about/"
+            class="sidebar-nav-item"
+            
+            >
+            Об авторе
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/papers/"
+            class="sidebar-nav-item"
+            
+            >
+            Статьи
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/presentations/"
+            class="sidebar-nav-item"
+            
+            >
+            Презентации
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/disciplines/"
+            class="sidebar-nav-item"
+            
+            >
+            Дисциплины
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a
+            
+            href="/pages/videos/"
+            class="sidebar-nav-item"
+            
+            >
+            Видео
+          </a>
+        </li>
+      
+    
+  
+</ul>
+
+  </nav>
+
+  
+  <div class="sidebar-social">
+    <span class="sr-only">Social</span>
+<ul>
+  
+    
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://twitter.com/kidinnu" title="Twitter" class="no-mark-external">
+      <span class="icon-twitter"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  </li>
+
+
+    
+
+    
+    
+      
+
+
+
+  
+
+  
+  
+  
+  
+
+  
+
+  
+
+  <li>
+    <a href="https://github.com/Kidinnu" title="GitHub" class="no-mark-external">
+      <span class="icon-github"></span>
+      <span class="sr-only">GitHub</span>
+    </a>
+  </li>
+
+
+    
+
+    
+    
+  
+</ul>
+
+  </div>
+</div>
+  </header>
+</hy-drawer>
+<hr class="sr-only" hidden />
+
+</hy-push-state>
+
+
+  <!--[if gt IE 10]><!---->
+  <script nomodule>!function(){var e=document.createElement("script");if(!("noModule"in e)&&"onbeforeload"in e){var t=!1;document.addEventListener("beforeload",function(n){if(n.target===e)t=!0;else if(!n.target.hasAttribute("nomodule")||!t)return;n.preventDefault()},!0),e.type="module",e.src=".",document.head.appendChild(e),e.remove()}}();
+</script>
+  <script src="/assets/js/hydejack-9.0.3.js" type="module"></script>
+  <script src="/assets/js/LEGACY-hydejack-9.0.3.js" nomodule defer></script>
+  
+
+  
+
+  <script type="module">
+    if ('serviceWorker' in navigator) {
+      /**/
+      navigator.serviceWorker.getRegistration()
+        .then(r => r.unregister())
+        .catch(() => {});
+      /**/
+    }
+  </script>
+<!--<![endif]-->
+  
+
+
+
+<div hidden>
+  
+  <h2 class="sr-only">Templates:</h2>
+
+  <template id="_animation-template">
+  <div class="animation-main fixed-top">
+    <div class="content">
+      <div class="page"></div>
+    </div>
+  </div>
+</template>
+
+  <template id="_loading-template">
+  <div class="loading nav-btn fr">
+    <span class="sr-only">Loading…</span>
+    <span class="icon-cog"></span>
+  </div>
+</template>
+
+  <template id="_error-template">
+  <div class="page">
+    <h1 class="page-title">Error</h1>
+    
+    
+    <p class="lead">
+      Sorry, an error occurred while loading: <a class="this-link" href=""></a>.
+    </p>
+  </div>
+</template>
+
+  <template id="_forward-template">
+  <button id="_forward" class="forward nav-btn no-hover">
+    <span class="sr-only">Forward</span>
+    <span class="icon-arrow-right2"></span>
+  </button>
+</template>
+
+  <template id="_back-template">
+  <button id="_back" class="back nav-btn no-hover">
+    <span class="sr-only">Back</span>
+    <span class="icon-arrow-left2"></span>
+  </button>
+</template>
+
+  <template id="_permalink-template">
+  <a href="#" class="permalink">
+    <span class="sr-only">Permalink</span>
+    <span class="content-hash"></span>
+  </a>
+</template>
+
+  
+    <template id="_cookies-banner-template">
+  <div id="_cookies-banner" class="navbar fixed-bottom CookiesOK">
+    <div class="content">
+      <div class="nav-btn-bar">
+        <small class="faded">
+          <span>This site uses cookies.
+</span>
+          <button id="_cookies-ok" class="btn btn-primary btn-sm">Okay</button>
+        </small>
+      </div>
+    </div>
+  </div>
+</template>
+
+  
+  
+    <template id="_dark-mode-template">
+  <button id="_dark-mode" class="nav-btn no-hover" >
+    <span class="sr-only">Dark Mode</span>
+    <span class="icon-brightness-contrast"></span>
+  </button>
+</template>
+
+  
+  
+    <template id="_search-template">
+  <button id="_search" class="nav-btn no-hover">
+    <label class="sr-only" for="_search-input">Search</label>
+    <span class="icon-search"></span>
+  </button>
+  <div id="_search-box">
+    <div class="nav-btn">
+      <span class="icon-search"></span>
+    </div>
+    <input 
+      id="_search-input"
+      type="search"
+      class="form-control form-control-lg nav-btn"
+      placeholder="SEARCH NOT ENABLED DURING DEVELOPMENT"
+    />
+    <button type="reset" class="nav-btn no-hover">
+      <span class="sr-only">Close</span>
+      <span class="icon-cross"></span>
+    </button>
+  </div>
+  <div id="_hits"></div>
+</template>
+
+  
+</div>
+
+</body>
+</html>
