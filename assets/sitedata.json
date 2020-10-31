@@ -318,7 +318,7 @@
       
       "title": "Интегрирование уравнений движения механизма с двумя степенями свободы",
       
-      "content": "Задание\n\n\n  Разработайте программу для численного интегрирования уравнений движения системы с двумя степенями свободы для механизма из задания для Вашей курсовой работы по теоретической механики (2 курс).\n  Постройте графики изменения обобщенных координат и скоростей (четыре графика на четырёх отдельных рисунках).\n  Постройте одном рисунке графики изменения потенциальной, кинетической и полной энергии системы. Убедитесь, что полная энергия системы остается постоянной.\n\n\nПример\n\nСхема механизма\n\n\n\nВывод уравнений\n\nВывод уравнений в Wolfram Mathematica\n\nПервое уравнение:\n\n[\\ddot \\varphi \\left(m_2 \\left(d^2-\\left(l_0+x\\right) \\left(2 d-l_0-x\\right)+4 h^2\\right)+J_1\\right)+2 m_2 \\dot \\varphi \\dot x \\left(-d+l_0+x\\right)+2 h\n   m_2 \\ddot x = - g m_2 \\left(\\cos \\varphi \\left(-d+l_0+x\\right)+2 h \\sin \\varphi \\right)-g m_1 y_{c1} \\sin \\varphi]\n\nВторое уравнение:\n\n[m_2 \\left(\\dot \\varphi \\right)^2 \\left(d-l_0-x\\right)+2 h m_2 \\ddot \\varphi +m_2 \\ddot x = -c x-g m_2 \\sin \\varphi]\n\nПолученные уравнения движения можно записать в виде\n\n[\\begin{bmatrix}\nm_{11} &amp; m_{12} \nm_{21} &amp; m_{22} \n\\end{bmatrix} \n\\begin{bmatrix}\n\\ddot \\varphi \n\\ddot x \n\\end{bmatrix} =\n\\begin{bmatrix}\nb_1 \nb_2 \n\\end{bmatrix}]\n\nЭлементы матрицы масс:\n\n[\\begin{align}\n&amp; m_{11} = \\left(m_2 \\left(d^2-\\left(l_0+x\\right) \\left(2 d-l_0-x\\right)+4 h^2\\right)+J_1\\right) \n&amp; m_{12} = 2 h m_2 \n&amp; m_{21} = 2 h m_2 \n&amp; m_{22} = m_2 \n\\end{align}]\n\nСлагаемые, не зависящие от ускорений (правые части):\n\n[\\begin{align}\n&amp; b_1 = - g m_2 \\left(\\cos \\varphi \\left(-d+l_0+x\\right)+2 h \\sin \\varphi \\right)-g m_1 y_{c1} \\sin \\varphi - 2 m_2 \\dot \\varphi \\dot x \\left(-d+l_0+x\\right) \n&amp; b_2 = - c x-g m_2 \\sin \\varphi - m_2 \\left(\\dot \\varphi \\right)^2 \\left(d-l_0-x\\right)\n\\end{align}]\n\nMATLAB\n\nФайл-функция правых частей dqdt.m\n\nfunction dq  = dqdt(t, q, p)\n    % Обобщенные координаты и скорости\n    phi  = q(1);    x    = q(2);\n    dphi = q(3);    dx   = q(4);\n\n    % Элементы первой строки матрицы масс\n    m11 = p.m2*(p.d^2-(p.L0+x)*(2*p.d-p.L0-x)+4*p.h^2)+p.J1;\n    m12 = 2*p.h*p.m2;\n\n    % Первая строка правой части\n    b1  = -p.g*p.m2*(cos(phi)*(-p.d+p.L0+x)+2*p.h*sin(phi))-...\n          p.g*p.m1*p.yc1*sin(phi) - 2*p.m2*dphi*dx*(-p.d+p.L0+x);\n\n    % Элементы второй строки матрицы масс\n    m21 = 2*p.h*p.m2;\n    m22 = p.m2;\n    \n    % Вторая строка правой части\n    b2  = -p.c*x - p.g*p.m2*sin(phi) - p.m2*(p.d-p.L0-x)*dphi^2;\n\n    % Разрешаем систему относительно старших производных, решая \n    % систему линейных уравнений \n\n    % Матрица коэффициентов (симметричная)\n    A   = [m11 m12; m21 m22];\n\n    % Матрица правых частей\n    B   = [b1;b2];\n\n    % Решение системы линейных уравнений\n    d2q = A\\B;\n    \n    %  Обобщенные скорости и ускорения\n    dq  = [dphi;dx;d2q];\nend\n\n\nФайл-скрипт для запуска процесса интегрирования main.m\n\nclc;\n\np.m1  = 2;\np.m2  = 0.3;\np.L0  = 0.8;\np.c   = 5;\np.g   = 9.807;\np.R   = 1;\np.h   = p.R/2;\np.d   = sqrt(p.R^2 - p.h^2);\np.J1  = 1.258;\np.yc1 = 0.587;\n\nphi0  = 0.3;\ndphi0 = 1;\nx0    = 0;\ndx0   = 1;\n\n[t, q] = ode113(@(t,q) dqdt(t,q,p), [0; 5], [phi0;x0;dphi0;dx0]);\n\nfigure;\nplot(t,q(:,1),'LineWidth',2);\ngrid on;\nxlabel('t, c'); ylabel('\\phi, радиан');\n\nfigure;\nplot(t,q(:,2),'LineWidth',2);\ngrid on;\nxlabel('t, c'); ylabel('x, м');\n\n\n\n",
+      "content": "Задание\n\n\n  Разработайте программу для численного интегрирования уравнений движения системы с двумя степенями свободы для механизма из задания для Вашей курсовой работы по теоретической механики (2 курс).\n  Постройте графики изменения обобщенных координат и скоростей (четыре графика на четырёх отдельных рисунках).\n  Постройте одном рисунке графики изменения потенциальной, кинетической и полной энергии системы. Убедитесь, что полная энергия системы остается постоянной.\n\n\nПример\n\nСхема механизма\n\n\n\nВывод уравнений\n\nВывод уравнений в Wolfram Mathematica\n\nПервое уравнение:\n\n[\\ddot \\varphi \\left(m_2 \\left(d^2-\\left(l_0+x\\right) \\left(2 d-l_0-x\\right)+4 h^2\\right)+J_1\\right)+2 m_2 \\dot \\varphi \\dot x \\left(-d+l_0+x\\right)+2 h\n   m_2 \\ddot x = - g m_2 \\left(\\cos \\varphi \\left(-d+l_0+x\\right)+2 h \\sin \\varphi \\right)-g m_1 y_{c1} \\sin \\varphi]\n\nВторое уравнение:\n\n[m_2 {\\dot \\varphi}^2 \\left(d-l_0-x\\right)+2 h m_2 \\ddot \\varphi +m_2 \\ddot x = -c x-g m_2 \\sin \\varphi]\n\nгде \\(l_0\\) – свободная длина пружины, \\(c\\) – жёсткость пружины, \\(m_1\\) – масса пластины,  \\(J_1\\) – момент инерции пластины относительно оси О, \\(m_2\\) масса груза на пружине, \\(d = AK/2\\), $y_{c1} = OC_1$.\n\nПолученные уравнения движения можно записать в матричном виде:\n\n[\\begin{bmatrix}\nm_{11} &amp; m_{12} \nm_{21} &amp; m_{22} \n\\end{bmatrix} \n\\begin{bmatrix}\n\\ddot \\varphi \n\\ddot x \n\\end{bmatrix} =\n\\begin{bmatrix}\nb_1 \nb_2 \n\\end{bmatrix}]\n\nЭлементы матрицы масс:\n\n[\\begin{align}\n&amp; m_{11} = \\left(m_2 \\left(d^2-\\left(l_0+x\\right) \\left(2 d-l_0-x\\right)+4 h^2\\right)+J_1\\right) \n&amp; m_{12} = 2 h m_2 \n&amp; m_{21} = 2 h m_2 \n&amp; m_{22} = m_2 \n\\end{align}]\n\nСлагаемые, не зависящие от ускорений (правые части):\n\n[\\begin{align}\n&amp; b_1 = - g m_2 \\left(\\cos \\varphi \\left(-d+l_0+x\\right)+2 h \\sin \\varphi \\right)-g m_1 y_{c1} \\sin \\varphi - 2 m_2 \\dot \\varphi \\dot x \\left(-d+l_0+x\\right) \n&amp; b_2 = - c x-g m_2 \\sin \\varphi - m_2 \\left(\\dot \\varphi \\right)^2 \\left(d-l_0-x\\right)\n\\end{align}]\n\nMATLAB\n\nФайл-функция правых частей dqdt.m\n\nfunction dq  = dqdt(t, q, p)\n    % Обобщенные координаты и скорости\n    phi  = q(1);    x    = q(2);\n    dphi = q(3);    dx   = q(4);\n\n    % Элементы первой строки матрицы масс\n    m11 = p.m2*(p.d^2-(p.L0+x)*(2*p.d-p.L0-x)+4*p.h^2)+p.J1;\n    m12 = 2*p.h*p.m2;\n\n    % Первая строка правой части\n    b1  = -p.g*p.m2*(cos(phi)*(-p.d+p.L0+x)+2*p.h*sin(phi))-...\n          p.g*p.m1*p.yc1*sin(phi) - 2*p.m2*dphi*dx*(-p.d+p.L0+x);\n\n    % Элементы второй строки матрицы масс\n    m21 = 2*p.h*p.m2;\n    m22 = p.m2;\n    \n    % Вторая строка правой части\n    b2  = -p.c*x - p.g*p.m2*sin(phi) - p.m2*(p.d-p.L0-x)*dphi^2;\n\n    % Разрешаем систему относительно старших производных, решая \n    % систему линейных уравнений \n\n    % Матрица коэффициентов (симметричная)\n    A   = [m11 m12; m21 m22];\n\n    % Матрица правых частей\n    B   = [b1;b2];\n\n    % Решение системы линейных уравнений\n    d2q = A\\B;\n    \n    %  Обобщенные скорости и ускорения\n    dq  = [dphi;dx;d2q];\nend\n\n\nФайл-скрипт для запуска процесса интегрирования main.m\n\nclc;\n\np.m1  = 2;\np.m2  = 0.3;\np.L0  = 0.8;\np.c   = 5;\np.g   = 9.807;\np.R   = 1;\np.h   = p.R/2;\np.d   = sqrt(p.R^2 - p.h^2);\np.J1  = 1.258;\np.yc1 = 0.587;\n\nphi0  = 0.3;\ndphi0 = 1;\nx0    = 0;\ndx0   = 1;\n\n[t, q] = ode113(@(t,q) dqdt(t,q,p), [0; 5], [phi0;x0;dphi0;dx0]);\n\nfigure;\nplot(t,q(:,1),'LineWidth',2);\ngrid on;\nxlabel('t, c'); ylabel('\\phi, радиан');\n\nfigure;\nplot(t,q(:,2),'LineWidth',2);\ngrid on;\nxlabel('t, c'); ylabel('x, м');\n\n\n\n",
       "url": "/pages/matlab/lab_2dof/"
     },{
       
@@ -885,7 +885,7 @@
     },{
       
       "title": "Инженерное и математическое программное обеспечение",
-      "date": "2020-10-30 19:57:14 +0400",
+      "date": "2020-10-31 08:42:20 +0400",
       
       "content": "\n",
       "categories": [],
@@ -896,7 +896,7 @@
     },{
       
       "title": "Example",
-      "date": "2020-10-30 19:57:14 +0400",
+      "date": "2020-10-31 08:42:20 +0400",
       "description": "This is a featured category, which have their own page. Check out _featured_tags/example.md to learn how to create your own.\n",
       "content": "\n",
       "categories": [],
@@ -907,7 +907,7 @@
     },{
       
       "title": "Hyde",
-      "date": "2020-10-30 19:57:14 +0400",
+      "date": "2020-10-31 08:42:20 +0400",
       "description": "Hyde is a brazen two-column Jekyll theme that pairs a prominent sidebar with uncomplicated content. It’s based on Poole, the Jekyll butler. Open _featured_tags/hyde.md to edit this text.\n",
       "content": "\n",
       "categories": [],
@@ -918,7 +918,7 @@
     },{
       
       "title": "Hydejack",
-      "date": "2020-10-30 19:57:14 +0400",
+      "date": "2020-10-31 08:42:20 +0400",
       "description": "Hydejack is a pretentious two-column Jekyll theme, stolen by @qwtel from Hyde. You could say it was.. hydejacked. Open _featured_tags/hydejack.md to edit this text.\n",
       "content": "\n",
       "categories": [],
@@ -929,7 +929,7 @@
     },{
       
       "title": "Механика",
-      "date": "2020-10-30 19:57:14 +0400",
+      "date": "2020-10-31 08:42:20 +0400",
       
       "content": "\n",
       "categories": [],
@@ -940,7 +940,7 @@
     },{
       
       "title": "Программирование",
-      "date": "2020-10-30 19:57:14 +0400",
+      "date": "2020-10-31 08:42:20 +0400",
       
       "content": "\n",
       "categories": [],
@@ -951,7 +951,7 @@
     },{
       
       "title": "Базы данных",
-      "date": "2020-10-30 19:57:14 +0400",
+      "date": "2020-10-31 08:42:20 +0400",
       
       "content": "\n",
       "categories": [],
@@ -962,7 +962,7 @@
     },{
       
       "title": "Космический мусор",
-      "date": "2020-10-30 19:57:14 +0400",
+      "date": "2020-10-31 08:42:20 +0400",
       
       "content": "\n",
       "categories": [],
@@ -973,7 +973,7 @@
     },{
       
       "title": "IT-сервис",
-      "date": "2020-10-30 19:57:14 +0400",
+      "date": "2020-10-31 08:42:20 +0400",
       "description": "ИТ-сервис\n",
       "content": "\n",
       "categories": [],
@@ -984,7 +984,7 @@
     },{
       
       "title": "Linux",
-      "date": "2020-10-30 19:57:14 +0400",
+      "date": "2020-10-31 08:42:20 +0400",
       
       "content": "\n",
       "categories": [],
@@ -995,7 +995,7 @@
     },{
       
       "title": "Mathematica",
-      "date": "2020-10-30 19:57:14 +0400",
+      "date": "2020-10-31 08:42:20 +0400",
       
       "content": "\n",
       "categories": [],
@@ -1006,7 +1006,7 @@
     },{
       
       "title": "MATLAB",
-      "date": "2020-10-30 19:57:14 +0400",
+      "date": "2020-10-31 08:42:20 +0400",
       
       "content": "\n",
       "categories": [],
@@ -1017,7 +1017,7 @@
     },{
       
       "title": "Python",
-      "date": "2020-10-30 19:57:14 +0400",
+      "date": "2020-10-31 08:42:20 +0400",
       "description": "Использование языка Python в научных вычислениях\n",
       "content": "\n",
       "categories": [],
