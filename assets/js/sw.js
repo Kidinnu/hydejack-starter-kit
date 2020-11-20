@@ -29,7 +29,7 @@ const SHELL_CACHE = "shell-9.0.3--v1--sw/";
 const ASSETS_CACHE = "assets--v1--sw/";
 
 // The cache for regular content, which will be invalidated every time you make a new build.
-const CONTENT_CACHE = "content--2020-11-16T21:39:42+04:00--sw/";
+const CONTENT_CACHE = "content--2020-11-20T14:03:17+04:00--sw/";
 
 // A URL search parameter you can add to external assets to cache them in the service worker.
 const SW_CACHE_SEARCH_PARAM = "sw-cache";
@@ -151,6 +151,7 @@ const STATIC_FILES = [
   /**/"/assets/patents/Patent_2658401.pdf",
   /**/"/assets/patents/Patent_2676368.pdf",
   /**/"/assets/patents/readme.md",
+  /**/"/classmech.code-workspace",
   /**/"/img_src/%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0_%D1%82%D0%B5%D0%BB_%D0%BF%D1%80%D1%83%D0%B6%D0%B8%D0%BD%D0%BA%D0%B8.afdesign",
   /**/"/pages/data/sam.csv",
   /**/"/pages/databases/Lab_Report_Template.docx",
