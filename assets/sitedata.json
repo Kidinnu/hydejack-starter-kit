@@ -382,9 +382,9 @@
       "url": "/pages/mbs/labs/"
     },{
       
-      "title": "Построение годографа продольной оси тела при движении в случае Лагранжа",
+      "title": "Построение годографа единичного вектора продольной оси тела при движении в случае Лагранжа",
       "description": "Динамика твёрдого тела и систем тел\n",
-      "content": "Рассматривается движение твёрдого тела в случае Лагранжа. Необходимо построить годограф продольной оси тела (\\(Oz_2\\)).\n\n\n\nclear all;\n% Параметры тела\nm   = 4;    % Масса тела\nJxy = 0.5;  % Поперечный момент инерции\nJz  = 1;    % Продольный момент инерции\ns   = 0.5;  % Расстояние от точки опоры до центра масс\ng   = 9.807;% Ускорение свободного падения\n\n% Начальные условия\ntheta0 = 0.7;   dtheta0 = 0.0;\npsi0   = 0;     dpsi0   = 0.0;\nphi0   = 0;     dphi0   = 10;\n\n% Угловые скорости\nwx      =   dtheta0;\nwy      =   dpsi0*sin(theta0);\nwz      =   dphi0+dpsi0*cos(theta0);\n\n% Интегралы энергии и кинетического момента\nE       = 0.5*(Jxy*(wx^2+wy^2)+Jz*wz^2+2*m*g*s*cos(theta0));\n% Проекция веткора кинетического момента на направление вертикали\nL       = Jxy*dpsi0*sin(theta0)^2+Jz*wz*cos(theta0);\n\n\nКоэффициенты полинома относительно u (13)\n\ncoeff_dotu2  = [2*m*g*s/Jxy, -(2*E-Jz*wz^2)/Jxy-Jz^2*wz^2/Jxy^2,...\n    -2*m*g*s/Jxy+2*Jz*wz*L/Jxy^2, (2*E-Jz*wz^2)/Jxy-L^2/Jxy^2];  \n\n\nКорни полинома, отсортированные по возрастанию\n\nu = sort(roots(coeff_dotu2));\n\n\n\\(k^2\\) в выражении (16)\n\nk2 = (u(2)-u(1))/(u(3)-u(1));\ntau_k = sqrt((u(3)-u(1))*m*g*s/Jxy);\n\n\nКоэффициент масштаба времени \\(\\tau\\) (18)\n\ntau_k = sqrt((u(3)-u(1))*m*g*s/Jxy);\n\n\nРешения для углов и их производных. Угол нутации \\(theta\\):\n\ntheta = @(t) acos(u(1)+(u(2)-u(1))*ellipj(tau_k*t,k2).^2);\n\n\nУгловая скорость прецессии \\(\\dot \\psi\\) и угол прецессии \\(\\psi\\):\n\ndpsi  = @(t) (L-Jz*wz*cos(theta(t)))./(Jxy*(1-cos(theta(t)).^2));\npsi   = @(t) integral(dpsi,0,t);\n\n\nУгловая скорость собственного вращения \\(\\dot \\varphi\\)\n\ndphi  = @(t) wz-dpsi(t)*cos(theta(t));\n\n\nГрафик изменения угла нутации\n\nfplot(@(t) theta(t),[0, 1]);\nxlabel('t, c'); \nylabel('\\theta, градус');\n\n\n\n\nФормируем массив значений моментов времени для построения графика.\n\ntime_array = (0:0.01:3)';\n\n\nПри помощи функции arrayfun вызываем функцию psi(t) для каждого элемента массива time_array. Такой способ формирования массива значений угла \\(\\psi\\) обусловлен тем, что функция integral, используемая для определения функции psi(t), не принимает только скалярные значение пределов интегрирования.\n\npsi_array = arrayfun(psi,time_array);\n\n\nЗначения углов \\(\\theta\\) может\n\ntheta_array = theta(time_array);\n\n\nКоординаты точек годографа единичного вектора, направленного по продольной оси тела:\n\ngodograph = [sin(theta_array).*sin(psi_array), ...\n            -sin(theta_array).*cos(psi_array), ...\n            cos(theta_array)];\n\n\nСтроим график:\n\nplot3(godograph(:,1), godograph(:,2), godograph(:,3),'r-','LineWidth',2);\n\nhold on;\n[xs,ys,zs] = sphere(64);\nsf = surf(xs,ys,zs); \nsf.EdgeColor = 'none';\nsf.FaceColor =[0.8 0.8 0.8];\nsf.FaceAlpha = 0.8;\nhold off;\n\nxlim([-1 1]); ylim([-1 1]); zlim([-1 1]);\nbox on; \ndaspect([1 1 1]);\n\n\n\n",
+      "content": "Рассматривается движение твёрдого тела в случае Лагранжа. Необходимо построить годограф продольной оси тела (\\(Oz_2\\)).\n\n\n\nclear all;\n% Параметры тела\nm   = 4;    % Масса тела\nJxy = 0.5;  % Поперечный момент инерции\nJz  = 1;    % Продольный момент инерции\ns   = 0.5;  % Расстояние от точки опоры до центра масс\ng   = 9.807;% Ускорение свободного падения\n\n% Начальные условия\ntheta0 = 0.7;   dtheta0 = 0.0;\npsi0   = 0;     dpsi0   = 0.0;\nphi0   = 0;     dphi0   = 10;\n\n% Угловые скорости\nwx      =   dtheta0;\nwy      =   dpsi0*sin(theta0);\nwz      =   dphi0+dpsi0*cos(theta0);\n\n% Интегралы энергии и кинетического момента\nE       = 0.5*(Jxy*(wx^2+wy^2)+Jz*wz^2+2*m*g*s*cos(theta0));\n% Проекция веткора кинетического момента на направление вертикали\nL       = Jxy*dpsi0*sin(theta0)^2+Jz*wz*cos(theta0);\n\n\nКоэффициенты полинома относительно u (13)\n\ncoeff_dotu2  = [2*m*g*s/Jxy, -(2*E-Jz*wz^2)/Jxy-Jz^2*wz^2/Jxy^2,...\n    -2*m*g*s/Jxy+2*Jz*wz*L/Jxy^2, (2*E-Jz*wz^2)/Jxy-L^2/Jxy^2];  \n\n\nКорни полинома, отсортированные по возрастанию\n\nu = sort(roots(coeff_dotu2));\n\n\n\\(k^2\\) в выражении (16)\n\nk2 = (u(2)-u(1))/(u(3)-u(1));\n\n\nКоэффициент масштаба времени \\(\\tau\\) (18)\n\ntau_k = sqrt((u(3)-u(1))*m*g*s/Jxy);\n\n\nРешения для углов и их производных. Угол нутации \\(\\theta\\):\n\ntheta = @(t) acos(u(1)+(u(2)-u(1))*ellipj(tau_k*t,k2).^2);\n\n\nУгловая скорость прецессии \\(\\dot \\psi\\) и угол прецессии \\(\\psi\\):\n\ndpsi  = @(t) (L-Jz*wz*cos(theta(t)))./(Jxy*(1-cos(theta(t)).^2));\npsi   = @(t) integral(dpsi,0,t);\n\n\nУгловая скорость собственного вращения \\(\\dot \\varphi\\)\n\ndphi  = @(t) wz-dpsi(t)*cos(theta(t));\n\n\nГрафик изменения угла нутации\n\nfplot(@(t) theta(t),[0, 1]);\nxlabel('t, c'); \nylabel('\\theta, градус');\n\n\n\n\nФормируем массив значений моментов времени для построения графика.\n\ntime_array = (0:0.01:3)';\n\n\nПри помощи функции arrayfun вызываем функцию psi(t) для каждого элемента массива time_array. Такой способ формирования массива значений угла \\(\\psi\\) обусловлен тем, что функция integral, используемая для определения функции psi(t), не принимает только скалярные значение пределов интегрирования.\n\npsi_array = arrayfun(psi,time_array);\n\n\nЗначения углов \\(\\theta\\) может\n\ntheta_array = theta(time_array);\n\n\nКоординаты точек годографа единичного вектора, направленного по продольной оси тела:\n\ngodograph = [sin(theta_array).*sin(psi_array), ...\n            -sin(theta_array).*cos(psi_array), ...\n            cos(theta_array)];\n\n\nСтроим график:\n\nplot3(godograph(:,1), godograph(:,2), godograph(:,3),'r-','LineWidth',2);\n\nhold on;\n[xs,ys,zs] = sphere(64);\nsf = surf(xs,ys,zs); \nsf.EdgeColor = 'none';\nsf.FaceColor =[0.8 0.8 0.8];\nsf.FaceAlpha = 0.8;\nhold off;\n\nxlim([-1 1]); ylim([-1 1]); zlim([-1 1]);\nbox on; \ndaspect([1 1 1]);\n\n\n\n",
       "url": "/pages/mbs/lagrange_case/"
     },{
       
@@ -903,7 +903,7 @@
     },{
       
       "title": "Инженерное и математическое программное обеспечение",
-      "date": "2020-12-12 16:18:50 +0400",
+      "date": "2020-12-12 16:24:01 +0400",
       
       "content": "\n",
       "categories": [],
@@ -914,7 +914,7 @@
     },{
       
       "title": "Example",
-      "date": "2020-12-12 16:18:50 +0400",
+      "date": "2020-12-12 16:24:01 +0400",
       "description": "This is a featured category, which have their own page. Check out _featured_tags/example.md to learn how to create your own.\n",
       "content": "\n",
       "categories": [],
@@ -925,7 +925,7 @@
     },{
       
       "title": "Hyde",
-      "date": "2020-12-12 16:18:50 +0400",
+      "date": "2020-12-12 16:24:01 +0400",
       "description": "Hyde is a brazen two-column Jekyll theme that pairs a prominent sidebar with uncomplicated content. It’s based on Poole, the Jekyll butler. Open _featured_tags/hyde.md to edit this text.\n",
       "content": "\n",
       "categories": [],
@@ -936,7 +936,7 @@
     },{
       
       "title": "Hydejack",
-      "date": "2020-12-12 16:18:50 +0400",
+      "date": "2020-12-12 16:24:01 +0400",
       "description": "Hydejack is a pretentious two-column Jekyll theme, stolen by @qwtel from Hyde. You could say it was.. hydejacked. Open _featured_tags/hydejack.md to edit this text.\n",
       "content": "\n",
       "categories": [],
@@ -947,7 +947,7 @@
     },{
       
       "title": "Механика",
-      "date": "2020-12-12 16:18:50 +0400",
+      "date": "2020-12-12 16:24:01 +0400",
       
       "content": "\n",
       "categories": [],
@@ -958,7 +958,7 @@
     },{
       
       "title": "Программирование",
-      "date": "2020-12-12 16:18:50 +0400",
+      "date": "2020-12-12 16:24:01 +0400",
       
       "content": "\n",
       "categories": [],
@@ -969,7 +969,7 @@
     },{
       
       "title": "Базы данных",
-      "date": "2020-12-12 16:18:50 +0400",
+      "date": "2020-12-12 16:24:01 +0400",
       
       "content": "\n",
       "categories": [],
@@ -980,7 +980,7 @@
     },{
       
       "title": "Космический мусор",
-      "date": "2020-12-12 16:18:50 +0400",
+      "date": "2020-12-12 16:24:01 +0400",
       
       "content": "\n",
       "categories": [],
@@ -991,7 +991,7 @@
     },{
       
       "title": "IT-сервис",
-      "date": "2020-12-12 16:18:50 +0400",
+      "date": "2020-12-12 16:24:01 +0400",
       "description": "ИТ-сервис\n",
       "content": "\n",
       "categories": [],
@@ -1002,7 +1002,7 @@
     },{
       
       "title": "Linux",
-      "date": "2020-12-12 16:18:50 +0400",
+      "date": "2020-12-12 16:24:01 +0400",
       
       "content": "\n",
       "categories": [],
@@ -1013,7 +1013,7 @@
     },{
       
       "title": "Mathematica",
-      "date": "2020-12-12 16:18:50 +0400",
+      "date": "2020-12-12 16:24:01 +0400",
       
       "content": "\n",
       "categories": [],
@@ -1024,7 +1024,7 @@
     },{
       
       "title": "MATLAB",
-      "date": "2020-12-12 16:18:50 +0400",
+      "date": "2020-12-12 16:24:01 +0400",
       
       "content": "\n",
       "categories": [],
@@ -1035,7 +1035,7 @@
     },{
       
       "title": "Python",
-      "date": "2020-12-12 16:18:50 +0400",
+      "date": "2020-12-12 16:24:01 +0400",
       "description": "Использование языка Python в научных вычислениях\n",
       "content": "\n",
       "categories": [],
