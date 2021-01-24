@@ -29,7 +29,7 @@ const SHELL_CACHE = "shell-9.0.3--v1--sw/";
 const ASSETS_CACHE = "assets--v1--sw/";
 
 // The cache for regular content, which will be invalidated every time you make a new build.
-const CONTENT_CACHE = "content--2021-01-21T20:41:24+04:00--sw/";
+const CONTENT_CACHE = "content--2021-01-24T19:46:53+04:00--sw/";
 
 // A URL search parameter you can add to external assets to cache them in the service worker.
 const SW_CACHE_SEARCH_PARAM = "sw-cache";
@@ -97,6 +97,7 @@ const STATIC_FILES = [
   /**/"/assets/img/hydejack-8@0,25x.jpg",
   /**/"/assets/img/hydejack-8@0,5x.jpg",
   /**/"/assets/img/interp1.png",
+  /**/"/assets/img/it/org_chart.png",
   /**/"/assets/img/kr_model.png",
   /**/"/assets/img/matlab_spring_masses.png",
   /**/"/assets/img/mbs/Lagrange_case.png",
