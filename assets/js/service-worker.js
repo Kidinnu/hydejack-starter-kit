@@ -29,7 +29,7 @@ const SHELL_CACHE = "shell-9.0.3--v1--sw/";
 const ASSETS_CACHE = "assets--v1--sw/";
 
 // The cache for regular content, which will be invalidated every time you make a new build.
-const CONTENT_CACHE = "content--2021-01-30T19:38:21+04:00--sw/";
+const CONTENT_CACHE = "content--2021-01-30T20:59:51+04:00--sw/";
 
 // A URL search parameter you can add to external assets to cache them in the service worker.
 const SW_CACHE_SEARCH_PARAM = "sw-cache";
@@ -88,6 +88,8 @@ const STATIC_FILES = [
   /**/"/assets/img/blog/w3m.png",
   /**/"/assets/img/default.jpg",
   /**/"/assets/img/docs/google-fonts.png",
+  /**/"/assets/img/fairing/GO-NEO.png",
+  /**/"/assets/img/fairing/GO-forces.png",
   /**/"/assets/img/fairing/GO-size.png",
   /**/"/assets/img/fminbnd.png",
   /**/"/assets/img/fminsearch.png",
