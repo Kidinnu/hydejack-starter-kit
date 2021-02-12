@@ -29,7 +29,7 @@ const SHELL_CACHE = "shell-9.1.0--v1--sw/";
 const ASSETS_CACHE = "assets--v1--sw/";
 
 // The cache for regular content, which will be invalidated every time you make a new build.
-const CONTENT_CACHE = "content--2021-02-06T22:40:09+04:00--sw/";
+const CONTENT_CACHE = "content--2021-02-12T21:14:37+04:00--sw/";
 
 // A URL search parameter you can add to external assets to cache them in the service worker.
 const SW_CACHE_SEARCH_PARAM = "sw-cache";
@@ -194,6 +194,7 @@ const STATIC_FILES = [
   /**/"/pages/wolfram/math-lab-1.jpg",
   /**/"/pages/wolfram/mech1.jpg",
   /**/"/pages/wolfram/mech2.jpg",
+  /**/"/pages/wolfram/template.nb",
   /**/"/assets/bower.json",
   /**/"/assets/bower_components/MathJax/.bower.json",
   /**/"/assets/bower_components/MathJax/LICENSE",
