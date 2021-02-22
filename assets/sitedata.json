@@ -951,10 +951,10 @@
       "url": "/blog/programming/2020-05-20-select-sql/"
     },{
       
-      "title": "Модель отделения полезного груза от ракеты-носителя",
+      "title": "Создание множества баз данных и пользователей в MySQL",
       "date": "2021-02-22 00:00:00 +0400",
-      "description": "Скрипт для добавления большого числа пользователей MySQL\n",
-      "content": "В рамках курса “Базы данных” на кафедре ММЭ для выполнения лабораторных работ понадобилось запустить MySQL сервер и создать для каждого студента свою учетную запись и базу данных на сервере.\n\nДля формирования SQL-сценария для создания баз данных и пользователей использовался следующий bash-скрипт.\n\nВ первой bash-скрипта части читается тектовый файл students.txt, в котором в одну колонку записаны номера зачетных книжек студентов в формате YYYY-NNNNN. Для каждого номера зачетной книжки генерируется пароль pwgen. Результат (номер пароль) записывается в текстовый файл userpass.txt.\n\n#!/bin/bash\n\nBTICK='`'\n\ncat /dev/null &gt; 'userpass.txt'\n\nwhile IFS=\" \" read -r USERNAME remainder\ndo      \n    PASSWORD=`pwgen 12 1`\n    echo $USERNAME $PASSWORD &gt;&gt; 'userpass.txt'\ndone &lt; \"students.txt\"\n\n\nВо второй части из файла userpass.txt читаются номера зачетных книжек и пароли, формируются имя пользователя uYYYY_NNNNN и база данных db_YYYY_NNNNN. SQL-скрипт создания базы данных и пользователя записывается в файл create_user_script.sql.\n\ncat /dev/null &gt; 'create_user_script.sql'\n\nwhile IFS=\" \" read -r UNAME UPASS remainder\ndo\n    UNAME=${UNAME//-/_}  \n    DBNAME=\"db_$UNAME\"\n    UNAME=\"u$UNAME\"\n    \n    Q1=\"CREATE DATABASE IF NOT EXISTS $DBNAME;\"\n    Q2=\"GRANT ALL ON ${BTICK}$DBNAME${BTICK}.* TO '$UNAME'@'%' IDENTIFIED BY '$UPASS';\"\n    echo $Q1 &gt;&gt; 'create_user_script.sql'\n    echo $Q2 &gt;&gt; 'create_user_script.sql'\ndone &lt; \"userpass.txt\"\n\necho 'FLUSH PRIVILEGES;' &gt;&gt; 'create_user_script.sql'\n\n",
+      
+      "content": "В рамках курса “Базы данных” на кафедре ММЭ для выполнения лабораторных работ понадобилось запустить MySQL сервер и создать для каждого студента свою учетную запись и базу данных на сервере.\n\nДля формирования SQL-сценария для создания баз данных и пользователей использовался  bash-скрипт. В первой bash-скрипта части читается тектовый файл students.txt, в котором в одну колонку записаны номера зачетных книжек студентов в формате YYYY-NNNNN. Для каждого номера зачетной книжки генерируется пароль pwgen. Результат (номер пароль) записывается в текстовый файл userpass.txt.\n\n#!/bin/bash\n\nBTICK='`'\n\ncat /dev/null &gt; 'userpass.txt'\n\nwhile IFS=\" \" read -r USERNAME remainder\ndo      \n    PASSWORD=`pwgen 12 1`\n    echo $USERNAME $PASSWORD &gt;&gt; 'userpass.txt'\ndone &lt; \"students.txt\"\n\n\nВо второй части из файла userpass.txt читаются номера зачетных книжек и пароли, формируются имя пользователя uYYYY_NNNNN и база данных db_YYYY_NNNNN. SQL-скрипт создания базы данных и пользователя записывается в файл create_user_script.sql.\n\ncat /dev/null &gt; 'create_user_script.sql'\n\nwhile IFS=\" \" read -r UNAME UPASS remainder\ndo\n    UNAME=${UNAME//-/_}  \n    DBNAME=\"db_$UNAME\"\n    UNAME=\"u$UNAME\"\n    \n    Q1=\"CREATE DATABASE IF NOT EXISTS $DBNAME;\"\n    Q2=\"GRANT ALL ON ${BTICK}$DBNAME${BTICK}.* TO '$UNAME'@'%' IDENTIFIED BY '$UPASS';\"\n    echo $Q1 &gt;&gt; 'create_user_script.sql'\n    echo $Q2 &gt;&gt; 'create_user_script.sql'\ndone &lt; \"userpass.txt\"\n\necho 'FLUSH PRIVILEGES;' &gt;&gt; 'create_user_script.sql'\n\n",
       "categories": ["mechanics"],
       "tags": ["database"],
       
@@ -963,7 +963,7 @@
     },{
       
       "title": "Инженерное и математическое программное обеспечение",
-      "date": "2021-02-22 20:09:29 +0400",
+      "date": "2021-02-22 20:15:24 +0400",
       
       "content": "\n",
       "categories": [],
@@ -974,7 +974,7 @@
     },{
       
       "title": "Example",
-      "date": "2021-02-22 20:09:29 +0400",
+      "date": "2021-02-22 20:15:24 +0400",
       "description": "This is a featured category, which have their own page. Check out _featured_tags/example.md to learn how to create your own.\n",
       "content": "\n",
       "categories": [],
@@ -985,7 +985,7 @@
     },{
       
       "title": "Hyde",
-      "date": "2021-02-22 20:09:29 +0400",
+      "date": "2021-02-22 20:15:24 +0400",
       "description": "Hyde is a brazen two-column Jekyll theme that pairs a prominent sidebar with uncomplicated content. It’s based on Poole, the Jekyll butler. Open _featured_tags/hyde.md to edit this text.\n",
       "content": "\n",
       "categories": [],
@@ -996,7 +996,7 @@
     },{
       
       "title": "Hydejack",
-      "date": "2021-02-22 20:09:29 +0400",
+      "date": "2021-02-22 20:15:24 +0400",
       "description": "Hydejack is a pretentious two-column Jekyll theme, stolen by @qwtel from Hyde. You could say it was.. hydejacked. Open _featured_tags/hydejack.md to edit this text.\n",
       "content": "\n",
       "categories": [],
@@ -1007,7 +1007,7 @@
     },{
       
       "title": "Механика",
-      "date": "2021-02-22 20:09:29 +0400",
+      "date": "2021-02-22 20:15:24 +0400",
       
       "content": "\n",
       "categories": [],
@@ -1018,7 +1018,7 @@
     },{
       
       "title": "Программирование",
-      "date": "2021-02-22 20:09:29 +0400",
+      "date": "2021-02-22 20:15:24 +0400",
       
       "content": "\n",
       "categories": [],
@@ -1029,7 +1029,7 @@
     },{
       
       "title": "Базы данных",
-      "date": "2021-02-22 20:09:29 +0400",
+      "date": "2021-02-22 20:15:24 +0400",
       
       "content": "\n",
       "categories": [],
@@ -1040,7 +1040,7 @@
     },{
       
       "title": "Космический мусор",
-      "date": "2021-02-22 20:09:29 +0400",
+      "date": "2021-02-22 20:15:24 +0400",
       
       "content": "\n",
       "categories": [],
@@ -1051,7 +1051,7 @@
     },{
       
       "title": "IT-сервис",
-      "date": "2021-02-22 20:09:29 +0400",
+      "date": "2021-02-22 20:15:24 +0400",
       "description": "ИТ-сервис\n",
       "content": "\n",
       "categories": [],
@@ -1062,7 +1062,7 @@
     },{
       
       "title": "Linux",
-      "date": "2021-02-22 20:09:29 +0400",
+      "date": "2021-02-22 20:15:24 +0400",
       
       "content": "\n",
       "categories": [],
@@ -1073,7 +1073,7 @@
     },{
       
       "title": "Mathematica",
-      "date": "2021-02-22 20:09:29 +0400",
+      "date": "2021-02-22 20:15:24 +0400",
       
       "content": "\n",
       "categories": [],
@@ -1084,7 +1084,7 @@
     },{
       
       "title": "MATLAB",
-      "date": "2021-02-22 20:09:29 +0400",
+      "date": "2021-02-22 20:15:24 +0400",
       
       "content": "\n",
       "categories": [],
@@ -1095,7 +1095,7 @@
     },{
       
       "title": "Python",
-      "date": "2021-02-22 20:09:29 +0400",
+      "date": "2021-02-22 20:15:24 +0400",
       "description": "Использование языка Python в научных вычислениях\n",
       "content": "\n",
       "categories": [],
