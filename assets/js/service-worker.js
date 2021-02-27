@@ -29,7 +29,7 @@ const SHELL_CACHE = "shell-9.1.0--v1--sw/";
 const ASSETS_CACHE = "assets--v1--sw/";
 
 // The cache for regular content, which will be invalidated every time you make a new build.
-const CONTENT_CACHE = "content--2021-02-23T11:49:02+04:00--sw/";
+const CONTENT_CACHE = "content--2021-02-27T20:05:37+04:00--sw/";
 
 // A URL search parameter you can add to external assets to cache them in the service worker.
 const SW_CACHE_SEARCH_PARAM = "sw-cache";
@@ -189,6 +189,7 @@ const STATIC_FILES = [
   /**/"/pages/python/lab_matplotlib.png",
   /**/"/pages/readme.md",
   /**/"/pages/wolfram/Lab_Report_Template.docx",
+  /**/"/pages/wolfram/Lecture_2.pdf",
   /**/"/pages/wolfram/lab3.jpg",
   /**/"/pages/wolfram/lab6.md",
   /**/"/pages/wolfram/math-lab-1.jpg",
